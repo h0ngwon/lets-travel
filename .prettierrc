@@ -1,0 +1,29 @@
+{
+    "printWidth": 80,
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "trailingComma": "all",
+    "arrowParens": "always",
+    "endOfLine": "auto",
+    "jsxSingleQuote": true,
+
+    "importOrder": [
+        "^react(.*)",
+        "^redux/(.*)$",
+        "^@reduxjs/(.*)$",
+        "^@tanstack/(.*)$",
+        "^@apis/(.*)$",
+        "^@hooks/(.*)$",
+        "^@common/(.*)$",
+        "^@pages/(.*)$",
+        "^@components/(.*)$",
+        "^styles/(.*)$",
+        "^[./]",
+        "^types",
+        "<THIRD_PARTY_MODULES>"],   
+    "importOrderSeparation": true,   
+    "importOrderSortSpecifiers": true
+}
