@@ -10,11 +10,11 @@
 
 | 팀원  | Github | 블로그 |  
 |-------|--------|-----|
-| 김래준 | https://velog.io/@laejunkim| https://github.com/Laejun-Kim |
-| 이고운 | https://velog.io/@leegu517| https://github.com/gounlee0517 |
-| 이예지 | https://velog.io/@yeahzzl| https://github.com/Yeahzzl |
-| 임홍원 | https://velog.io/@h0ngwon| https://github.com/h0ngwon |
-| 최수인 | https://lumpy-bolt-999.notion.site/2023-11-57bb44481edc4834af154ba0e31e2264| https://github.com/Choi-Suin |
+| 김래준 | https://velog.io/@laejunkim | https://github.com/Laejun-Kim |
+| 이고운 | https://velog.io/@leegu517 | https://github.com/gounlee0517 |
+| 이예지 | https://velog.io/@yeahzzl | https://github.com/Yeahzzl |
+| 임홍원 | https://velog.io/@h0ngwon | https://github.com/h0ngwon |
+| 최수인 | https://lumpy-bolt-999.notion.site/2023-11-57bb44481edc4834af154ba0e31e2264 | https://github.com/Choi-Suin |
 
 ## <b>사용 기술 스택</b>
 <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white"><img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white"><img src="https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E"><img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB"><br/>
