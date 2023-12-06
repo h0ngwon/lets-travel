@@ -6,9 +6,39 @@
             "description": "당신의 추천여행지는 일본입니다"
         },
         {
-            "type": "A",
-            "country": "일본",
-            "description": "당신의 추천여행지는 일본입니다"
+            "type": "B",
+            "country": "베트남",
+            "description": "당신의 추천여행지는 베트남입니다"
+        },
+        {
+            "type": "C",
+            "country": "미국",
+            "description": "당신의 추천여행지는 미국입니다"
+        },
+        {
+            "type": "D",
+            "country": "캐나다",
+            "description": "당신의 추천여행지는 캐나다입니다"
+        },
+        {
+            "type": "E",
+            "country": "영국",
+            "description": "당신의 추천여행지는 영국입니다"
+        },
+        {
+            "type": "F",
+            "country": "프랑스",
+            "description": "당신의 추천여행지는 프랑스입니다"
+        },
+        {
+            "type": "G",
+            "country": "호주",
+            "description": "당신의 추천여행지는 호주입니다"
+        },
+        {
+            "type": "H",
+            "country": "이집트",
+            "description": "당신의 추천여행지는 이집트입니다"
         }
     ]
 }
