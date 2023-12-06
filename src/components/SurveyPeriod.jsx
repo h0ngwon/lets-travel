@@ -3,8 +3,6 @@ import SurveyCircle from './ui/SurveyCircle';
 import styled from 'styled-components';
 
 function SurveyPeriod() {
-    const [onclick, setOnclick] = useState(null);
-
     return (
         <div>
             <CircleWrap>
@@ -17,10 +15,8 @@ function SurveyPeriod() {
 }
 
 const CircleWrap = styled.div`
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    place-items: center;
+    display: flex;
+    justify-content: center;
     padding: 200px 200px;
     gap: 70px;
 `;
