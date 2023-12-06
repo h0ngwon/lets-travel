@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SurveyCircle from './ui/SurveyCircle';
 import styled from 'styled-components';
 
-function SurveyPeriod({ nextPageHandler, prevPageHandler }) {
+function SurveyPeriod() {
+    const [onclick, setOnclick] = useState(null);
+
     return (
         <div>
             <CircleWrap>
@@ -15,8 +17,10 @@ function SurveyPeriod({ nextPageHandler, prevPageHandler }) {
 }
 
 const CircleWrap = styled.div`
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    place-items: center;
     padding: 200px 200px;
     gap: 70px;
 `;

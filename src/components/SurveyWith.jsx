@@ -2,7 +2,7 @@ import React from 'react';
 import SurveyCircle from './ui/SurveyCircle';
 import { styled } from 'styled-components';
 
-function SurveyWith({ nextPageHandler, prevPageHandler }) {
+function SurveyWith() {
     return (
         <div>
             <CircleWrap>
