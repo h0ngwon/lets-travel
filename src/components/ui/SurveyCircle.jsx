@@ -5,10 +5,6 @@ function SurveyCircle({ children }) {
     return <SurveyCircleSt>{children}</SurveyCircleSt>;
 }
 
-// const Container = styled.div`
-//     width: 100vw;
-//     height: 80vh;
-// `;
 const SurveyCircleSt = styled.div`
     width: 180px;
     height: 180px;

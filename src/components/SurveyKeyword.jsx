@@ -2,7 +2,7 @@ import React from 'react';
 import SurveyCircle from './ui/SurveyCircle';
 import styled from 'styled-components';
 
-function SurveyKeyword({ nextPageHandler, prevPageHandler }) {
+function SurveyKeyword() {
     return (
         <div>
             <CircleWrap>

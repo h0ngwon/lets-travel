@@ -2,7 +2,7 @@ import React from 'react';
 import SurveyCircle from './ui/SurveyCircle';
 import styled from 'styled-components';
 
-function SurveyPeriod({ nextPageHandler, prevPageHandler }) {
+function SurveyPeriod() {
     return (
         <div>
             <CircleWrap>
