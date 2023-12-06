@@ -5,7 +5,7 @@ import Footer from './ui/Footer';
 import SurveyButton from './ui/SurveyButton';
 import styled from 'styled-components';
 
-function SurveyKeyword() {
+function SurveyKeyword({ nextPageHandler }) {
     return (
         <div>
             <Navbar />
@@ -19,7 +19,7 @@ function SurveyKeyword() {
                 <SurveyCircle>가성비</SurveyCircle>
                 <SurveyCircle>사진</SurveyCircle>
             </CircleWrap>
-            <SurveyButton />
+            <SurveyButton nextPageHandler={nextPageHandler}/>
             <Footer />
         </div>
     );

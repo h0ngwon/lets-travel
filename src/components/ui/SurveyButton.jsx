@@ -1,13 +1,13 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
-function SurveyButton() {
+function SurveyButton({ nextPageHandler }) {
     return (
         <div>
             <ButtonContainer>
                 <ButtonWrap>
                     <Button>이전페이지</Button>
-                    <Button>다음페이지</Button>
+                    <Button onClick={nextPageHandler}>다음페이지</Button>
                 </ButtonWrap>
             </ButtonContainer>
         </div>

@@ -5,8 +5,7 @@ import Navbar from './ui/Navbar';
 import { styled } from 'styled-components';
 import Footer from './ui/Footer';
 
-function SurveyCountry() {
-
+function SurveyCountry({ nextPageHandler }) {
     return (
         <CountryContainer>
             <Navbar />
@@ -18,7 +17,7 @@ function SurveyCountry() {
                 <SurveyCircle>유럽</SurveyCircle>
                 <SurveyCircle>아메리카</SurveyCircle>
             </CircleWrap>
-            <SurveyButton />
+            <SurveyButton nextPageHandler={nextPageHandler} />
             <Footer />
         </CountryContainer>
     );

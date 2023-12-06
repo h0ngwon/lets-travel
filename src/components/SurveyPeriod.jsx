@@ -5,7 +5,7 @@ import SurveyButton from './ui/SurveyButton';
 import Footer from './ui/Footer';
 import styled from 'styled-components';
 
-function SurveyPeriod() {
+function SurveyPeriod({ nextPageHandler }) {
     return (
         <div>
             <Navbar />
@@ -14,7 +14,7 @@ function SurveyPeriod() {
                 <SurveyCircle>15일</SurveyCircle>
                 <SurveyCircle>30일</SurveyCircle>
             </CircleWrap>
-            <SurveyButton />
+            <SurveyButton nextPageHandler={nextPageHandler}/>
             <Footer />
         </div>
     );
