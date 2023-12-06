@@ -5,10 +5,9 @@ import Footer from './ui/Footer';
 import SurveyButton from './ui/SurveyButton';
 import styled from 'styled-components';
 
-function SurveyKeyword({ nextPageHandler }) {
+function SurveyKeyword({ nextPageHandler, prevPageHandler }) {
     return (
         <div>
-            <Navbar />
             <CircleWrap>
                 <SurveyCircle>관광</SurveyCircle>
                 <SurveyCircle>쇼핑</SurveyCircle>
@@ -19,8 +18,8 @@ function SurveyKeyword({ nextPageHandler }) {
                 <SurveyCircle>가성비</SurveyCircle>
                 <SurveyCircle>사진</SurveyCircle>
             </CircleWrap>
-            <SurveyButton nextPageHandler={nextPageHandler}/>
-            <Footer />
+            <SurveyButton nextPageHandler={nextPageHandler}
+            prevPageHandler={prevPageHandler}/>
         </div>
     );
 }
@@ -31,7 +30,6 @@ const CircleWrap = styled.div`
     padding-top: 150px;
     padding-bottom: 100px;
     gap: 50px;
-    margin: 100px 100px;
     align-items: center;
     place-items: center;
 `

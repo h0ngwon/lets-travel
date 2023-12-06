@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 
 function SurveyCountry({ nextPageHandler }) {
     return (
-        <CountryContainer>
+        <div>
             <CircleWrap>
                 <SurveyCircle>아시아</SurveyCircle>
                 <SurveyCircle>아프리카</SurveyCircle>
@@ -15,14 +15,9 @@ function SurveyCountry({ nextPageHandler }) {
                 <SurveyCircle>아메리카</SurveyCircle>
             </CircleWrap>
             <SurveyButton nextPageHandler={nextPageHandler} />
-        </CountryContainer>
+        </div>
     );
 }
-
-const CountryContainer = styled.div`
-    width: 100vw;
-    height: 700px;
-`;
 
 const CircleWrap = styled.div`
     display: grid;

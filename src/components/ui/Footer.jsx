@@ -12,8 +12,9 @@ function Footer() {
     );
 }
 const FooterContainer = styled.div`
-    width: 100vw;
-    height: 30px;
+	bottom: 0px;
+	position: absolute;
+    width: 100%;
     background-color: #71d5c9;
     color: white;
     padding: 30px 0;

@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 
 function SurveyWith({ nextPageHandler, prevPageHandler }) {
     return (
-        <CountryContainer>
+        <div>
             <CircleWrap>
                 <SurveyCircle>혼자</SurveyCircle>
                 <SurveyCircle>가족</SurveyCircle>
@@ -16,14 +16,9 @@ function SurveyWith({ nextPageHandler, prevPageHandler }) {
                 nextPageHandler={nextPageHandler}
                 prevPageHandler={prevPageHandler}
             />
-        </CountryContainer>
+        </div>
     );
 }
-
-const CountryContainer = styled.div`
-    width: 100vw;
-    height: 700px;
-`;
 
 const CircleWrap = styled.div`
     display: flex;
@@ -32,7 +27,7 @@ const CircleWrap = styled.div`
     align-items: center;
     /* place-items: center; */
     margin: 200px 100px;
-    gap: 70px;
+    gap: 50px;
 `;
 
 export default SurveyWith;
