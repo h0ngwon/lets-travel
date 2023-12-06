@@ -6,6 +6,7 @@ import { styled } from 'styled-components';
 import Footer from './ui/Footer';
 
 function SurveyCountry() {
+
     return (
         <CountryContainer>
             <Navbar />
