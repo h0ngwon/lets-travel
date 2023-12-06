@@ -14,16 +14,42 @@ function SurveyPage() {
         }
     };
 
+    const prevPageHandler = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    };
+
     const renderSurveyPage = () => {
         switch (currentPage) {
             case 1:
-                return <SurveyCountry nextPageHandler={nextPageHandler} />;
+                return (
+                    <SurveyCountry
+                        nextPageHandler={nextPageHandler}
+                        prevPageHandler={prevPageHandler}
+                    />
+                );
             case 2:
-                return <SurveyWith nextPageHandler={nextPageHandler} />;
+                return (
+                    <SurveyWith
+                        nextPageHandler={nextPageHandler}
+                        prevPageHandler={prevPageHandler}
+                    />
+                );
             case 3:
-                return <SurveyPeriod nextPageHandler={nextPageHandler} />;
+                return (
+                    <SurveyPeriod
+                        nextPageHandler={nextPageHandler}
+                        prevPageHandler={prevPageHandler}
+                    />
+                );
             case 4:
-                return <SurveyKeyword nextPageHandler={nextPageHandler} />;
+                return (
+                    <SurveyKeyword
+                        nextPageHandler={nextPageHandler}
+                        prevPageHandler={prevPageHandler}
+                    />
+                );
             default:
                 return null;
         }
@@ -31,6 +57,7 @@ function SurveyPage() {
     return (
         <div>
             {renderSurveyPage()}
+            {currentPage > 1}
             {currentPage < totalPage}
         </div>
     );

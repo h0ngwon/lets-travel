@@ -5,7 +5,7 @@ import SurveyCircle from './ui/SurveyCircle';
 import Footer from './ui/Footer';
 import { styled } from 'styled-components';
 
-function SurveyWith({ nextPageHandler }) {
+function SurveyWith({ nextPageHandler, prevPageHandler }) {
     return (
         <CountryContainer>
             <Navbar />
@@ -15,7 +15,10 @@ function SurveyWith({ nextPageHandler }) {
                 <SurveyCircle>친구</SurveyCircle>
                 <SurveyCircle>연인</SurveyCircle>
             </CircleWrap>
-            <SurveyButton nextPageHandler={nextPageHandler} />
+            <SurveyButton
+                nextPageHandler={nextPageHandler}
+                prevPageHandler={prevPageHandler}
+            />
             <Footer />
         </CountryContainer>
     );
