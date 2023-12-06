@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
     GoogleMap,
     useJsApiLoader,
@@ -6,30 +6,42 @@ import {
     PolylineF,
 } from '@react-google-maps/api';
 
-function MapComponent() {
-    //사이즈는 부모 컴포넌트에 사이즈에 의존하게 만들었습니다.
+function MapComponent(props) {
+    //props로 목적지의 위도 경도를 받아야 합니다.
+
+    //목적지 초기값은 마이애미
+    const [destLatLng, setDestLatLng] = useState({ lat: 25.774, lng: -80.19 });
+
+    //사이즈는 부모 element 사이즈에 의존합니다.
     //e.g. <MapComponent /> 가 가로 1000px, 세로 600xp인 div 안에서 렌더링된다면 그 사이즈가 됩니다
     const containerStyle = {
         width: '100%',
         height: '100%',
     };
 
-    const center = {
-        //서울 위도경도
+    //서울 위도경도
+    const departure = {
         lat: 37.5649867,
         lng: 126.985575,
     };
+
+    const averageLatLng = {
+        lat: (departure.lat + destLatLng.lat) / 2,
+        lng: (departure.lng + destLatLng.lng) / 2,
+    };
+    if (averageLatLng.lng > -10 && averageLatLng.lng < 40) {
+        averageLatLng.lng += 180;
+    }
 
     const OPTIONS = {
         maxZoom: 10,
         minZoom: 2,
     };
-    const someCoords = [
+    const polyPath = [
         {
-            lat: 37.5649867,
-            lng: 126.985575,
+            ...departure,
         },
-        { lat: 25.774, lng: -80.19 }, //마이애미 위도 경도
+        { ...destLatLng },
     ];
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -39,9 +51,6 @@ function MapComponent() {
     const [map, setMap] = React.useState(null);
 
     const onLoad = React.useCallback(function callback(map) {
-        const bounds = new window.google.maps.LatLngBounds(center);
-        map.fitBounds(bounds);
-
         setMap(map);
     }, []);
 
@@ -49,19 +58,26 @@ function MapComponent() {
         setMap(null);
     }, []);
 
+    //동작 시험용 코드 : 입력받은 목적지로 잘 바뀌는가?
+    useEffect(() => {
+        setTimeout(() => {
+            setDestLatLng(props.destination || { lat: 34.69, lng: 135.5 });
+        }, 2000);
+    }, []);
+
     return isLoaded ? (
         <GoogleMap
             mapContainerStyle={containerStyle}
-            center={center}
-            zoom={3}
+            center={averageLatLng}
             onLoad={onLoad}
             onUnmount={onUnmount}
             options={OPTIONS}
+            zoom={3}
         >
-            <Marker position={center}></Marker>
-            <Marker position={{ lat: 25.774, lng: -80.19 }}></Marker>
+            <Marker position={departure}></Marker>
+            <Marker position={destLatLng}></Marker>
             <PolylineF
-                path={someCoords}
+                path={polyPath}
                 options={{
                     strokeOpacity: 1,
                     strokeColor: '#ff0000',
