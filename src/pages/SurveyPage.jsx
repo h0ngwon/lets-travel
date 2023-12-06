@@ -2,6 +2,8 @@ import SurveyCountry from 'components/SurveyCountry';
 import SurveyKeyword from 'components/SurveyKeyword';
 import SurveyPeriod from 'components/SurveyPeriod';
 import SurveyWith from 'components/SurveyWith';
+import Footer from 'components/ui/Footer';
+import Navbar from 'components/ui/Navbar';
 import React, { useState } from 'react';
 
 function SurveyPage() {
@@ -56,9 +58,11 @@ function SurveyPage() {
     };
     return (
         <div>
+            <Navbar />
             {renderSurveyPage()}
             {currentPage > 1}
             {currentPage < totalPage}
+            <Footer />
         </div>
     );
 }
