@@ -24,7 +24,7 @@ const MainLogo = styled.h1`
     align-items: center;
     padding-left: 50px;
     color: #71d5c9;
-    font-size: 30px;
-    font-family: ClimateCrisisKR-2010;
+    font-size: 35px;
+    font-family: Milton Keynes;
 `;
 export default Navbar;
