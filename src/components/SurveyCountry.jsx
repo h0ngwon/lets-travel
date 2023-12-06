@@ -1,14 +1,11 @@
 import React from 'react';
 import SurveyButton from './ui/SurveyButton';
 import SurveyCircle from './ui/SurveyCircle';
-import Navbar from './ui/Navbar';
 import { styled } from 'styled-components';
-import Footer from './ui/Footer';
 
 function SurveyCountry({ nextPageHandler }) {
     return (
         <CountryContainer>
-            <Navbar />
             <CircleWrap>
                 <SurveyCircle>아시아</SurveyCircle>
                 <SurveyCircle>아프리카</SurveyCircle>
@@ -18,14 +15,13 @@ function SurveyCountry({ nextPageHandler }) {
                 <SurveyCircle>아메리카</SurveyCircle>
             </CircleWrap>
             <SurveyButton nextPageHandler={nextPageHandler} />
-            <Footer />
         </CountryContainer>
     );
 }
 
 const CountryContainer = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 700px;
 `;
 
 const CircleWrap = styled.div`

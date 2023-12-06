@@ -1,14 +1,11 @@
 import React from 'react';
 import SurveyButton from './ui/SurveyButton';
-import Navbar from './ui/Navbar';
 import SurveyCircle from './ui/SurveyCircle';
-import Footer from './ui/Footer';
 import { styled } from 'styled-components';
 
 function SurveyWith({ nextPageHandler, prevPageHandler }) {
     return (
         <CountryContainer>
-            <Navbar />
             <CircleWrap>
                 <SurveyCircle>혼자</SurveyCircle>
                 <SurveyCircle>가족</SurveyCircle>
@@ -19,14 +16,13 @@ function SurveyWith({ nextPageHandler, prevPageHandler }) {
                 nextPageHandler={nextPageHandler}
                 prevPageHandler={prevPageHandler}
             />
-            <Footer />
         </CountryContainer>
     );
 }
 
 const CountryContainer = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 700px;
 `;
 
 const CircleWrap = styled.div`
