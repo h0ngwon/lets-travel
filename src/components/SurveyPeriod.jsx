@@ -15,8 +15,10 @@ function SurveyPeriod({ nextPageHandler, prevPageHandler }) {
 }
 
 const CircleWrap = styled.div`
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(auto, 1fr));
+    align-items: center;
+    place-items: center;
     padding: 200px 200px;
     gap: 70px;
 `;
