@@ -4,6 +4,7 @@ import SurveyPeriod from 'components/SurveyPeriod';
 import SurveyWith from 'components/SurveyWith';
 import Footer from 'components/ui/Footer';
 import Navbar from 'components/ui/Navbar';
+import SurveyButton from 'components/ui/SurveyButton';
 import React, { useState } from 'react';
 
 function SurveyPage() {
@@ -62,6 +63,10 @@ function SurveyPage() {
             {renderSurveyPage()}
             {currentPage > 1}
             {currentPage < totalPage}
+            <SurveyButton
+                nextPageHandler={nextPageHandler}
+                prevPageHandler={prevPageHandler}
+            />
             <Footer />
         </div>
     );

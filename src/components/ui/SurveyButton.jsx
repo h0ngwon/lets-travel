@@ -20,6 +20,8 @@ const ButtonContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: flex-end;
+    bottom: 80px;
+    position: absolute;
 `;
 
 const ButtonWrap = styled.div`

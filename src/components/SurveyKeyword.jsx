@@ -1,8 +1,5 @@
 import React from 'react';
 import SurveyCircle from './ui/SurveyCircle';
-import Navbar from './ui/Navbar';
-import Footer from './ui/Footer';
-import SurveyButton from './ui/SurveyButton';
 import styled from 'styled-components';
 
 function SurveyKeyword({ nextPageHandler, prevPageHandler }) {
@@ -18,8 +15,6 @@ function SurveyKeyword({ nextPageHandler, prevPageHandler }) {
                 <SurveyCircle>가성비</SurveyCircle>
                 <SurveyCircle>사진</SurveyCircle>
             </CircleWrap>
-            <SurveyButton nextPageHandler={nextPageHandler}
-            prevPageHandler={prevPageHandler}/>
         </div>
     );
 }
@@ -27,11 +22,10 @@ function SurveyKeyword({ nextPageHandler, prevPageHandler }) {
 const CircleWrap = styled.div`
     display: grid;
     grid-template-columns: repeat(4, minmax(auto, 1fr));
-    padding-top: 150px;
-    padding-bottom: 100px;
+    padding: 100px 200px;
     gap: 50px;
     align-items: center;
     place-items: center;
-`
+`;
 
 export default SurveyKeyword;
