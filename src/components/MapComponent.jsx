@@ -61,7 +61,7 @@ function MapComponent(props) {
     //동작 시험용 코드 : 입력받은 목적지로 잘 바뀌는가?
     useEffect(() => {
         setTimeout(() => {
-            setDestLatLng(props.destination || { lat: 34.69, lng: 135.5 });
+            setDestLatLng(props.destination || { lat: 48.8, lng: 2.35 });
         }, 2000);
     }, []);
 
