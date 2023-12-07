@@ -1,0 +1,283 @@
+{
+    "countryList": [
+        {
+            "q": ["대륙 선택"],
+            "a": [
+                {
+                    "text": "아시아",
+                    "type": ""
+                },
+                {
+                    "text": "유럽",
+                    "type": ""
+                },
+                {
+                    "text": "아메리카",
+                    "type": ""
+                },
+                {
+                    "text": "오세아니아",
+                    "type": ""
+                },
+                {
+                    "text": "아프리카",
+                    "type": ""
+                }
+            ]
+        },
+        {
+            "q": ["함께 여행하고 싶은 사람"],
+            "a": [
+                {
+                    "text": "혼자",
+                    "type": ""
+                },
+                {
+                    "text": "가족",
+                    "type": ""
+                },
+                {
+                    "text": "친구",
+                    "type": ""
+                },
+                {
+                    "text": "연인",
+                    "type": ""
+                }
+            ]
+        },
+        {
+            "q": ["여행기간"],
+            "a": [
+                {
+                    "text": "3일",
+                    "type": ""
+                },
+                {
+                    "text": "15일",
+                    "type": ""
+                },
+                {
+                    "text": "30일",
+                    "type": ""
+                }
+            ]
+        },
+        {
+            "q": ["키워드를 선택해주세요(최대 3가지)"],
+            "a": [
+                {
+                    "text": "관광",
+                    "type": ""
+                },
+                {
+                    "text": "쇼핑",
+                    "type": ""
+                },
+                {
+                    "text": "액티비티",
+                    "type": ""
+                },
+                {
+                    "text": "사진",
+                    "type": ""
+                },
+                {
+                    "text": "힐링",
+                    "type": ""
+                },
+                {
+                    "text": "맛집",
+                    "type": ""
+                },
+                {
+                    "text": "이색체험",
+                    "type": ""
+                },
+                {
+                    "text": "가성비",
+                    "type": ""
+                }
+            ]
+        }
+    ],
+    "countryTypeData": [
+        {
+            "type": "A",
+            "country": "일본",
+            "description": "당신의 추천여행지는 일본입니다"
+        },
+        {
+            "type": "B",
+            "country": "베트남",
+            "description": "당신의 추천여행지는 베트남입니다"
+        },
+        {
+            "type": "C",
+            "country": "미국",
+            "description": "당신의 추천여행지는 미국입니다"
+        },
+        {
+            "type": "D",
+            "country": "캐나다",
+            "description": "당신의 추천여행지는 캐나다입니다"
+        },
+        {
+            "type": "E",
+            "country": "영국",
+            "description": "당신의 추천여행지는 영국입니다"
+        },
+        {
+            "type": "F",
+            "country": "프랑스",
+            "description": "당신의 추천여행지는 프랑스입니다"
+        },
+        {
+            "type": "G",
+            "country": "호주",
+            "description": "당신의 추천여행지는 호주입니다"
+        },
+        {
+            "type": "H",
+            "country": "이집트",
+            "description": "당신의 추천여행지는 이집트입니다"
+        }
+    ],
+    "japan": [
+        {
+            "id": "japan1",
+            "title": "도쿄",
+            "img": ""
+        },
+        {
+            "id": "japan2",
+            "title": "오사카",
+            "img": ""
+        },
+        {
+            "id": "japan3",
+            "title": "훗카이도",
+            "img": ""
+        }
+    ],
+    "vietnam": [
+        {
+            "id": "vietnam1",
+            "title": "하노이",
+            "img": ""
+        },
+        {
+            "id": "vietnam2",
+            "title": "다낭",
+            "img": ""
+        },
+        {
+            "id": "vietnam3",
+            "title": "나트랑",
+            "img": ""
+        }
+    ],
+    "usa": [
+        {
+            "id": "usa1",
+            "title": "로스앤젤레스",
+            "img": ""
+        },
+        {
+            "id": "usa2",
+            "title": "뉴욕",
+            "img": ""
+        },
+        {
+            "id": "usa3",
+            "title": "샌프란시스코",
+            "img": ""
+        }
+    ],
+    "canada": [
+        {
+            "id": "canada1",
+            "title": "벤쿠버",
+            "img": ""
+        },
+        {
+            "id": "canada2",
+            "title": "토론토",
+            "img": ""
+        },
+        {
+            "id": "canada3",
+            "title": "퀘벡",
+            "img": ""
+        }
+    ],
+    "england": [
+        {
+            "id": "england1",
+            "title": "런던",
+            "img": ""
+        },
+        {
+            "id": "england2",
+            "title": "맨체스터",
+            "img": ""
+        },
+        {
+            "id": "england3",
+            "title": "브라이턴",
+            "img": ""
+        }
+    ],
+    "france": [
+        {
+            "id": "france1",
+            "title": "파리",
+            "img": ""
+        },
+        {
+            "id": "france2",
+            "title": "니스",
+            "img": ""
+        },
+        {
+            "id": "france3",
+            "title": "마르세유",
+            "img": ""
+        }
+    ],
+    "austraila": [
+        {
+            "id": "austraila1",
+            "title": "시드니",
+            "img": ""
+        },
+        {
+            "id": "austraila2",
+            "title": "멜버른",
+            "img": ""
+        },
+        {
+            "id": "austraila3",
+            "title": "브리즈번",
+            "img": ""
+        }
+    ],
+    "egypt": [
+        {
+            "id": "egypt1",
+            "title": "카이로",
+            "img": ""
+        },
+        {
+            "id": "egypt2",
+            "title": "룩소르",
+            "img": ""
+        },
+        {
+            "id": "egypt3",
+            "title": "후르가다",
+            "img": ""
+        }
+    ],
+    "comments": []
+}
