@@ -1,40 +1,47 @@
-import { youtubeApi } from 'apis/api';
+import { youtubeApi } from 'apis/youtube';
 import { useEffect, useState } from 'react';
 
 const Youtube = () => {
     const [videoList, setVideoList] = useState([]);
 
     useEffect(() => {
-        
-    }, [])
+        getYoutubeVideos();
+    }, []);
 
     const getYoutubeVideos = async () => {
         try {
-            const res = await youtubeApi.get('search', {
+            const res = await youtubeApi.get('playlistItems', {
                 params: {
-                    q:'후쿠오카 여행',
-                    maxResults: 3,
-                    regionCode: 'KR',
-                    order:'relevance'
-                }
+                    part: 'snippet',
+                    playlistId: 'PLEJrijY-Z4cBcAoOfujrtSauwxc9XE89A',
+                    maxResults: 10,
+                },
             });
+            console.log(res.data.items);
             setVideoList(res.data.items);
         } catch (error) {
             console.log(error);
         }
-    }
+    };
 
-    return <>
-    {
-    videoList.map((v) => {
-        return <div id={v.id.videoId}>
-            <iframe id="ytplayer" type="text/html" width="640" height="360"
-            src={`https://www.youtube.com/embed/${v.id.videoId}?autoplay=0&origin=http://example.com`}
-            frameborder="0" title={v.id.videoId}>
-                </iframe></div>
-    })};
-
-    </>;
+    return (
+        <div>
+            {videoList.map((v) => {
+                return (
+                    <div>
+                        <iframe
+                            id='player'
+                            title={v.id}
+                            type='text/html'
+                            width='640'
+                            height='360'
+                            src={`http://www.youtube.com/embed/${v.snippet.resourceId.videoId}?enablejsapi=1&origin=http://example.com`}
+                        ></iframe>
+                    </div>
+                );
+            })}
+        </div>
+    );
 };
 
 export default Youtube;
