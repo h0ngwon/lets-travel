@@ -1,10 +1,19 @@
 import React from 'react';
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router';
 
 function Navbar() {
+    const navigate = useNavigate();
+
     return (
         <NavContainer>
-            <MainLogo>LET'S TRAVEL</MainLogo>
+            <MainLogo
+                onClick={() => {
+                    navigate('/');
+                }}
+            >
+                LET'S TRAVEL
+            </MainLogo>
         </NavContainer>
     );
 }
@@ -26,5 +35,6 @@ const MainLogo = styled.h1`
     color: #71d5c9;
     font-size: 35px;
     font-family: Milton Keynes;
+    cursor: pointer;
 `;
 export default Navbar;
