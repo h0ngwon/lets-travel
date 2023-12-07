@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import store from './redux/config/configStore';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
     <Provider store={store}>
         <App />
