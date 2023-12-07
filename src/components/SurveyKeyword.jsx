@@ -5,6 +5,7 @@ import styled from 'styled-components';
 function SurveyKeyword() {
     return (
         <div>
+            <Title>Q. 원하는 키워드를 선택해주세요(최대3개)</Title>
             <CircleWrap>
                 <SurveyCircle>관광</SurveyCircle>
                 <SurveyCircle>쇼핑</SurveyCircle>
@@ -18,12 +19,18 @@ function SurveyKeyword() {
         </div>
     );
 }
+const Title = styled.h1`
+    font-size: 20px;
+    margin: 40px auto 20px auto;
+    text-align: center;
+    color: #494949;
+`;
 
 const CircleWrap = styled.div`
     display: grid;
     grid-template-columns: repeat(4, minmax(auto, 1fr));
-    padding: 100px 200px;
-    gap: 50px;
+    padding: 20px 200px 60px 200px;
+    gap: 30px;
     align-items: center;
     place-items: center;
 `;
