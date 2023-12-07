@@ -272,17 +272,17 @@
     ],
     "egypt": [
         {
-            "id": "ivoryCoast1",
+            "id": "egypt1",
             "title": "카이로",
             "img": ""
         },
         {
-            "id": "ivoryCoast2",
+            "id": "egypt2",
             "title": "룩소르",
             "img": ""
         },
         {
-            "id": "ivoryCoast3",
+            "id": "egypt3",
             "title": "후르가다",
             "img": ""
         }
