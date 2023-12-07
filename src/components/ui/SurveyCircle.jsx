@@ -8,12 +8,19 @@ function SurveyCircle({ children }) {
 const SurveyCircleSt = styled.div`
     width: 180px;
     height: 180px;
-    background-color: #71d5c9;
+    background-color: #d5d5d5;
     border-radius: 90px;
     display: flex;
     justify-content: center;
+    font-size: 20px;
     align-items: center;
     color: white;
+    &:hover {
+        background-color: #71d5c9;
+    }
+    &:active {
+        background-color: #71d5c9;
+    }
 `;
 
 export default SurveyCircle;
