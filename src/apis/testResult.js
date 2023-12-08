@@ -4,7 +4,9 @@ import axios from 'axios';
 
 // 질문요청
 const getCountryLists = async () => {
-    const response = await axios.get('http://localhost:4000/countryList');
+    const response = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/countryList`,
+    );
     console.log('countryList', response);
     return response.data;
 };

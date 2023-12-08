@@ -38,6 +38,7 @@ const Button = styled.button`
     background-color: white;
     border: 1px solid #71d5c9;
     color: #71d5c9;
+    cursor: pointer;
     &:hover {
         background-color: #71d5c9;
         color: white;
