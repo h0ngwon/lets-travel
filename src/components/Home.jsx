@@ -1,9 +1,7 @@
 import React from 'react';
-import { useEffect } from 'react';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import Navbar from './ui/Navbar';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
@@ -386,7 +384,6 @@ const Home = () => {
 
     return (
         <>
-            <Navbar />
             <StPage>
                 <StContainer>
                     <StH1>Let's Travel</StH1>
@@ -427,12 +424,15 @@ const StContainer = styled.div`
 `;
 
 const StH1 = styled.h1`
-    font-size: 50px;
+    font-size: 80px;
+    font-family: Kalimar;
+    color: white;
     margin-bottom: 50px;
 `;
 
 const StH2 = styled.h2`
     font-size: 30px;
+    color: white;
     margin-bottom: 70px;
 `;
 
@@ -440,7 +440,13 @@ const StBtn = styled.button`
     width: 250px;
     height: 50px;
     border: none;
-    border-radius: 20px;
+    border-radius: 50px;
+    color: #5c5c5c;
     background-color: white;
     font-size: 20px;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.05);
+        transition: 0.3s;
+    }
 `;

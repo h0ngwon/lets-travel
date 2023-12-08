@@ -60,7 +60,6 @@ const MainLogo = styled.h1`
     justify-content: flex-start;
     align-items: center;
     padding-left: 80px;
-    height: 50px;
     color: #71d5c9;
     font-size: 40px;
     font-family: Kalimar;
@@ -71,9 +70,10 @@ const LogoutBtn = styled.button`
     margin-right: 50px;
     font-size: 20px;
     color: #71d5c9;
-    border: #71d5c9 solid 2px;
-    border-radius: 5px;
+    /* border: #71d5c9 solid 2px;
+    border-radius: 5px; */
     background-color: white;
+    border-style: none;
     font-family: Milton Keynes;
     cursor: pointer;
 `;
