@@ -99,8 +99,6 @@ function SurveyResult() {
                             <Youtube />
                         </div>
                     );
-                } else {
-                    return;
                 }
             })}
         </div>
