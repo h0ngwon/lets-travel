@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { getCountryTypeData } from 'apis/testResult';
 import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import MapComponent from './MapComponent';
 import Youtube from './Youtube';
 
@@ -17,6 +19,12 @@ function SurveyResult() {
         queryFn: getCountryTypeData,
     });
     console.log('데이터', countryTypeData);
+
+    const youtubePopupHandler = (title) => {
+        withReactContent(Swal).fire({
+            html: <Youtube cityTitle={title}/>,
+        });
+    };
 
     if (countryTypeDataPending) {
         return (
@@ -74,7 +82,10 @@ function SurveyResult() {
                                 {result.cities?.map((city) => {
                                     return (
                                         <div key={city.id}>
-                                            <CityImg src={city.img} />
+                                            <CityImg
+                                                src={city.img}
+                                                onClick={() => {youtubePopupHandler(city.title)}}
+                                            />
                                             <CityName>{city.title}</CityName>
                                         </div>
                                     );
