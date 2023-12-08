@@ -100,18 +100,20 @@ function Comments() {
                     .map((comment) => {
                         return (
                             <StComment key={comment.key}>
-                                <div>
+                                <StCommentEmailnDate>
                                     <p>{comment.userEmail}</p>
-                                    <p>{comment.createdAt}</p>
-                                </div>
-                                <p>{comment.contents}</p>
-                                <button
-                                    onClick={() => {
-                                        deleteMutate.mutate(comment.id);
-                                    }}
-                                >
-                                    삭제
-                                </button>
+                                    <StCommentP>{comment.contents}</StCommentP>
+                                    <StCommentDatenBtn>
+                                        <p>{comment.createdAt}</p>
+                                        <StCommentDelBtn
+                                            onClick={() => {
+                                                deleteMutate.mutate(comment.id);
+                                            }}
+                                        >
+                                            ✕
+                                        </StCommentDelBtn>
+                                    </StCommentDatenBtn>
+                                </StCommentEmailnDate>
                             </StComment>
                         );
                     })}
@@ -162,10 +164,35 @@ const StSubmitBtn = styled.button`
     }
 `;
 const StComment = styled.div`
+    width: 80%;
+    margin: 0 auto 20px auto;
     background-color: #efefef;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 15px;
+    padding-left: 30px;
     border-radius: 20px;
+`;
+const StCommentEmailnDate = styled.div`
+    width: 97%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: darkgray;
+    gap: 15px;
+`;
+const StCommentDatenBtn = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+const StCommentDelBtn = styled.button`
+    border-style: none;
+    color: darkgray;
+    background-color: none;
+    margin-left: 20px;
+    cursor: pointer;
+`;
+const StCommentP = styled.p`
+    color: black;
 `;
 
 export default Comments;

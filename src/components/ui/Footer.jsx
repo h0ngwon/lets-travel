@@ -9,6 +9,10 @@ function Footer() {
         </FooterContainer>
     );
 }
+const FooterWrap = styled.div`
+    min-height: 100%;
+    position: relative;
+`;
 const FooterContainer = styled.div`
     position: relative;
     width: 100%;
