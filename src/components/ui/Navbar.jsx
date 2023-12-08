@@ -61,7 +61,7 @@ const MainLogo = styled.h1`
     align-items: center;
     padding-left: 80px;
     color: #71d5c9;
-    font-size: 40px;
+    font-size: 30px;
     font-family: Kalimar;
     cursor: pointer;
 `;

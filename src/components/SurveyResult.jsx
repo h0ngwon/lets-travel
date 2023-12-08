@@ -99,6 +99,8 @@ function SurveyResult() {
                             <Youtube />
                         </div>
                     );
+                } else {
+                    return;
                 }
             })}
         </div>
@@ -111,7 +113,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 170px;
+    gap: 200px;
 `;
 
 const ResultTextWrap = styled.div`
@@ -140,19 +142,20 @@ const CityWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 180px;
+    gap: 150px;
     margin: 20px 0 70px 0;
 `;
 
 const Text = styled.p`
-    text-align: left;
-    margin-left: 225px;
+    text-align: center;
     color: #a3a3a3;
 `;
+
 const CityImg = styled.img`
-    width: 250px;
-    height: 250px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
+    border-radius: 20px;
     cursor: pointer;
 `;
 

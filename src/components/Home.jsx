@@ -104,7 +104,6 @@ const Home = () => {
             console.log('error.code : ', error.code);
             switch (error.code) {
                 case 'auth/user-not-found" || "auth/wrong-password':
-                case 'auth/network-request-failed':
                     return Swal.fire({
                         icon: 'error',
                         title: '네트워크 연결에 실패 하였습니다.',
@@ -411,7 +410,7 @@ export default Home;
 
 const StPage = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
     background-color: #71d5c9;
 `;
 

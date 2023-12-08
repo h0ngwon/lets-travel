@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 function SurveyCircle({ children, $isSelected }) {
-    console.log('$isSelected', $isSelected);
     return (
         <SurveyCircleSt $isSelected={$isSelected}>{children}</SurveyCircleSt>
     );

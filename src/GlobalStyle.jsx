@@ -1,7 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
-// import Kalimar from './fonts/K'
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -46,8 +45,8 @@ table {
 }
 
 @font-face {
-    font-family: "Kalimar";
-    src: local("Kalimar"), url(${Kalimar}), format('opentype');
+    font-family: "SUITE-Medium";
+    src: local("SUITE-Medium"), url(${SUITE - Medium}),format('opentype');
     font-weight: normal;
 }
 `;

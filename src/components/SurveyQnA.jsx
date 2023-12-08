@@ -8,7 +8,6 @@ import SurveyButton from './ui/SurveyButton';
 
 // TODO: 선택하지 않고 다음버튼을 클릭하면 넘어갈 수 없도록
 // TODO: 한번 선택 후 다른항목으로 변경시에 바뀐 항목의 타입으로 카운트
-// TODO: 키워드 선택만 3개로 가능...?
 
 function SurveyQnA() {
     const { isPending, isError, data } = useQuery({
@@ -16,21 +15,12 @@ function SurveyQnA() {
         queryFn: getCountryLists,
     });
     const [currentPage, setCurrentPage] = useState(0);
-    const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
     const [answers, setAnswers] = useState(new Array(4).fill(null));
+    const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
     console.log('엔서', answers);
     const totalPage = data?.length || 0;
     const navigate = useNavigate();
-    const [countryTypeList, setCountryTypeList] = useState([
-        { country: 'A', count: 0 },
-        { country: 'B', count: 0 },
-        { country: 'C', count: 0 },
-        { country: 'D', count: 0 },
-        { country: 'E', count: 0 },
-        { country: 'F', count: 0 },
-        { country: 'G', count: 0 },
-        { country: 'H', count: 0 },
-    ]);
+
     if (isPending) {
         return <h2>🙇🏻‍♀️잠시만 기다려 주세요</h2>;
     }
@@ -42,64 +32,46 @@ function SurveyQnA() {
     const nextPageHandler = () => {
         if (currentPage < totalPage) {
             setCurrentPage(currentPage + 1);
-            setIsNextButtonDisabled(true);
+            setIsNextButtonDisabled(answers[currentPage + 1] === null);
         }
     };
 
     const prevPageHandler = () => {
         if (currentPage > 0) {
             setCurrentPage(currentPage - 1);
+            setIsNextButtonDisabled(answers[currentPage - 1] === null);
         }
     };
 
     const progressPercentage = ((currentPage + 1) / totalPage) * 100;
 
-    // 선택지 클릭하면 타입 카운트
+    // 결과보기 클릭 핸들러
     const answerCountHandler = (typeStr, index) => {
         // 타입들을 배열에서 콤마로 구분해줌
-        console.log('선택', typeStr);
-        console.log('현재페이지', currentPage);
-        if (answers[currentPage] === null) {
-            setAnswers((prev) => {
-                const newAnswers = [...prev];
-                newAnswers[currentPage] = index;
-                return newAnswers;
-            });
-        } else {
-        }
-        console.log('answers', answers);
-        const types = typeStr.split(',');
-        let list = countryTypeList.map((item) => ({ ...item }));
-        types.forEach((type) => {
-            const selecAnswer = list.find((item) => item.country === type);
-            if (selecAnswer) {
-                selecAnswer.count += 1;
-            }
+        setAnswers((prev) => {
+            const newAnswers = [...prev];
+            newAnswers[currentPage] = typeStr;
+            return newAnswers;
         });
-        setCountryTypeList(list);
-        setIsNextButtonDisabled(!typeStr);
+        setIsNextButtonDisabled(false);
     };
 
     // 많이 선택된 타입 찾아주기
     const mostSelecTypeCount = () => {
-        let setCount = 0;
-        let mostSelecType = [];
-
-        countryTypeList.forEach((item) => {
-            if (item.count > setCount) {
-                setCount = item.count;
-                mostSelecType = [item.country];
-            } else if (item.count === setCount) {
-                mostSelecType.push(item.country);
-            }
+        const arrays = answers.map((a) => a.split(',')).flat();
+        const counterMap = {};
+        arrays.forEach((type) => {
+            counterMap[type] = (counterMap[type] || 0) + 1;
         });
-        // count가 같으면 랜덤으로 추출
-        // TODO: count가 잘못되고있음....질문은 적고 겹치는 유형이 많아서 발생하는 문제같음
-        const randomCountry =
-            mostSelecType[Math.floor(Math.random() * mostSelecType.length)];
-        console.log('랜덤추출', randomCountry);
-        return randomCountry;
+        const typeValues = Object.keys(counterMap);
+        const maxValue = Math.max(...Object.values(counterMap));
+        const maxIndex = Object.values(counterMap).indexOf(maxValue);
+        const maxType = typeValues[maxIndex];
+        // 가장 많이 나온 타입 중 첫번째값이 나옴!
+        console.log('맥스타입', maxType);
+        return maxType;
     };
+
     if (data === undefined) {
         return null;
     }
@@ -140,7 +112,8 @@ function SurveyQnA() {
                                     >
                                         <SurveyCircle
                                             $isSelected={
-                                                answers[currentPage] === aindex
+                                                answers[currentPage] ===
+                                                avalue.type
                                             }
                                         >
                                             {avalue.text}
@@ -196,6 +169,7 @@ const Title = styled.h1`
     margin: 40px auto 20px auto;
     text-align: center;
     color: #494949;
+    font-family: SUITE-Medium;
 `;
 
 const CircleWrap = styled.div`
