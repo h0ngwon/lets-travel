@@ -6,7 +6,10 @@ const Layout = () => {
     return (
         <>
             <Navbar />
-            <Outlet />
+            <div style={{ height: '100%' }}>
+                <Outlet />
+            </div>
+
             <Footer />
         </>
     );

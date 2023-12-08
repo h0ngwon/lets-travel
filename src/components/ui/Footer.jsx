@@ -3,17 +3,16 @@ import { styled } from 'styled-components';
 
 function Footer() {
     return (
-        <>
-            <FooterContainer>
-                <h4>여행하자</h4>
-                <p>copyright</p>
-            </FooterContainer>
-        </>
+        <FooterContainer>
+            <h4>여행하자</h4>
+            <p>copyright</p>
+        </FooterContainer>
     );
 }
 const FooterContainer = styled.div`
     bottom: 0;
-    position : absolute;
+    position: relative;
+    transform: translateY(-100%);
     width: 100%;
     background-color: #71d5c9;
     color: white;
