@@ -13,7 +13,7 @@ function Footer() {
 }
 const FooterContainer = styled.div`
     bottom: 0;
-    position: absolute;
+    position : absolute;
     width: 100%;
     background-color: #71d5c9;
     color: white;

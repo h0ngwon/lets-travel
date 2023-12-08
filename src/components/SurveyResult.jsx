@@ -14,6 +14,9 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import MapComponent from './MapComponent';
+import Youtube from './Youtube';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 function SurveyResult() {
     const [resultType, setResultType] = useState([]);
@@ -98,6 +101,15 @@ function SurveyResult() {
         queryKey: ['egyptLists'],
         queryFn: getEgyptLists,
     });
+
+    const imageClickHandler = () => {
+        withReactContent(Swal)
+            .fire({
+                
+                html: <Youtube/>
+            })
+    };
+
     useEffect(() => {
         if (!countryTypeDataPending && !countryTypeDataError) {
             const countryId = id;
@@ -208,12 +220,13 @@ function SurveyResult() {
                 {resultType?.map((city) => {
                     return (
                         <div key={city.id}>
-                            <CityImg src={city.img} />
+                            <CityImg src={city.img} onClick={imageClickHandler}/>
                             <CityName>{city.title}</CityName>
                         </div>
                     );
                 })}
             </CityWrap>
+            <Youtube />
         </div>
     );
 }
