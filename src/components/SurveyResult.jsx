@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import Navbar from './ui/Navbar';
-import Footer from './ui/Footer';
-import { styled } from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
-import { getCountryTypeData } from 'apis/testResult';
 import {
-    getJapanLists,
-    getVietnamLists,
-    getUsaLists,
+    getAustrailaLists,
     getCanadaLists,
+    getEgyptLists,
     getEnglandLists,
     getFranceLists,
-    getAustrailaLists,
-    getEgyptLists,
+    getJapanLists,
+    getUsaLists,
+    getVietnamLists,
 } from 'apis/cityResult';
+import { getCountryTypeData } from 'apis/testResult';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { styled } from 'styled-components';
 import MapComponent from './MapComponent';
 
 function SurveyResult() {
@@ -183,7 +181,6 @@ function SurveyResult() {
     console.log('도시', resultType);
     return (
         <div>
-            <Navbar />
             {countryTypeData?.map((result) => {
                 if (id?.includes(result.type)) {
                     return (
@@ -222,7 +219,6 @@ function SurveyResult() {
                     );
                 })}
             </CityWrap>
-            <Footer />
         </div>
     );
 }

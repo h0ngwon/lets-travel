@@ -93,7 +93,6 @@ function SurveyQnA() {
 
     return (
         <Container>
-            <Navbar />
             {currentPage < totalPage ? (
                 <>
                     <div style={{ position: 'relative' }}>
@@ -150,7 +149,6 @@ function SurveyQnA() {
                     </ResultButton>
                 </EndTestContainer>
             )}
-            <Footer />
         </Container>
     );
 }
