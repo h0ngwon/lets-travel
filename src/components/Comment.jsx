@@ -35,7 +35,8 @@ function Comments() {
         '이집트',
     ];
 
-    const userEmail = auth.currentUser.email;
+    const userEmail = localStorage.getItem('userEmail');
+    console.log(userEmail);
 
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
     const { data, isLoading, isSuccess, isError, error } = useQuery({
