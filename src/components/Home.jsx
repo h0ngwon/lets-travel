@@ -301,6 +301,8 @@ const Home = () => {
         // 로그인 성공 시, '로그인 성공!' alert
         if (formValues.length === 2) {
             await login(formValues);
+            console.log('폼밸류', formValues);
+            localStorage.setItem('userEmail', formValues[0]);
             // .then(() => {
             //     Swal.fire({
             //         position: 'center',
