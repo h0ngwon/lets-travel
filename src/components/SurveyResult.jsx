@@ -175,7 +175,6 @@ function SurveyResult() {
         );
     }
     console.log('나라', id);
-    console.log('모든나라', countryTypeData);
     console.log('도시', resultType);
     return (
         <div>
@@ -193,9 +192,7 @@ function SurveyResult() {
                                         "{result.country}"
                                     </CountryName>
                                     <CommentsButton
-                                        onClick={() => {
-                                            navigate('/comment');
-                                        }}
+                                        onClick={() => navigate('/comment')}
                                     >
                                         댓글 남기러 가기
                                     </CommentsButton>
@@ -206,6 +203,8 @@ function SurveyResult() {
                             </Container>
                         </div>
                     );
+                } else {
+                    return;
                 }
             })}
             <CityWrap>
@@ -243,8 +242,8 @@ const Description = styled.p`
 `;
 
 const MapWrap = styled.div`
-    width: 470px;
-    height: 250px;
+    width: 620px;
+    height: 300px;
     background-color: gray;
 `;
 
@@ -264,15 +263,15 @@ const CityWrap = styled.div`
 `;
 
 const CityImg = styled.img`
-    width: 200px;
-    height: 200px;
+    width: 230px;
+    height: 230px;
     object-fit: cover;
     background-color: gray;
 `;
 
 const CityName = styled.p`
     font-size: 20px;
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: center;
 `;
 const CommentsButton = styled.button`
