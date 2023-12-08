@@ -1,28 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { deleteData, fetchData } from 'apis/comments';
+import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'firebaseConfig';
-import {
-    addDoc,
-    collection,
-    deleteDoc,
-    doc,
-    getDocs,
-    query,
-} from 'firebase/firestore';
 import { nanoid } from 'nanoid';
-import CountryBtn from './ui/CountryBtn';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { auth } from 'config/firebaseConfig';
-import { useQuery } from '@tanstack/react-query';
-import { fetchData } from 'apis/comments';
-import { onAuthStateChanged } from 'firebase/auth';
+import CountryBtn from './ui/CountryBtn';
 
 function Comments() {
     const [selectedCountry, setSelectedCountry] = useState('일본'); //select의 country 목록
     const activeCountry = useSelector((state) => state.countrySlice); //countryBtn 클릭시 각 나라의 state를 보여줌
-    const dispatch = useDispatch();
     const [contents, setContents] = useState('');
-    const [comments, setComments] = useState([]);
 
     const countries = [
         '일본',
@@ -42,22 +31,12 @@ function Comments() {
     const { data, isLoading, isSuccess, isError, error } = useQuery({
         queryKey: ['comments'],
         queryFn: fetchData,
+        staleTime: 1000,
     });
 
-    if (isSuccess) {
-    }
-
-    // const fetchData = async () => {
-    //     const q = query(collection(db, 'comments'));
-    //     const querySnapshot = await getDocs(q);
-
-    //     const initialComments = [];
-
-    //     querySnapshot.forEach((doc) => {
-    //         initialComments.push({ id: doc.id, ...doc.data() });
-    //     });
-    //     setComments(initialComments);
-    // };
+    const deleteMutate = useMutation({
+        mutationFn: deleteData,
+    });
 
     const handleCountryChange = (e) => {
         setSelectedCountry(e.target.value);
@@ -65,11 +44,6 @@ function Comments() {
 
     const onChangeHandler = (e) => {
         setContents(e.target.value.trimStart());
-    };
-
-    const deleteBtnHandler = async (id) => {
-        await deleteDoc(doc(db, 'comments', id));
-        await fetchData();
     };
 
     const onSubmit = async (e) => {
@@ -92,7 +66,6 @@ function Comments() {
     return (
         <StCommentPageDiv>
             <CountryBtn countries={countries} />
-
             <StCommentSection>
                 <StCommentInputForm onSubmit={onSubmit}>
                     <StSelectCountry
@@ -105,7 +78,6 @@ function Comments() {
                             </option>
                         ))}
                     </StSelectCountry>
-
                     <StInput
                         type='text'
                         placeholder='댓글을 입력하세요'
@@ -115,15 +87,13 @@ function Comments() {
                     />
                     <StSubmitBtn>등록</StSubmitBtn>
                 </StCommentInputForm>
-
                 <br />
                 <br />
                 {data
-                    .filter((value) => {
+                    ?.filter((value) => {
                         return value.country === activeCountry;
                     })
                     .map((comment) => {
-                        console.log(comment);
                         return (
                             <StComment key={comment.key}>
                                 <div>
@@ -133,7 +103,7 @@ function Comments() {
                                 <p>{comment.contents}</p>
                                 <button
                                     onClick={() => {
-                                        deleteBtnHandler(comment.id);
+                                        deleteMutate.mutate(comment.id);
                                     }}
                                 >
                                     삭제

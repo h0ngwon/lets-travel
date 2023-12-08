@@ -1,5 +1,5 @@
 
-import { query, collection, getDocs } from 'firebase/firestore';
+import { query, collection, getDocs, deleteDoc, doc } from 'firebase/firestore';
 import { db } from 'firebaseConfig';
 
 export const fetchData = async () => {
@@ -13,3 +13,7 @@ export const fetchData = async () => {
     
     return initialComments;
 };
+
+export const deleteData = async(id) => {
+    await deleteDoc(doc(db, 'comments', id));
+}
