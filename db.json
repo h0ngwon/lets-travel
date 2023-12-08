@@ -34,7 +34,7 @@
                 },
                 {
                     "text": "가족",
-                    "type": "B,H"
+                    "type": "G,H"
                 },
                 {
                     "text": "친구",
@@ -68,31 +68,31 @@
             "a": [
                 {
                     "text": "관광",
-                    "type": "C,E,F"
+                    "type": "E,F"
                 },
                 {
                     "text": "쇼핑",
-                    "type": "A,E,F"
+                    "type": "A,C"
                 },
                 {
                     "text": "액티비티",
-                    "type": "B,H"
+                    "type": "G,H"
                 },
                 {
                     "text": "사진",
-                    "type": "C,E,F"
+                    "type": "E,F"
                 },
                 {
                     "text": "힐링",
-                    "type": "B,G"
+                    "type": "B,D"
                 },
                 {
                     "text": "맛집",
-                    "type": "A,F"
+                    "type": "A,C"
                 },
                 {
                     "text": "이색체험",
-                    "type": "D,G,H"
+                    "type": "D,G"
                 },
                 {
                     "text": "가성비",

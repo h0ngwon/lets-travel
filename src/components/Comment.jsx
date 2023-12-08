@@ -10,13 +10,12 @@ import {
 } from 'firebase/firestore';
 import { nanoid } from 'nanoid';
 import CountryBtn from './ui/CountryBtn';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 
 function Comments() {
     const [selectedCountry, setSelectedCountry] = useState('일본'); //select의 country 목록
     const activeCountry = useSelector((state) => state.countrySlice); //countryBtn 클릭시 각 나라의 state를 보여줌
-    const dispatch = useDispatch();
     const [contents, setContents] = useState('');
     const [comments, setComments] = useState([]);
     console.log(comments);

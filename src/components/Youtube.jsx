@@ -26,20 +26,22 @@ const Youtube = () => {
 
     return (
         <div>
-            {videoList.filter(v => v.snippet.title.includes('일본')).map((v) => {
-                return (
-                    <div>
-                        <iframe
-                            id='player'
-                            title={v.id}
-                            type='text/html'
-                            width='640'
-                            height='360'
-                            src={`http://www.youtube.com/embed/${v.snippet.resourceId.videoId}?enablejsapi=1&origin=http://example.com`}
-                        ></iframe>
-                    </div>
-                );
-            })}
+            {videoList
+                .filter((v) => v.snippet.title.includes('일본'))
+                .map((v) => {
+                    return (
+                        <div>
+                            <iframe
+                                id='player'
+                                title={v.id}
+                                type='text/html'
+                                width='640'
+                                height='360'
+                                src={`http://www.youtube.com/embed/${v.snippet.resourceId.videoId}?enablejsapi=1&origin=http://example.com`}
+                            ></iframe>
+                        </div>
+                    );
+                })}
         </div>
     );
 };

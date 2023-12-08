@@ -5,10 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import { getCountryLists } from 'apis/testResult';
 import { useNavigate } from 'react-router-dom';
 import SurveyButton from './ui/SurveyButton';
-import Navbar from './ui/Navbar';
-import Footer from './ui/Footer';
 
-// TODO: 항목 클릭시 클릭한 버튼색상 고정
+// TODO: 선택하지 않고 다음버튼을 클릭하면 넘어갈 수 없도록
 // TODO: 한번 선택 후 다른항목으로 변경시에 바뀐 항목의 타입으로 카운트
 // TODO: 키워드 선택만 3개로 가능...?
 
@@ -18,6 +16,7 @@ function SurveyQnA() {
         queryFn: getCountryLists,
     });
     const [currentPage, setCurrentPage] = useState(0);
+    const [selectedAnswer, setSelectedAnswer] = useState(null);
     const totalPage = data?.length || 0;
     const navigate = useNavigate();
     const [countryTypeList, setCountryTypeList] = useState([
@@ -39,6 +38,10 @@ function SurveyQnA() {
     }
 
     const nextPageHandler = () => {
+        // if (!selectedAnswer) {
+        //     alert('항목을 선택해주세요');
+        //     return;
+        // }
         if (currentPage < totalPage) {
             setCurrentPage(currentPage + 1);
         }
@@ -64,6 +67,8 @@ function SurveyQnA() {
             }
         });
         setCountryTypeList(list);
+        setSelectedAnswer(typeStr);
+        console.log('선택', answerCountHandler);
     };
 
     // 많이 선택된 타입 찾아주기
@@ -80,7 +85,7 @@ function SurveyQnA() {
             }
         });
         // count가 같으면 랜덤으로 추출
-        // TODO: count가 잘못되고있음....
+        // TODO: count가 잘못되고있음....질문은 적고 겹치는 유형이 많아서 발생하는 문제같음
         const randomCountry =
             mostSelecType[Math.floor(Math.random() * mostSelecType.length)];
         console.log('랜덤추출', randomCountry);
@@ -134,6 +139,7 @@ function SurveyQnA() {
                     <SurveyButton
                         nextPageHandler={nextPageHandler}
                         prevPageHandler={prevPageHandler}
+                        disabled={!selectedAnswer}
                     />
                 </>
             ) : (

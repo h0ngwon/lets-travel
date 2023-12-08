@@ -14,6 +14,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import MapComponent from './MapComponent';
+import Youtube from './Youtube';
 
 function SurveyResult() {
     const [resultType, setResultType] = useState([]);
@@ -216,6 +217,7 @@ function SurveyResult() {
                     );
                 })}
             </CityWrap>
+            <Youtube />
         </div>
     );
 }
