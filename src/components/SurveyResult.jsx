@@ -202,6 +202,8 @@ function SurveyResult() {
                             </Container>
                         </div>
                     );
+                } else {
+                    return;
                 }
             })}
             <CityWrap>
