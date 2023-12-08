@@ -1,13 +1,15 @@
 import React from 'react';
 import { styled } from 'styled-components';
 
-function SurveyButton({ nextPageHandler, prevPageHandler }) {
+function SurveyButton({ nextPageHandler, prevPageHandler, disabled }) {
     return (
         <div>
             <ButtonContainer>
                 <ButtonWrap>
                     <Button onClick={prevPageHandler}>이전페이지</Button>
-                    <Button onClick={nextPageHandler}>다음페이지</Button>
+                    <Button onClick={nextPageHandler} disabled={disabled}>
+                        다음페이지
+                    </Button>
                 </ButtonWrap>
             </ButtonContainer>
         </div>
@@ -35,12 +37,14 @@ const Button = styled.button`
     width: 130px;
     height: 60px;
     border-radius: 50px;
-    background-color: white;
-    border: 1px solid #71d5c9;
-    color: #71d5c9;
+    background-color: ${({ disabled }) => (disabled ? '#d5d5d5' : 'white')};
+    border: ${({ disabled }) =>
+        disabled ? '1px solid#d5d5d5' : '1px solid #71d5c9'};
+    color: ${({ disabled }) => (disabled ? 'white' : '#71d5c9')};
     cursor: pointer;
     &:hover {
-        background-color: #71d5c9;
+        background-color: ${({ disabled }) =>
+            disabled ? '#d5d5d5' : '#71d5c9'};
         color: white;
     }
 `;

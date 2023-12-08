@@ -16,7 +16,9 @@ function SurveyQnA() {
         queryFn: getCountryLists,
     });
     const [currentPage, setCurrentPage] = useState(0);
-    const [selectedAnswer, setSelectedAnswer] = useState(null);
+    const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
+    const [answers, setAnswers] = useState(new Array(4).fill(null));
+    console.log('엔서', answers);
     const totalPage = data?.length || 0;
     const navigate = useNavigate();
     const [countryTypeList, setCountryTypeList] = useState([
@@ -38,12 +40,9 @@ function SurveyQnA() {
     }
 
     const nextPageHandler = () => {
-        // if (!selectedAnswer) {
-        //     alert('항목을 선택해주세요');
-        //     return;
-        // }
         if (currentPage < totalPage) {
             setCurrentPage(currentPage + 1);
+            setIsNextButtonDisabled(true);
         }
     };
 
@@ -56,8 +55,19 @@ function SurveyQnA() {
     const progressPercentage = ((currentPage + 1) / totalPage) * 100;
 
     // 선택지 클릭하면 타입 카운트
-    const answerCountHandler = (typeStr) => {
+    const answerCountHandler = (typeStr, index) => {
         // 타입들을 배열에서 콤마로 구분해줌
+        console.log('선택', typeStr);
+        console.log('현재페이지', currentPage);
+        if (answers[currentPage] === null) {
+            setAnswers((prev) => {
+                const newAnswers = [...prev];
+                newAnswers[currentPage] = index;
+                return newAnswers;
+            });
+        } else {
+        }
+        console.log('answers', answers);
         const types = typeStr.split(',');
         let list = countryTypeList.map((item) => ({ ...item }));
         types.forEach((type) => {
@@ -67,8 +77,7 @@ function SurveyQnA() {
             }
         });
         setCountryTypeList(list);
-        setSelectedAnswer(typeStr);
-        console.log('선택', answerCountHandler);
+        setIsNextButtonDisabled(!typeStr);
     };
 
     // 많이 선택된 타입 찾아주기
@@ -120,13 +129,18 @@ function SurveyQnA() {
                         <CircleWrap>
                             {currentSurvey.a.map((avalue, aindex) => {
                                 return (
-                                    <div key={aindex}>
+                                    <div
+                                        key={aindex}
+                                        onClick={() => {
+                                            answerCountHandler(
+                                                avalue.type,
+                                                aindex,
+                                            );
+                                        }}
+                                    >
                                         <SurveyCircle
-                                            onClick={() =>
-                                                answerCountHandler(
-                                                    avalue.type,
-                                                    aindex,
-                                                )
+                                            $isSelected={
+                                                answers[currentPage] === aindex
                                             }
                                         >
                                             {avalue.text}
@@ -139,12 +153,15 @@ function SurveyQnA() {
                     <SurveyButton
                         nextPageHandler={nextPageHandler}
                         prevPageHandler={prevPageHandler}
-                        disabled={!selectedAnswer}
+                        disabled={isNextButtonDisabled}
                     />
                 </>
             ) : (
                 <EndTestContainer>
                     <EndComment>🍭 테스트가 끝났습니다 🍭</EndComment>
+                    <ResultButton onClick={() => navigate('/')}>
+                        다시하기
+                    </ResultButton>
                     <ResultButton
                         onClick={() => {
                             const select = mostSelecTypeCount();
@@ -182,14 +199,10 @@ const Title = styled.h1`
 `;
 
 const CircleWrap = styled.div`
-    /* display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    place-items: center;
-    justify-items: center; */
     display: flex;
     justify-content: center;
     padding: 100px 200px;
-    gap: 30px;
+    gap: 50px;
 `;
 
 const ResultButton = styled.button`
@@ -197,7 +210,9 @@ const ResultButton = styled.button`
     height: 60px;
     border-radius: 50px;
     background-color: white;
+    font-size: 16px;
     border: 1px solid #71d5c9;
+    margin: 20px 0;
     color: #71d5c9;
     cursor: pointer;
     &:hover {
@@ -217,6 +232,6 @@ const EndTestContainer = styled.div`
 
 const EndComment = styled.h1`
     font-size: 30px;
-    margin-bottom: 160px;
+    margin-bottom: 80px;
 `;
 export default SurveyQnA;

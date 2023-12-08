@@ -1,14 +1,18 @@
 import React from 'react';
 import styled from 'styled-components';
 
-function SurveyCircle({ children }) {
-    return <SurveyCircleSt>{children}</SurveyCircleSt>;
+function SurveyCircle({ children, $isSelected }) {
+    console.log('$isSelected', $isSelected);
+    return (
+        <SurveyCircleSt $isSelected={$isSelected}>{children}</SurveyCircleSt>
+    );
 }
 
 const SurveyCircleSt = styled.button`
     width: 180px;
     height: 180px;
-    background-color: #d5d5d5;
+    background-color: ${({ $isSelected }) =>
+        $isSelected ? '#71d5c9' : '#d5d5d5'};
     border-style: none;
     border-radius: 90px;
     display: flex;
@@ -18,9 +22,6 @@ const SurveyCircleSt = styled.button`
     color: white;
     cursor: pointer;
     &:hover {
-        background-color: #71d5c9;
-    }
-    &:focus {
         background-color: #71d5c9;
     }
 `;

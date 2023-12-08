@@ -22,7 +22,7 @@ function SurveyResult() {
 
     const youtubePopupHandler = (title) => {
         withReactContent(Swal).fire({
-            html: <Youtube cityTitle={title}/>,
+            html: <Youtube cityTitle={title} />,
         });
     };
 
@@ -71,20 +71,25 @@ function SurveyResult() {
                                     <CommentsButton
                                         onClick={() => navigate('/comment')}
                                     >
-                                        댓글 남기러 가기
+                                        여행지 공유하러 가기 🛫
                                     </CommentsButton>
                                 </ResultTextWrap>
                                 <MapWrap>
                                     <MapComponent destination={result.coords} />
                                 </MapWrap>
-                            </Container>{' '}
+                            </Container>
+                            <Text>🎬 이미지 클릭시 영상시청이 가능합니다</Text>
                             <CityWrap>
                                 {result.cities?.map((city) => {
                                     return (
                                         <div key={city.id}>
                                             <CityImg
                                                 src={city.img}
-                                                onClick={() => {youtubePopupHandler(city.title)}}
+                                                onClick={() => {
+                                                    youtubePopupHandler(
+                                                        city.title,
+                                                    );
+                                                }}
                                             />
                                             <CityName>{city.title}</CityName>
                                         </div>
@@ -103,13 +108,12 @@ function SurveyResult() {
 }
 
 const Container = styled.div`
-    height: 80vh;
+    height: 60vh;
     width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px auto;
-    gap: 200px;
+    gap: 170px;
 `;
 
 const ResultTextWrap = styled.div`
@@ -122,13 +126,13 @@ const Description = styled.p`
 `;
 
 const MapWrap = styled.div`
-    width: 620px;
-    height: 350px;
+    width: 650px;
+    height: 400px;
     background-color: gray;
 `;
 
 const CountryName = styled.h1`
-    font-size: 30px;
+    font-size: 40px;
     margin-top: 30px;
     color: #71d5c9;
 `;
@@ -138,26 +142,32 @@ const CityWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 200px;
-    margin: 30px 0;
+    gap: 180px;
+    margin: 20px 0 70px 0;
 `;
 
+const Text = styled.p`
+    text-align: left;
+    margin-left: 225px;
+    color: #a3a3a3;
+`;
 const CityImg = styled.img`
-    width: 230px;
-    height: 230px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
-    background-color: gray;
+    cursor: pointer;
 `;
 
 const CityName = styled.p`
     font-size: 20px;
     margin-top: 20px;
     text-align: center;
-    cursor: pointer;
+    color: #585858;
 `;
 const CommentsButton = styled.button`
-    width: 160px;
+    width: 200px;
     height: 50px;
+    font-size: 15px;
     border-radius: 50px;
     background-color: white;
     margin-top: 50px;

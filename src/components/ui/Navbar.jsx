@@ -20,14 +20,14 @@ const NavContainer = styled.div`
 `;
 const MainLogo = styled.h1`
     width: 300px;
-    height: 50px;
+    height: 60px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 50px;
+    padding-left: 80px;
     color: #71d5c9;
-    font-size: 35px;
-    font-family: Milton Keynes;
+    font-size: 40px;
+    font-family: Kalimar;
     cursor: pointer;
 `;
 export default Navbar;

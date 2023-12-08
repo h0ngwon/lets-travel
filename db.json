@@ -1,26 +1,26 @@
 {
     "countryList": [
         {
-            "q": ["Q. 여행하고 싶은 대륙을 선택해주세요"],
+            "q": ["Q. 본인의 여행 스타일을 선택해주세요"],
             "a": [
                 {
-                    "text": "아시아",
+                    "text": "휴양",
                     "type": "A,B"
                 },
                 {
-                    "text": "유럽",
+                    "text": "쇼핑",
                     "type": "E,F"
                 },
                 {
-                    "text": "아메리카",
+                    "text": "관광",
                     "type": "C,D"
                 },
                 {
-                    "text": "오세아니아",
+                    "text": "맛집",
                     "type": "G"
                 },
                 {
-                    "text": "아프리카",
+                    "text": "액티비티",
                     "type": "H"
                 }
             ]
@@ -50,53 +50,41 @@
             "q": ["Q. 선호하는 여행기간을 선택해주세요"],
             "a": [
                 {
-                    "text": "3일",
-                    "type": "A,B,H"
+                    "text": "최대 3일",
+                    "type": "B,H"
                 },
                 {
-                    "text": "15일",
-                    "type": "E,F"
+                    "text": "최대 1주일",
+                    "type": "A"
                 },
                 {
-                    "text": "30일",
-                    "type": "C,D,G"
+                    "text": "최대 15일",
+                    "type": "C,E,F"
+                },
+                {
+                    "text": "30일 이상",
+                    "type": "D,G"
                 }
             ]
         },
         {
-            "q": ["Q. 원하는 키워드를 선택해주세요(최대3개)"],
+            "q": ["Q. 여행을 떠나고 싶은 계절을 선택해주세요"],
             "a": [
                 {
-                    "text": "관광",
-                    "type": "E,F"
+                    "text": "봄",
+                    "type": "A,F"
                 },
                 {
-                    "text": "쇼핑",
-                    "type": "A,C"
+                    "text": "여름",
+                    "type": "B,G"
                 },
                 {
-                    "text": "액티비티",
-                    "type": "G,H"
+                    "text": "가을",
+                    "type": "C,D"
                 },
                 {
-                    "text": "사진",
-                    "type": "E,F"
-                },
-                {
-                    "text": "힐링",
-                    "type": "B,D"
-                },
-                {
-                    "text": "맛집",
-                    "type": "A,C"
-                },
-                {
-                    "text": "이색체험",
-                    "type": "D,G"
-                },
-                {
-                    "text": "가성비",
-                    "type": "B,H"
+                    "text": "겨울",
+                    "type": "E,H"
                 }
             ]
         }
@@ -156,7 +144,7 @@
             "cities": [
                 {
                     "id": "usa1",
-                    "title": "로스앤젤레스",
+                    "title": "LA",
                     "img": "https://a.cdn-hotels.com/gdcs/production156/d691/3d64b612-6715-43f7-b613-66b37a230b55.jpg"
                 },
                 {
