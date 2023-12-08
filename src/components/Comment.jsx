@@ -1,28 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { deleteData, fetchData } from 'apis/comments';
+import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'firebaseConfig';
-import {
-    addDoc,
-    collection,
-    deleteDoc,
-    doc,
-    getDocs,
-    query,
-    updateDoc,
-} from 'firebase/firestore';
 import { nanoid } from 'nanoid';
-import CountryBtn from './ui/CountryBtn';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { auth } from 'config/firebaseConfig';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
+import CountryBtn from './ui/CountryBtn';
 
 function Comments() {
     const [selectedCountry, setSelectedCountry] = useState('일본'); //select의 country 목록
     const activeCountry = useSelector((state) => state.countrySlice); //countryBtn 클릭시 각 나라의 state를 보여줌
-    const dispatch = useDispatch();
     const [contents, setContents] = useState('');
-    const [comments, setComments] = useState([]);
-    console.log(comments);
+
     const countries = [
         '일본',
         '베트남',
@@ -38,17 +28,15 @@ function Comments() {
     console.log(userEmail);
 
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
-    const fetchData = async () => {
-        const q = query(collection(db, 'comments'));
-        const querySnapshot = await getDocs(q);
+    const { data, isLoading, isSuccess, isError, error } = useQuery({
+        queryKey: ['comments'],
+        queryFn: fetchData,
+        staleTime: 1000,
+    });
 
-        const initialComments = [];
-
-        querySnapshot.forEach((doc) => {
-            initialComments.push({ id: doc.id, ...doc.data() });
-        });
-        setComments(initialComments);
-    };
+    const deleteMutate = useMutation({
+        mutationFn: deleteData,
+    });
 
     const handleCountryChange = (e) => {
         setSelectedCountry(e.target.value);
@@ -56,11 +44,6 @@ function Comments() {
 
     const onChangeHandler = (e) => {
         setContents(e.target.value.trimStart());
-    };
-
-    const deleteBtnHandler = async (id) => {
-        await deleteDoc(doc(db, 'comments', id));
-        await fetchData();
     };
 
     const onSubmit = async (e) => {
@@ -74,19 +57,15 @@ function Comments() {
             userEmail: userEmail, //auth 완성 후, 처리해야함
         };
         await addDoc(docRef, newComment);
-        fetchData();
         setContents('');
     };
 
     //처음 컴포넌트가 렌더링 되면 서버에서 데이터를 받아와 state에 저장
-    useEffect(() => {
-        fetchData();
-    }, []);
+    useEffect(() => {}, []);
 
     return (
         <StCommentPageDiv>
             <CountryBtn countries={countries} />
-
             <StCommentSection>
                 <StCommentInputForm onSubmit={onSubmit}>
                     <StSelectCountry
@@ -99,7 +78,6 @@ function Comments() {
                             </option>
                         ))}
                     </StSelectCountry>
-
                     <StInput
                         type='text'
                         placeholder='댓글을 입력하세요'
@@ -109,34 +87,29 @@ function Comments() {
                     />
                     <StSubmitBtn>등록</StSubmitBtn>
                 </StCommentInputForm>
-
                 <br />
                 <br />
-                {comments
-                    .filter((value) => {
+                {data
+                    ?.filter((value) => {
                         return value.country === activeCountry;
                     })
                     .map((comment) => {
-                        console.log(comment);
                         return (
                             <StComment key={comment.key}>
                                 <StCommentEmailnDate>
                                     <p>{comment.userEmail}</p>
-                                    <p>{comment.createdAt}</p>
-                                </StCommentEmailnDate>
-                                <StCommentTxtnBtn>
-                                    <p>{comment.contents}</p>
-                                    <div>
-                                        <button
+                                    <StCommentP>{comment.contents}</StCommentP>
+                                    <StCommentDatenBtn>
+                                        <p>{comment.createdAt}</p>
+                                        <StCommentDelBtn
                                             onClick={() => {
-                                                deleteBtnHandler(comment.id);
+                                                deleteMutate.mutate(comment.id);
                                             }}
                                         >
-                                            삭제
-                                        </button>
-                                        <button>수정</button>
-                                    </div>
-                                </StCommentTxtnBtn>
+                                            ✕
+                                        </StCommentDelBtn>
+                                    </StCommentDatenBtn>
+                                </StCommentEmailnDate>
                             </StComment>
                         );
                     })}
@@ -195,17 +168,27 @@ const StComment = styled.div`
     border-radius: 20px;
 `;
 const StCommentEmailnDate = styled.div`
-    width: 90%;
+    width: 97%;
     display: flex;
     align-items: center;
     justify-content: space-between;
     color: darkgray;
+    gap: 15px;
 `;
-const StCommentTxtnBtn = styled.div`
-    width: 90%;
+const StCommentDatenBtn = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
+`;
+const StCommentDelBtn = styled.button`
+    border-style: none;
+    color: darkgray;
+    background-color: none;
+    margin-left: 20px;
+    cursor: pointer;
+`;
+const StCommentP = styled.p`
+    color: black;
 `;
 
 export default Comments;

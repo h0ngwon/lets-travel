@@ -22,7 +22,8 @@ function SurveyResult() {
 
     const youtubePopupHandler = (title) => {
         withReactContent(Swal).fire({
-            html: <Youtube cityTitle={title}/>,
+            html: <Youtube cityTitle={title} />,
+            width: 1280,
         });
     };
 
@@ -84,7 +85,11 @@ function SurveyResult() {
                                         <div key={city.id}>
                                             <CityImg
                                                 src={city.img}
-                                                onClick={() => {youtubePopupHandler(city.title)}}
+                                                onClick={() => {
+                                                    youtubePopupHandler(
+                                                        city.title,
+                                                    );
+                                                }}
                                             />
                                             <CityName>{city.title}</CityName>
                                         </div>
