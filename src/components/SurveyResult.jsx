@@ -19,6 +19,7 @@ import MapComponent from './MapComponent';
 
 function SurveyResult() {
     const [resultType, setResultType] = useState([]);
+    const [isRender, setIsRender] = useState(true);
     const { id } = useParams();
     const navigate = useNavigate();
     const {
@@ -126,6 +127,10 @@ function SurveyResult() {
             }
         }
     }, []);
+
+    useEffect(() => {
+        setIsRender((prev) => !prev);
+    }, [resultType]);
 
     if (
         countryTypeDataPending ||
