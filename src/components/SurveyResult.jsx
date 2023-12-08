@@ -172,7 +172,7 @@ function SurveyResult() {
             </div>
         );
     }
-    console.log('이건가', countryTypeData);
+    console.log('모든나라', countryTypeData);
     console.log('도시', resultType);
     return (
         <div>

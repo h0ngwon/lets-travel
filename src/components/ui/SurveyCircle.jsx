@@ -20,7 +20,7 @@ const SurveyCircleSt = styled.button`
     &:hover {
         background-color: #71d5c9;
     }
-    &:active {
+    &:focus {
         background-color: #71d5c9;
     }
 `;
