@@ -63,7 +63,7 @@ function MapComponent(props) {
         setTimeout(() => {
             setDestLatLng(props.destination || { lat: 48.8, lng: 2.35 });
         }, 2000);
-    }, []);
+    }, [props]);
 
     return isLoaded ? (
         <GoogleMap

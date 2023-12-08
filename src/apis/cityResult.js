@@ -17,6 +17,11 @@ const getVietnamLists = async () => {
     return response.data;
 };
 
+const getUsaLists = async () => {
+    const response = await axios.get(`${process.env.REACT_APP_SERVER_URL}/usa`);
+    console.log('usaList', response);
+    return response.data;
+};
 const getCanadaLists = async () => {
     const response = await axios.get(
         `${process.env.REACT_APP_SERVER_URL}/canada`,
@@ -60,6 +65,7 @@ const getEgyptLists = async () => {
 export {
     getJapanLists,
     getVietnamLists,
+    getUsaLists,
     getCanadaLists,
     getEnglandLists,
     getFranceLists,
