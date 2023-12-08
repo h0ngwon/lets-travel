@@ -1,4 +1,4 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { deleteData, fetchData } from 'apis/comments';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'firebaseConfig';
@@ -28,6 +28,9 @@ function Comments() {
     console.log(userEmail);
 
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
+    const queryClient = useQueryClient();
+    queryClient.invalidateQueries({ queryKey: ['comments'] });
+    
     const { data, isLoading, isSuccess, isError, error } = useQuery({
         queryKey: ['comments'],
         queryFn: fetchData,
@@ -35,6 +38,7 @@ function Comments() {
     });
 
     const deleteMutate = useMutation({
+        mutationKey: ['comments'],
         mutationFn: deleteData,
     });
 
