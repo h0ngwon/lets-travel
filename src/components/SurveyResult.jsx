@@ -1,24 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
-import {
-    getAustrailaLists,
-    getCanadaLists,
-    getEgyptLists,
-    getEnglandLists,
-    getFranceLists,
-    getJapanLists,
-    getUsaLists,
-    getVietnamLists,
-} from 'apis/cityResult';
 import { getCountryTypeData } from 'apis/testResult';
-import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { styled } from 'styled-components';
 import MapComponent from './MapComponent';
 import Youtube from './Youtube';
 
 function SurveyResult() {
-    const [resultType, setResultType] = useState([]);
-    const [isRender, setIsRender] = useState(false);
     const { id } = useParams();
     const navigate = useNavigate();
     const {
@@ -30,115 +17,8 @@ function SurveyResult() {
         queryFn: getCountryTypeData,
     });
     console.log('데이터', countryTypeData);
-    const {
-        isPending: japanListsPending,
-        isError: japanListsError,
-        data: japanListsData,
-    } = useQuery({
-        queryKey: ['japanLists'],
-        queryFn: getJapanLists,
-    });
 
-    const {
-        isPending: vietnamListsPending,
-        isError: vietnamListsError,
-        data: vietnamListsData,
-    } = useQuery({
-        queryKey: ['vietnamLists'],
-        queryFn: getVietnamLists,
-    });
-
-    const {
-        isPending: usaListsPending,
-        isError: usaListsError,
-        data: usaListsData,
-    } = useQuery({
-        queryKey: ['usaLists'],
-        queryFn: getUsaLists,
-    });
-    const {
-        isPending: canadaListsPending,
-        isError: canadaListsError,
-        data: canadaListsData,
-    } = useQuery({
-        queryKey: ['canadaLists'],
-        queryFn: getCanadaLists,
-    });
-
-    const {
-        isPending: englandListsPending,
-        isError: englandListsError,
-        data: englandListsData,
-    } = useQuery({
-        queryKey: ['englandLists'],
-        queryFn: getEnglandLists,
-    });
-
-    const {
-        isPending: franceListsPending,
-        isError: franceListsError,
-        data: franceListsData,
-    } = useQuery({
-        queryKey: ['franceLists'],
-        queryFn: getFranceLists,
-    });
-
-    const {
-        isPending: austrailaListsPending,
-        isError: austrailaListsError,
-        data: austrailaListsData,
-    } = useQuery({
-        queryKey: ['austrailaLists'],
-        queryFn: getAustrailaLists,
-    });
-
-    const {
-        isPending: egyptListsPending,
-        isError: egyptListsError,
-        data: egyptListsData,
-    } = useQuery({
-        queryKey: ['egyptLists'],
-        queryFn: getEgyptLists,
-    });
-    useEffect(() => {
-        if (!countryTypeDataPending && !countryTypeDataError) {
-            const countryId = id;
-            if (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].includes(countryId)) {
-                if (countryId === 'A') {
-                    setResultType(japanListsData);
-                } else if (countryId === 'B') {
-                    setResultType(vietnamListsData);
-                } else if (countryId === 'C') {
-                    setResultType(usaListsData);
-                } else if (countryId === 'D') {
-                    setResultType(canadaListsData);
-                } else if (countryId === 'E') {
-                    setResultType(englandListsData);
-                } else if (countryId === 'F') {
-                    setResultType(franceListsData);
-                } else if (countryId === 'G') {
-                    setResultType(austrailaListsData);
-                } else if (countryId === 'H') {
-                    setResultType(egyptListsData);
-                } else {
-                    setResultType([]);
-                    setIsRender((prev) => !prev);
-                }
-            }
-        }
-    }, []);
-
-    if (
-        countryTypeDataPending ||
-        japanListsPending ||
-        vietnamListsPending ||
-        usaListsPending ||
-        canadaListsPending ||
-        englandListsPending ||
-        franceListsPending ||
-        austrailaListsPending ||
-        egyptListsPending
-    ) {
+    if (countryTypeDataPending) {
         return (
             <div
                 style={{
@@ -152,17 +32,7 @@ function SurveyResult() {
         );
     }
 
-    if (
-        countryTypeDataError ||
-        japanListsError ||
-        vietnamListsError ||
-        usaListsError ||
-        canadaListsError ||
-        englandListsError ||
-        franceListsError ||
-        austrailaListsError ||
-        egyptListsError
-    ) {
+    if (countryTypeDataError) {
         return (
             <div
                 style={{
@@ -176,7 +46,6 @@ function SurveyResult() {
         );
     }
     console.log('나라', id);
-    console.log('도시', resultType);
     return (
         <div>
             {countryTypeData?.map((result) => {
@@ -200,31 +69,31 @@ function SurveyResult() {
                                 <MapWrap>
                                     <MapComponent destination={result.coords} />
                                 </MapWrap>
-                            </Container>
+                            </Container>{' '}
+                            <CityWrap>
+                                {result.cities?.map((city) => {
+                                    return (
+                                        <div key={city.id}>
+                                            <CityImg src={city.img} />
+                                            <CityName>{city.title}</CityName>
+                                        </div>
+                                    );
+                                })}
+                            </CityWrap>
+                            <Youtube />
                         </div>
                     );
                 } else {
                     return;
                 }
             })}
-            <CityWrap>
-                {resultType?.map((city) => {
-                    return (
-                        <div key={city.id}>
-                            <CityImg src={city.img} />
-                            <CityName>{city.title} 🎬</CityName>
-                        </div>
-                    );
-                })}
-            </CityWrap>
-            <Youtube />
         </div>
     );
 }
 
 const Container = styled.div`
-    height: 380px;
-    width: 80%;
+    height: 80vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;

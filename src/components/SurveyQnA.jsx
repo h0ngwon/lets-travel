@@ -160,7 +160,7 @@ function SurveyQnA() {
 }
 const Container = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 80vh;
 `;
 const ProgressBarWrap = styled.div`
     width: 60%;
