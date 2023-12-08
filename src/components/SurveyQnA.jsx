@@ -30,7 +30,6 @@ function SurveyQnA() {
         { country: 'G', count: 0 },
         { country: 'H', count: 0 },
     ]);
-    console.log('카운트', countryTypeList);
     if (isPending) {
         return <h2>🙇🏻‍♀️잠시만 기다려 주세요</h2>;
     }
@@ -65,7 +64,6 @@ function SurveyQnA() {
             }
         });
         setCountryTypeList(list);
-        console.log('리스트', list);
     };
 
     // 많이 선택된 타입 찾아주기
@@ -80,9 +78,9 @@ function SurveyQnA() {
             } else if (item.count === setCount) {
                 mostSelecType.push(item.country);
             }
-            navigate('/result');
         });
         // count가 같으면 랜덤으로 추출
+        // TODO: count가 잘못되고있음....
         const randomCountry =
             mostSelecType[Math.floor(Math.random() * mostSelecType.length)];
         console.log('랜덤추출', randomCountry);
@@ -92,6 +90,7 @@ function SurveyQnA() {
         return null;
     }
     const currentSurvey = data[currentPage];
+
     return (
         <Container>
             <Navbar />
@@ -140,8 +139,13 @@ function SurveyQnA() {
                 </>
             ) : (
                 <EndTestContainer>
-                    <EndComment>🍭테스트가 끝났습니다🍭</EndComment>
-                    <ResultButton onClick={() => mostSelecTypeCount()}>
+                    <EndComment>🍭 테스트가 끝났습니다 🍭</EndComment>
+                    <ResultButton
+                        onClick={() => {
+                            const select = mostSelecTypeCount();
+                            navigate(`/result/${select}`);
+                        }}
+                    >
                         결과보러가기
                     </ResultButton>
                 </EndTestContainer>
