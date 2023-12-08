@@ -1,26 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import Navbar from './ui/Navbar';
-import Footer from './ui/Footer';
-import { styled } from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import { getCountryTypeData } from 'apis/testResult';
-import {
-    getJapanLists,
-    getVietnamLists,
-    getUsaLists,
-    getCanadaLists,
-    getEnglandLists,
-    getFranceLists,
-    getAustrailaLists,
-    getEgyptLists,
-} from 'apis/cityResult';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { styled } from 'styled-components';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 import MapComponent from './MapComponent';
+import Youtube from './Youtube';
 
 function SurveyResult() {
-    const [resultType, setResultType] = useState([]);
     const { id } = useParams();
-
+    const navigate = useNavigate();
     const {
         isPending: countryTypeDataPending,
         isError: countryTypeDataError,
@@ -30,114 +19,14 @@ function SurveyResult() {
         queryFn: getCountryTypeData,
     });
     console.log('데이터', countryTypeData);
-    const {
-        isPending: japanListsPending,
-        isError: japanListsError,
-        data: japanListsData,
-    } = useQuery({
-        queryKey: ['japanLists'],
-        queryFn: getJapanLists,
-    });
 
-    const {
-        isPending: vietnamListsPending,
-        isError: vietnamListsError,
-        data: vietnamListsData,
-    } = useQuery({
-        queryKey: ['vietnamLists'],
-        queryFn: getVietnamLists,
-    });
+    const youtubePopupHandler = (title) => {
+        withReactContent(Swal).fire({
+            html: <Youtube cityTitle={title}/>,
+        });
+    };
 
-    const {
-        isPending: usaListsPending,
-        isError: usaListsError,
-        data: usaListsData,
-    } = useQuery({
-        queryKey: ['usaLists'],
-        queryFn: getUsaLists,
-    });
-    const {
-        isPending: canadaListsPending,
-        isError: canadaListsError,
-        data: canadaListsData,
-    } = useQuery({
-        queryKey: ['canadaLists'],
-        queryFn: getCanadaLists,
-    });
-
-    const {
-        isPending: englandListsPending,
-        isError: englandListsError,
-        data: englandListsData,
-    } = useQuery({
-        queryKey: ['englandLists'],
-        queryFn: getEnglandLists,
-    });
-
-    const {
-        isPending: franceListsPending,
-        isError: franceListsError,
-        data: franceListsData,
-    } = useQuery({
-        queryKey: ['franceLists'],
-        queryFn: getFranceLists,
-    });
-
-    const {
-        isPending: austrailaListsPending,
-        isError: austrailaListsError,
-        data: austrailaListsData,
-    } = useQuery({
-        queryKey: ['austrailaLists'],
-        queryFn: getAustrailaLists,
-    });
-
-    const {
-        isPending: egyptListsPending,
-        isError: egyptListsError,
-        data: egyptListsData,
-    } = useQuery({
-        queryKey: ['egyptLists'],
-        queryFn: getEgyptLists,
-    });
-    useEffect(() => {
-        if (!countryTypeDataPending && !countryTypeDataError) {
-            const countryId = id;
-            if (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].includes(countryId)) {
-                if (countryId === 'A') {
-                    setResultType(japanListsData);
-                } else if (countryId === 'B') {
-                    setResultType(vietnamListsData);
-                } else if (countryId === 'C') {
-                    setResultType(usaListsData);
-                } else if (countryId === 'D') {
-                    setResultType(canadaListsData);
-                } else if (countryId === 'E') {
-                    setResultType(englandListsData);
-                } else if (countryId === 'F') {
-                    setResultType(franceListsData);
-                } else if (countryId === 'G') {
-                    setResultType(austrailaListsData);
-                } else if (countryId === 'H') {
-                    setResultType(egyptListsData);
-                } else {
-                    setResultType([]);
-                }
-            }
-        }
-    }, []);
-
-    if (
-        countryTypeDataPending ||
-        japanListsPending ||
-        vietnamListsPending ||
-        usaListsPending ||
-        canadaListsPending ||
-        englandListsPending ||
-        franceListsPending ||
-        austrailaListsPending ||
-        egyptListsPending
-    ) {
+    if (countryTypeDataPending) {
         return (
             <div
                 style={{
@@ -151,17 +40,7 @@ function SurveyResult() {
         );
     }
 
-    if (
-        countryTypeDataError ||
-        japanListsError ||
-        vietnamListsError ||
-        usaListsError ||
-        canadaListsError ||
-        englandListsError ||
-        franceListsError ||
-        austrailaListsError ||
-        egyptListsError
-    ) {
+    if (countryTypeDataError) {
         return (
             <div
                 style={{
@@ -175,11 +54,8 @@ function SurveyResult() {
         );
     }
     console.log('나라', id);
-    console.log('모든나라', countryTypeData);
-    console.log('도시', resultType);
     return (
         <div>
-            <Navbar />
             {countryTypeData?.map((result) => {
                 if (id?.includes(result.type)) {
                     return (
@@ -192,29 +68,35 @@ function SurveyResult() {
                                     <CountryName>
                                         "{result.country}"
                                     </CountryName>
-                                    <CommentsButton>
+                                    <CommentsButton
+                                        onClick={() => navigate('/comment')}
+                                    >
                                         댓글 남기러 가기
                                     </CommentsButton>
                                 </ResultTextWrap>
                                 <MapWrap>
                                     <MapComponent destination={result.coords} />
                                 </MapWrap>
-                            </Container>
+                            </Container>{' '}
+                            <CityWrap>
+                                {result.cities?.map((city) => {
+                                    return (
+                                        <div key={city.id}>
+                                            <CityImg
+                                                src={city.img}
+                                                onClick={() => {youtubePopupHandler(city.title)}}
+                                            />
+                                            <CityName>{city.title}</CityName>
+                                        </div>
+                                    );
+                                })}
+                            </CityWrap>
                         </div>
                     );
+                } else {
+                    return;
                 }
             })}
-            <CityWrap>
-                {resultType?.map((city) => {
-                    return (
-                        <div key={city.id}>
-                            <CityImg src={city.img} />
-                            <CityName>{city.title}</CityName>
-                        </div>
-                    );
-                })}
-            </CityWrap>
-            <Footer />
         </div>
     );
 }
@@ -239,8 +121,8 @@ const Description = styled.p`
 `;
 
 const MapWrap = styled.div`
-    width: 470px;
-    height: 250px;
+    width: 620px;
+    height: 300px;
     background-color: gray;
 `;
 
@@ -260,15 +142,15 @@ const CityWrap = styled.div`
 `;
 
 const CityImg = styled.img`
-    width: 200px;
-    height: 200px;
+    width: 230px;
+    height: 230px;
     object-fit: cover;
     background-color: gray;
 `;
 
 const CityName = styled.p`
     font-size: 20px;
-    margin-top: 30px;
+    margin-top: 20px;
     text-align: center;
 `;
 const CommentsButton = styled.button`
