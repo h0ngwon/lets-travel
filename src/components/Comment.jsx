@@ -157,7 +157,6 @@ const StSubmitBtn = styled.button`
     border-radius: 8px;
     padding: 12px 40px;
     cursor: pointer;
-
     &:hover {
         background-color: #71d5c9;
         color: white;
@@ -193,6 +192,7 @@ const StCommentDelBtn = styled.button`
 `;
 const StCommentP = styled.p`
     color: black;
+    font-family: SCDream3;
 `;
 
 export default Comments;

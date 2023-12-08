@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import SurveyButton from './ui/SurveyButton';
+import SurveyCircle from './ui/SurveyCircle';
 
 // TODO: 선택하지 않고 다음버튼을 클릭하면 넘어갈 수 없도록
 // TODO: 한번 선택 후 다른항목으로 변경시에 바뀐 항목의 타입으로 카운트
@@ -168,7 +169,7 @@ const Title = styled.h1`
     margin: 40px auto 20px auto;
     text-align: center;
     color: #494949;
-    font-family: SUITE-Medium;
+    font-family: SCDream5;
 `;
 
 const CircleWrap = styled.div`
@@ -196,7 +197,7 @@ const ResultButton = styled.button`
 
 const EndTestContainer = styled.div`
     width: 100vw;
-    height: 800px;
+    height: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -204,7 +205,8 @@ const EndTestContainer = styled.div`
 `;
 
 const EndComment = styled.h1`
-    font-size: 30px;
+    font-size: 28px;
     margin-bottom: 80px;
+    font-family: SCDream5;
 `;
 export default SurveyQnA;

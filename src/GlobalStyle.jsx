@@ -1,52 +1,31 @@
 import { createGlobalStyle } from 'styled-components';
-
+import SCDream3 from './fonts/SCDream3.otf';
+import SCDream5 from './fonts/SCDream5.otf';
+import Avigea from './fonts/Avigea.otf';
 export const GlobalStyle = createGlobalStyle`
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	font-size: 100%;
-	font: inherit;
-	vertical-align: baseline;
-}
-article, aside, details, figcaption, figure, 
-footer, header, hgroup, menu, nav, section {
-	display: block;
-}
-ol, ul {
-	list-style: none;
-}
-blockquote, q {
-	quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
-}
-table {
-	border-collapse: collapse;
-	border-spacing: 0;
-}
+
 *{
     box-sizing: border-box;
 }
 
 @font-face {
-    font-family: "SUITE-Medium";
-    src: local("SUITE-Medium"), url(${SUITE - Medium}),format('opentype');
-    font-weight: normal;
+    font-family: "SCDream3";
+    src: local('SCDream3');
+    font-style: normal;
+    src: url(${SCDream3}) format('opentype');
+}
+
+@font-face {
+    font-family: "SCDream5";
+    src: local('SCDream5');
+    font-style: normal;
+    src: url(${SCDream5}) format('opentype');
+}
+
+@font-face {
+    font-family: "Avigea";
+    src: local('Avigea');
+    font-style: normal;
+    src: url(${Avigea}) format('opentype');
 }
 `;

@@ -124,6 +124,7 @@ const ResultTextWrap = styled.div`
 
 const Description = styled.p`
     font-size: 20px;
+    font-family: SCDream3;
 `;
 
 const MapWrap = styled.div`
@@ -136,6 +137,7 @@ const CountryName = styled.h1`
     font-size: 40px;
     margin-top: 30px;
     color: #71d5c9;
+    font-family: SCDream5;
 `;
 const CityWrap = styled.div`
     width: 100vw;
@@ -150,6 +152,7 @@ const CityWrap = styled.div`
 const Text = styled.p`
     text-align: center;
     color: #a3a3a3;
+    font-family: SCDream3;
 `;
 
 const CityImg = styled.img`
@@ -165,6 +168,7 @@ const CityName = styled.p`
     margin-top: 20px;
     text-align: center;
     color: #585858;
+    font-family: SCDream3;
 `;
 const CommentsButton = styled.button`
     width: 200px;

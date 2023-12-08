@@ -149,7 +149,7 @@ const Home = () => {
         Swal.fire({
             imageUrl: '/imgs/airplain_icon.ico',
             imageWidth: 300,
-            imageHeight: 100,
+            imageHeight: 200,
             title: '로그인 후 이용이 가능합니다.',
             text: '로그인 하시겠습니까?',
             color: '#00a08d',
@@ -301,17 +301,6 @@ const Home = () => {
             await login(formValues);
             console.log('폼밸류', formValues);
             localStorage.setItem('userEmail', formValues[0]);
-            // .then(() => {
-            //     Swal.fire({
-            //         position: 'center',
-            //         width: 400,
-            //         padding: '60px',
-            //         icon: 'success',
-            //         title: '로그인 성공!',
-            //         showConfirmButton: false,
-            //         timer: 1500,
-            //     });
-            // });
         }
         // 회원가입 성공 시, '회원가입 성공!' alert -> 로그인 Modal로 이동
         else {
@@ -413,7 +402,7 @@ export default Home;
 
 const StPage = styled.div`
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
     background-color: #71d5c9;
 `;
 
@@ -427,7 +416,7 @@ const StContainer = styled.div`
 
 const StH1 = styled.h1`
     font-size: 80px;
-    font-family: Kalimar;
+    font-family: Avigea;
     color: white;
     margin-bottom: 50px;
 `;
@@ -436,16 +425,19 @@ const StH2 = styled.h2`
     font-size: 30px;
     color: white;
     margin-bottom: 70px;
+    font-family: SCDream3;
 `;
 
 const StBtn = styled.button`
-    width: 250px;
+    width: 300px;
     height: 50px;
     border: none;
     border-radius: 50px;
-    color: #5c5c5c;
+    color: #6e6e6e;
     background-color: white;
-    font-size: 20px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    font-family: SCDream3;
+    font-size: 18px;
     cursor: pointer;
     &:hover {
         transform: scale(1.05);

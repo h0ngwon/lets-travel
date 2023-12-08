@@ -17,6 +17,7 @@ const SurveyCircleSt = styled.button`
     display: flex;
     justify-content: center;
     font-size: 20px;
+    font-family: SCDream3;
     align-items: center;
     color: white;
     cursor: pointer;

@@ -9,7 +9,7 @@ const Layout = () => {
             <div
                 style={{
                     height: 'auto',
-                    minHeight: '100vh',
+                    // minHeight: '100vh',
                 }}
             >
                 <Outlet />

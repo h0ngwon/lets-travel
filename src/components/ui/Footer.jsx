@@ -9,6 +9,7 @@ function Footer() {
         </FooterContainer>
     );
 }
+
 const FooterContainer = styled.div`
     /* bottom: 0;
     position: absolute; */
@@ -17,8 +18,9 @@ const FooterContainer = styled.div`
     color: white;
     padding: 30px 0;
     display: flex;
-    gap: 30px;
+    gap: 50px;
     justify-content: center;
+    border-top: 1px solid white;
 `;
 
 export default Footer;
