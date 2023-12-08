@@ -35,8 +35,8 @@ const Youtube = ({ cityTitle }) => {
                                 id='player'
                                 title={v.id}
                                 type='text/html'
-                                width='450'
-                                height='360'
+                                width='1280'
+                                height='720'
                                 src={`http://www.youtube.com/embed/${v.snippet.resourceId.videoId}?enablejsapi=1&origin=http://example.com`}
                             ></iframe>
                         </div>
