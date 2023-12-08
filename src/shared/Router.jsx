@@ -1,3 +1,4 @@
+import CommentPage from 'pages/CommentPage';
 import HomePage from 'pages/HomePage';
 import ResultPage from 'pages/ResultPage';
 import SurveyPage from 'pages/SurveyPage';
@@ -10,6 +11,7 @@ function Router() {
             <Routes>
                 <Route path='/' element={<HomePage />} />
                 <Route path='/survey' element={<SurveyPage />} />
+                <Route path='/comment' element={<CommentPage />} />
                 <Route path='/result/:id' element={<ResultPage />} />
             </Routes>
         </BrowserRouter>
