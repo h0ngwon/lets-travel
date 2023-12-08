@@ -108,7 +108,7 @@ function Comments() {
                 <br />
                 {comments
                     .filter((value) => {
-                        return value.country == activeCountry;
+                        return value.country === activeCountry;
                     })
                     .map((comment) => {
                         console.log(comment);
