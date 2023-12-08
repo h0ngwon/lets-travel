@@ -26,7 +26,7 @@ const Youtube = () => {
 
     return (
         <div>
-            {videoList.map((v) => {
+            {videoList.filter(v => v.snippet.title.includes('일본')).map((v) => {
                 return (
                     <div>
                         <iframe

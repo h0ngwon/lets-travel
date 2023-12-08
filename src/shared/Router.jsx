@@ -1,3 +1,4 @@
+import Layout from 'components/ui/Layout';
 import CommentPage from 'pages/CommentPage';
 import HomePage from 'pages/HomePage';
 import ResultPage from 'pages/ResultPage';
@@ -9,10 +10,12 @@ function Router() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path='/' element={<HomePage />} />
-                <Route path='/survey' element={<SurveyPage />} />
-                <Route path='/comment' element={<CommentPage />} />
-                <Route path='/result/:id' element={<ResultPage />} />
+                <Route element={<Layout />}>
+                    <Route path='/' element={<HomePage />} />
+                    <Route path='/survey' element={<SurveyPage />} />
+                    <Route path='/comment' element={<CommentPage />} />
+                    <Route path='/result/:id' element={<ResultPage />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );
