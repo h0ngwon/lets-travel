@@ -1,14 +1,12 @@
-import React from 'react';
-import { useEffect } from 'react';
-import styled from 'styled-components';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
-import Navbar from './ui/Navbar';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import Swal from 'sweetalert2';
 import { auth } from '../config/firebaseConfig';
+import Navbar from './ui/Navbar';
 
 const Home = () => {
     const navigate = useNavigate();
