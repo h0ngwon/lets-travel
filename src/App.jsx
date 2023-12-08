@@ -1,4 +1,3 @@
-import Youtube from 'components/Youtube';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import Router from './shared/Router';
 
