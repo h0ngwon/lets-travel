@@ -1,19 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { useNavigate } from 'react-router';
 
 function Navbar() {
     const navigate = useNavigate();
-
     return (
         <NavContainer>
-            <MainLogo
-                onClick={() => {
-                    navigate('/');
-                }}
-            >
-                LET'S TRAVEL
-            </MainLogo>
+            <MainLogo onClick={() => navigate('/')}>LET'S TRAVEL</MainLogo>
         </NavContainer>
     );
 }
