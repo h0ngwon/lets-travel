@@ -14,7 +14,7 @@ const Youtube = () => {
                 params: {
                     part: 'snippet',
                     playlistId: 'PLEJrijY-Z4cBcAoOfujrtSauwxc9XE89A',
-                    maxResults: 10,
+                    maxResults: 48,
                 },
             });
             console.log(res.data.items);
