@@ -105,42 +105,50 @@
         {
             "type": "A",
             "country": "일본",
-            "description": "당신의 추천여행지는 일본입니다"
+            "description": "당신의 추천여행지는 일본입니다",
+            "coords": { "lat": 35.68, "lng": 139.69 }
         },
         {
             "type": "B",
             "country": "베트남",
-            "description": "당신의 추천여행지는 베트남입니다"
+            "description": "당신의 추천여행지는 베트남입니다",
+            "coords": { "lat": 21, "lng": 105.86 }
         },
         {
             "type": "C",
             "country": "미국",
-            "description": "당신의 추천여행지는 미국입니다"
+            "description": "당신의 추천여행지는 미국입니다",
+            "coords": { "lat": 40.66, "lng": -73.93 }
         },
         {
             "type": "D",
             "country": "캐나다",
-            "description": "당신의 추천여행지는 캐나다입니다"
+            "description": "당신의 추천여행지는 캐나다입니다",
+            "coords": { "lat": 49.28, "lng": -123.12 }
         },
         {
             "type": "E",
             "country": "영국",
-            "description": "당신의 추천여행지는 영국입니다"
+            "description": "당신의 추천여행지는 영국입니다",
+            "coords": { "lat": 51.5, "lng": -0.12 }
         },
         {
             "type": "F",
             "country": "프랑스",
-            "description": "당신의 추천여행지는 프랑스입니다"
+            "description": "당신의 추천여행지는 프랑스입니다",
+            "coords": { "lat": 48.8, "lng": 2.35 }
         },
         {
             "type": "G",
             "country": "호주",
-            "description": "당신의 추천여행지는 호주입니다"
+            "description": "당신의 추천여행지는 호주입니다",
+            "coords": { "lat": -33.8674, "lng": 151.2 }
         },
         {
             "type": "H",
             "country": "이집트",
-            "description": "당신의 추천여행지는 이집트입니다"
+            "description": "당신의 추천여행지는 이집트입니다",
+            "coords": { "lat": 30.04, "lng": 31.24 }
         }
     ],
     "japan": [
