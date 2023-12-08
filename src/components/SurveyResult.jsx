@@ -19,6 +19,7 @@ import MapComponent from './MapComponent';
 
 function SurveyResult() {
     const [resultType, setResultType] = useState([]);
+    const [isRender, setIsRender] = useState(false);
     const { id } = useParams();
     const navigate = useNavigate();
     const {
@@ -122,6 +123,7 @@ function SurveyResult() {
                     setResultType(egyptListsData);
                 } else {
                     setResultType([]);
+                    setIsRender((prev) => !prev);
                 }
             }
         }
@@ -212,7 +214,7 @@ function SurveyResult() {
                     return (
                         <div key={city.id}>
                             <CityImg src={city.img} />
-                            <CityName>{city.title}</CityName>
+                            <CityName>{city.title} 🎬</CityName>
                         </div>
                     );
                 })}
@@ -273,6 +275,7 @@ const CityName = styled.p`
     font-size: 20px;
     margin-top: 20px;
     text-align: center;
+    cursor: pointer;
 `;
 const CommentsButton = styled.button`
     width: 160px;
