@@ -1,16 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import { db } from 'firebaseConfig';
-import { addDoc, collection, deleteDoc, doc, getDocs, query } from 'firebase/firestore';
+import {
+    addDoc,
+    collection,
+    deleteDoc,
+    doc,
+    getDocs,
+    query,
+} from 'firebase/firestore';
 import { nanoid } from 'nanoid';
 import CountryBtn from './ui/CountryBtn';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from 'styled-components';
 
 function Comments() {
-    const [selectedCountry, setSelectedCountry] = useState('');
-    const activeCountry = useSelector((state) => state.countrySlice);
+    const [selectedCountry, setSelectedCountry] = useState('일본'); //select의 country 목록
+    const activeCountry = useSelector((state) => state.countrySlice); //countryBtn 클릭시 각 나라의 state를 보여줌
     const dispatch = useDispatch();
     const [contents, setContents] = useState('');
     const [comments, setComments] = useState([]);
+    console.log(comments);
     const countries = [
         '일본',
         '베트남',
@@ -21,107 +30,155 @@ function Comments() {
         '영국',
         '이집트',
     ];
-    // console.log(comments)
 
+    //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
+    const fetchData = async () => {
+        const q = query(collection(db, 'comments'));
+        const querySnapshot = await getDocs(q);
+
+        const initialComments = [];
+
+        querySnapshot.forEach((doc) => {
+            initialComments.push({ id: doc.id, ...doc.data() });
+        });
+        setComments(initialComments);
+    };
 
     const handleCountryChange = (e) => {
         setSelectedCountry(e.target.value);
-        // dispatch(setCountry(e.target.value));
     };
 
     const onChangeHandler = (e) => {
         setContents(e.target.value);
-    }
-    
-    const deleteBtnHandler= async (comment) => {
-        console.log("삭제버튼",comment)
-        // const ref = doc(db, 'comments', comment.id);
-        await deleteDoc(doc(db, 'comments', comment.id));
-        // let temp = comments.filter((comment)=> comment.id!==comment.id);
-        // setComments(temp)
-        setComments((prev) => {
-            return prev.filter((element) => element.id !== comment.id);
-          });
-    }
+    };
 
-    const onSubmit = (e) => {
+    const deleteBtnHandler = async (id) => {
+        await deleteDoc(doc(db, 'comments', id));
+        await fetchData();
+    };
+
+    const onSubmit = async (e) => {
         e.preventDefault();
         const docRef = collection(db, 'comments');
         const newComment = {
-           contents,
-           country: selectedCountry,
-           createdAt: new Date().toLocaleString(),
-           key:nanoid(),
-           userEmail: 'test@test.com',
+            contents,
+            country: selectedCountry,
+            createdAt: new Date().toLocaleString(),
+            key: nanoid(),
+            userEmail: 'test@test.com', //auth 완성 후, 처리해야함
         };
-        addDoc(docRef, newComment)
-        setComments([newComment,...comments])
+        await addDoc(docRef, newComment);
+        fetchData();
+        setContents('');
     };
 
     //처음 컴포넌트가 렌더링 되면 서버에서 데이터를 받아와 state에 저장
     useEffect(() => {
-        const fetchData =async () => {
-          
-          const q = query(collection(db, "comments"));
-          const querySnapshot = await getDocs(q);
-    
-          const initialComments = [];
-    
-          querySnapshot.forEach((doc) => {
-            initialComments.push({ id: doc.id, ...doc.data() });
-          });
-    
-               
-          setComments(initialComments);
-        };
-    
         fetchData();
-      }, []);
+    }, []);
 
     return (
-        <div>
-            <CountryBtn
-                countries={countries}
-            />
-            <div>
-                <select onChange={handleCountryChange} value={selectedCountry}>
-                    {countries.map((country, index) => (
-                        <option key={index} value={country}>
-                            {country}
-                        </option>
-                    ))}
-                </select>
+        <StCommentPageDiv>
+            <CountryBtn countries={countries} />
 
-                <form>
-                    <input 
+            <StCommentSection>
+                <StCommentInputDiv>
+                    <StSelectCountry
+                        onChange={handleCountryChange}
+                        value={selectedCountry}
+                    >
+                        {countries.map((country, index) => (
+                            <option key={index} value={country}>
+                                {country}
+                            </option>
+                        ))}
+                    </StSelectCountry>
+
+                    <StInput
                         type='text'
                         placeholder='댓글을 입력하세요'
                         onChange={onChangeHandler}
                         value={contents}
                     />
-                    <button onClick={onSubmit}>등록</button>
-                </form>
-            </div>
+                    <StSubmitBtn onClick={onSubmit}>등록</StSubmitBtn>
+                </StCommentInputDiv>
 
-            <h4>댓글창</h4>
-            <br />
-            <br />
-            {comments
-            .filter((value) => {
-                return value.country == activeCountry;
-            })
-            .map((comment) => (
-                <div key={comment.key}>
-                    <div>
-                        <p>{comment.userEmail}</p>
-                        <p>{comment.createdAt}</p> 
-                    </div>
-                    <p>{comment.contents}</p>
-                    <button onClick={()=>{deleteBtnHandler(comment)}}>삭제</button>
-                </div>
-            ))}
-        </div>
+                <br />
+                <br />
+                {comments
+                    .filter((value) => {
+                        return value.country == activeCountry;
+                    })
+                    .map((comment) => {
+                        console.log(comment);
+                        return (
+                            <StComment key={comment.key}>
+                                <div>
+                                    <p>{comment.userEmail}</p>
+                                    <p>{comment.createdAt}</p>
+                                </div>
+                                <p>{comment.contents}</p>
+                                <button
+                                    onClick={() => {
+                                        deleteBtnHandler(comment.id);
+                                    }}
+                                >
+                                    삭제
+                                </button>
+                            </StComment>
+                        );
+                    })}
+            </StCommentSection>
+        </StCommentPageDiv>
     );
 }
+
+const StCommentPageDiv = styled.div`
+    width: 80%;
+    padding: 50px;
+    text-align: center;
+    margin: 0 auto;
+`;
+const StCommentSection = styled.div`
+    border: 1px solid #71d5c9;
+    margin-top: 100px;
+    margin-bottom: 50px;
+    padding: 50px;
+`;
+const StCommentInputDiv = styled.div`
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+`;
+const StSelectCountry = styled.select`
+    padding: 12px 40px;
+    border-radius: 8px;
+    border-style: none;
+    background-color: #efefef;
+    cursor: pointer;
+`;
+const StInput = styled.input`
+    border-radius: 8px;
+    border-style: none;
+    border: 1px solid #71d5c9;
+    padding: 12px 180px;
+`;
+const StSubmitBtn = styled.button`
+    border-style: none;
+    border-radius: 8px;
+    padding: 12px 40px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #71d5c9;
+        color: white;
+    }
+`;
+const StComment = styled.div`
+    background-color: #efefef;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+`;
 
 export default Comments;
