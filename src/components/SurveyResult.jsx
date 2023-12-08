@@ -15,6 +15,7 @@ import {
     getEgyptLists,
 } from 'apis/cityResult';
 import { useParams } from 'react-router-dom';
+import MapComponent from './MapComponent';
 
 function SurveyResult() {
     const [resultType, setResultType] = useState([]);
@@ -28,6 +29,7 @@ function SurveyResult() {
         queryKey: ['countryTypeData'],
         queryFn: getCountryTypeData,
     });
+    console.log('데이터', countryTypeData);
     const {
         isPending: japanListsPending,
         isError: japanListsError,
@@ -172,6 +174,7 @@ function SurveyResult() {
             </div>
         );
     }
+    console.log('나라', id);
     console.log('모든나라', countryTypeData);
     console.log('도시', resultType);
     return (
@@ -193,7 +196,9 @@ function SurveyResult() {
                                         댓글 남기러 가기
                                     </CommentsButton>
                                 </ResultTextWrap>
-                                <MapWrap>지도</MapWrap>
+                                <MapWrap>
+                                    <MapComponent destination={result.coords} />
+                                </MapWrap>
                             </Container>
                         </div>
                     );
