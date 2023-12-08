@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
-import SurveyCircle from './ui/SurveyCircle';
-import { styled } from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import { getCountryLists } from 'apis/testResult';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { styled } from 'styled-components';
 import SurveyButton from './ui/SurveyButton';
-import Navbar from './ui/Navbar';
-import Footer from './ui/Footer';
+import SurveyCircle from './ui/SurveyCircle';
 
 // TODO: 항목 클릭시 클릭한 버튼색상 고정
 // TODO: 한번 선택 후 다른항목으로 변경시에 바뀐 항목의 타입으로 카운트

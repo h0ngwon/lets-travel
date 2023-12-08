@@ -13,6 +13,9 @@ import CountryBtn from './ui/CountryBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { auth } from 'config/firebaseConfig';
+import { useQuery } from '@tanstack/react-query';
+import { fetchData } from 'apis/comments';
+import { onAuthStateChanged } from 'firebase/auth';
 
 function Comments() {
     const [selectedCountry, setSelectedCountry] = useState('일본'); //select의 country 목록
@@ -20,7 +23,7 @@ function Comments() {
     const dispatch = useDispatch();
     const [contents, setContents] = useState('');
     const [comments, setComments] = useState([]);
-    console.log(comments);
+
     const countries = [
         '일본',
         '베트남',
@@ -35,17 +38,25 @@ function Comments() {
     const userEmail = auth.currentUser.email;
 
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
-    const fetchData = async () => {
-        const q = query(collection(db, 'comments'));
-        const querySnapshot = await getDocs(q);
+    const { data, isLoading, isSuccess, isError, error } = useQuery({
+        queryKey: ['comments'],
+        queryFn: fetchData,
+    });
 
-        const initialComments = [];
+    if (isSuccess) {
+    }
 
-        querySnapshot.forEach((doc) => {
-            initialComments.push({ id: doc.id, ...doc.data() });
-        });
-        setComments(initialComments);
-    };
+    // const fetchData = async () => {
+    //     const q = query(collection(db, 'comments'));
+    //     const querySnapshot = await getDocs(q);
+
+    //     const initialComments = [];
+
+    //     querySnapshot.forEach((doc) => {
+    //         initialComments.push({ id: doc.id, ...doc.data() });
+    //     });
+    //     setComments(initialComments);
+    // };
 
     const handleCountryChange = (e) => {
         setSelectedCountry(e.target.value);
@@ -71,14 +82,11 @@ function Comments() {
             userEmail: userEmail, //auth 완성 후, 처리해야함
         };
         await addDoc(docRef, newComment);
-        fetchData();
         setContents('');
     };
 
     //처음 컴포넌트가 렌더링 되면 서버에서 데이터를 받아와 state에 저장
-    useEffect(() => {
-        fetchData();
-    }, []);
+    useEffect(() => {}, []);
 
     return (
         <StCommentPageDiv>
@@ -109,7 +117,7 @@ function Comments() {
 
                 <br />
                 <br />
-                {comments
+                {data
                     .filter((value) => {
                         return value.country === activeCountry;
                     })
