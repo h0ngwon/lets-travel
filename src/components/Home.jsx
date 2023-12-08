@@ -1,17 +1,11 @@
-<<<<<<< HEAD
 import React from 'react';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-=======
->>>>>>> cb2d79382054648c3946c81095837c67cc1a4dbc
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import Swal from 'sweetalert2';
 import { auth } from '../config/firebaseConfig';
 import Navbar from './ui/Navbar';
 

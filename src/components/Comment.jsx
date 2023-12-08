@@ -3,11 +3,7 @@ import { deleteData, fetchData } from 'apis/comments';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'firebaseConfig';
 import { nanoid } from 'nanoid';
-<<<<<<< HEAD
-import CountryBtn from './ui/CountryBtn';
-=======
 import { useEffect, useState } from 'react';
->>>>>>> cb2d79382054648c3946c81095837c67cc1a4dbc
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import CountryBtn from './ui/CountryBtn';
@@ -34,7 +30,7 @@ function Comments() {
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
     const queryClient = useQueryClient();
     queryClient.invalidateQueries({ queryKey: ['comments'] });
-    
+
     const { data, isLoading, isSuccess, isError, error } = useQuery({
         queryKey: ['comments'],
         queryFn: fetchData,
