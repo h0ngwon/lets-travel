@@ -14,8 +14,7 @@ const FooterWrap = styled.div`
     position: relative;
 `;
 const FooterContainer = styled.div`
-    bottom: 0;
-    position: absolute;
+    position: relative;
     width: 100%;
     background-color: #71d5c9;
     color: white;
