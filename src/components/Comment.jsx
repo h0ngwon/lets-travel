@@ -12,6 +12,7 @@ import { nanoid } from 'nanoid';
 import CountryBtn from './ui/CountryBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
+import { auth } from 'config/firebaseConfig';
 
 function Comments() {
     const [selectedCountry, setSelectedCountry] = useState('일본'); //select의 country 목록
@@ -30,6 +31,8 @@ function Comments() {
         '영국',
         '이집트',
     ];
+
+    const userEmail = auth.currentUser.email;
 
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
     const fetchData = async () => {
@@ -65,7 +68,7 @@ function Comments() {
             country: selectedCountry,
             createdAt: new Date().toLocaleString(),
             key: nanoid(),
-            userEmail: 'test@test.com', //auth 완성 후, 처리해야함
+            userEmail: userEmail, //auth 완성 후, 처리해야함
         };
         await addDoc(docRef, newComment);
         fetchData();
