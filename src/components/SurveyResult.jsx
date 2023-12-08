@@ -14,13 +14,13 @@ import {
     getAustrailaLists,
     getEgyptLists,
 } from 'apis/cityResult';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import MapComponent from './MapComponent';
 
 function SurveyResult() {
     const [resultType, setResultType] = useState([]);
     const { id } = useParams();
-
+    const navigate = useNavigate();
     const {
         isPending: countryTypeDataPending,
         isError: countryTypeDataError,
@@ -192,7 +192,11 @@ function SurveyResult() {
                                     <CountryName>
                                         "{result.country}"
                                     </CountryName>
-                                    <CommentsButton>
+                                    <CommentsButton
+                                        onClick={() => {
+                                            navigate('/comment');
+                                        }}
+                                    >
                                         댓글 남기러 가기
                                     </CommentsButton>
                                 </ResultTextWrap>

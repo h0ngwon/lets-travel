@@ -49,7 +49,7 @@ function Comments() {
     };
 
     const onChangeHandler = (e) => {
-        setContents(e.target.value);
+        setContents(e.target.value.trimStart());
     };
 
     const deleteBtnHandler = async (id) => {
@@ -82,7 +82,7 @@ function Comments() {
             <CountryBtn countries={countries} />
 
             <StCommentSection>
-                <StCommentInputDiv>
+                <StCommentInputForm onSubmit={onSubmit}>
                     <StSelectCountry
                         onChange={handleCountryChange}
                         value={selectedCountry}
@@ -99,9 +99,10 @@ function Comments() {
                         placeholder='댓글을 입력하세요'
                         onChange={onChangeHandler}
                         value={contents}
+                        required
                     />
-                    <StSubmitBtn onClick={onSubmit}>등록</StSubmitBtn>
-                </StCommentInputDiv>
+                    <StSubmitBtn>등록</StSubmitBtn>
+                </StCommentInputForm>
 
                 <br />
                 <br />
@@ -145,7 +146,7 @@ const StCommentSection = styled.div`
     margin-bottom: 50px;
     padding: 50px;
 `;
-const StCommentInputDiv = styled.div`
+const StCommentInputForm = styled.form`
     display: flex;
     justify-content: center;
     gap: 20px;
