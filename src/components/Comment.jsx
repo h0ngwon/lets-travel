@@ -7,12 +7,14 @@ import {
     doc,
     getDocs,
     query,
+    updateDoc,
 } from 'firebase/firestore';
 import { nanoid } from 'nanoid';
 import CountryBtn from './ui/CountryBtn';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { auth } from 'config/firebaseConfig';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 function Comments() {
     const [selectedCountry, setSelectedCountry] = useState('일본'); //select의 country 목록
@@ -31,8 +33,9 @@ function Comments() {
         '영국',
         '이집트',
     ];
-
     const userEmail = auth.currentUser.email;
+    const queryClient = useQueryClient();
+    const { isLoading, isError, data, error } = useQuery({});
 
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
     const fetchData = async () => {
@@ -117,18 +120,23 @@ function Comments() {
                         console.log(comment);
                         return (
                             <StComment key={comment.key}>
-                                <div>
+                                <StCommentEmailnDate>
                                     <p>{comment.userEmail}</p>
                                     <p>{comment.createdAt}</p>
-                                </div>
-                                <p>{comment.contents}</p>
-                                <button
-                                    onClick={() => {
-                                        deleteBtnHandler(comment.id);
-                                    }}
-                                >
-                                    삭제
-                                </button>
+                                </StCommentEmailnDate>
+                                <StCommentTxtnBtn>
+                                    <p>{comment.contents}</p>
+                                    <div>
+                                        <button
+                                            onClick={() => {
+                                                deleteBtnHandler(comment.id);
+                                            }}
+                                        >
+                                            삭제
+                                        </button>
+                                        <button>수정</button>
+                                    </div>
+                                </StCommentTxtnBtn>
                             </StComment>
                         );
                     })}
@@ -179,10 +187,25 @@ const StSubmitBtn = styled.button`
     }
 `;
 const StComment = styled.div`
+    width: 80%;
+    margin: 0 auto 20px auto;
     background-color: #efefef;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 15px;
+    padding-left: 30px;
     border-radius: 20px;
+`;
+const StCommentEmailnDate = styled.div`
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: darkgray;
+`;
+const StCommentTxtnBtn = styled.div`
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 `;
 
 export default Comments;
