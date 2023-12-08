@@ -6,7 +6,15 @@ const Layout = () => {
     return (
         <>
             <Navbar />
-            <Outlet />
+            <div
+                style={{
+                    height: 'auto',
+                    minHeight: '100vh',
+                }}
+            >
+                <Outlet />
+            </div>
+
             <Footer />
         </>
     );
