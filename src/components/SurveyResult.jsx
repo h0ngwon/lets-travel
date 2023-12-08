@@ -223,7 +223,7 @@ function SurveyResult() {
 }
 
 const Container = styled.div`
-    height: 300px;
+    height: 380px;
     width: 80%;
     display: flex;
     justify-content: center;
@@ -243,7 +243,7 @@ const Description = styled.p`
 
 const MapWrap = styled.div`
     width: 620px;
-    height: 300px;
+    height: 350px;
     background-color: gray;
 `;
 
