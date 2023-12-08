@@ -3,12 +3,10 @@ import { styled } from 'styled-components';
 
 function Footer() {
     return (
-        <FooterWrap>
-            <FooterContainer>
-                <h4>여행하자</h4>
-                <p>copyright</p>
-            </FooterContainer>
-        </FooterWrap>
+        <FooterContainer>
+            <h4>여행하자</h4>
+            <p>copyright</p>
+        </FooterContainer>
     );
 }
 const FooterWrap = styled.div`
@@ -26,4 +24,5 @@ const FooterContainer = styled.div`
     gap: 30px;
     justify-content: center;
 `;
+
 export default Footer;
