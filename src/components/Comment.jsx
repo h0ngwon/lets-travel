@@ -1,25 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { deleteData, fetchData } from 'apis/comments';
+import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'firebaseConfig';
-import {
-    addDoc,
-    collection,
-    deleteDoc,
-    doc,
-    getDocs,
-    query,
-} from 'firebase/firestore';
 import { nanoid } from 'nanoid';
+<<<<<<< HEAD
 import CountryBtn from './ui/CountryBtn';
+=======
+import { useEffect, useState } from 'react';
+>>>>>>> cb2d79382054648c3946c81095837c67cc1a4dbc
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { auth } from 'config/firebaseConfig';
+import CountryBtn from './ui/CountryBtn';
 
 function Comments() {
     const [selectedCountry, setSelectedCountry] = useState('일본'); //select의 country 목록
     const activeCountry = useSelector((state) => state.countrySlice); //countryBtn 클릭시 각 나라의 state를 보여줌
     const [contents, setContents] = useState('');
-    const [comments, setComments] = useState([]);
-    console.log(comments);
+
     const countries = [
         '일본',
         '베트남',
@@ -31,20 +28,23 @@ function Comments() {
         '이집트',
     ];
 
-    const userEmail = auth.currentUser.email;
+    const userEmail = localStorage.getItem('userEmail');
+    console.log(userEmail);
 
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
-    const fetchData = async () => {
-        const q = query(collection(db, 'comments'));
-        const querySnapshot = await getDocs(q);
+    const queryClient = useQueryClient();
+    queryClient.invalidateQueries({ queryKey: ['comments'] });
+    
+    const { data, isLoading, isSuccess, isError, error } = useQuery({
+        queryKey: ['comments'],
+        queryFn: fetchData,
+        staleTime: 1000,
+    });
 
-        const initialComments = [];
-
-        querySnapshot.forEach((doc) => {
-            initialComments.push({ id: doc.id, ...doc.data() });
-        });
-        setComments(initialComments);
-    };
+    const deleteMutate = useMutation({
+        mutationKey: ['comments'],
+        mutationFn: deleteData,
+    });
 
     const handleCountryChange = (e) => {
         setSelectedCountry(e.target.value);
@@ -52,11 +52,6 @@ function Comments() {
 
     const onChangeHandler = (e) => {
         setContents(e.target.value.trimStart());
-    };
-
-    const deleteBtnHandler = async (id) => {
-        await deleteDoc(doc(db, 'comments', id));
-        await fetchData();
     };
 
     const onSubmit = async (e) => {
@@ -70,19 +65,15 @@ function Comments() {
             userEmail: userEmail, //auth 완성 후, 처리해야함
         };
         await addDoc(docRef, newComment);
-        fetchData();
         setContents('');
     };
 
     //처음 컴포넌트가 렌더링 되면 서버에서 데이터를 받아와 state에 저장
-    useEffect(() => {
-        fetchData();
-    }, []);
+    useEffect(() => {}, []);
 
     return (
         <StCommentPageDiv>
             <CountryBtn countries={countries} />
-
             <StCommentSection>
                 <StCommentInputForm onSubmit={onSubmit}>
                     <StSelectCountry
@@ -95,7 +86,6 @@ function Comments() {
                             </option>
                         ))}
                     </StSelectCountry>
-
                     <StInput
                         type='text'
                         placeholder='댓글을 입력하세요'
@@ -105,29 +95,29 @@ function Comments() {
                     />
                     <StSubmitBtn>등록</StSubmitBtn>
                 </StCommentInputForm>
-
                 <br />
                 <br />
-                {comments
-                    .filter((value) => {
+                {data
+                    ?.filter((value) => {
                         return value.country === activeCountry;
                     })
                     .map((comment) => {
-                        console.log(comment);
                         return (
                             <StComment key={comment.key}>
-                                <div>
+                                <StCommentEmailnDate>
                                     <p>{comment.userEmail}</p>
-                                    <p>{comment.createdAt}</p>
-                                </div>
-                                <p>{comment.contents}</p>
-                                <button
-                                    onClick={() => {
-                                        deleteBtnHandler(comment.id);
-                                    }}
-                                >
-                                    삭제
-                                </button>
+                                    <StCommentP>{comment.contents}</StCommentP>
+                                    <StCommentDatenBtn>
+                                        <p>{comment.createdAt}</p>
+                                        <StCommentDelBtn
+                                            onClick={() => {
+                                                deleteMutate.mutate(comment.id);
+                                            }}
+                                        >
+                                            ✕
+                                        </StCommentDelBtn>
+                                    </StCommentDatenBtn>
+                                </StCommentEmailnDate>
                             </StComment>
                         );
                     })}
@@ -178,10 +168,35 @@ const StSubmitBtn = styled.button`
     }
 `;
 const StComment = styled.div`
+    width: 80%;
+    margin: 0 auto 20px auto;
     background-color: #efefef;
-    padding: 10px;
-    margin-bottom: 20px;
+    padding: 15px;
+    padding-left: 30px;
     border-radius: 20px;
+`;
+const StCommentEmailnDate = styled.div`
+    width: 97%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: darkgray;
+    gap: 15px;
+`;
+const StCommentDatenBtn = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+`;
+const StCommentDelBtn = styled.button`
+    border-style: none;
+    color: darkgray;
+    background-color: none;
+    margin-left: 20px;
+    cursor: pointer;
+`;
+const StCommentP = styled.p`
+    color: black;
 `;
 
 export default Comments;

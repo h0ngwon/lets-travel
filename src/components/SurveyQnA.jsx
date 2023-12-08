@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
-import SurveyCircle from './ui/SurveyCircle';
-import { styled } from 'styled-components';
 import { useQuery } from '@tanstack/react-query';
 import { getCountryLists } from 'apis/testResult';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { styled } from 'styled-components';
 import SurveyButton from './ui/SurveyButton';
+<<<<<<< HEAD
+=======
+import SurveyCircle from './ui/SurveyCircle';
+>>>>>>> cb2d79382054648c3946c81095837c67cc1a4dbc
 
 // TODO: 선택하지 않고 다음버튼을 클릭하면 넘어갈 수 없도록
 // TODO: 한번 선택 후 다른항목으로 변경시에 바뀐 항목의 타입으로 카운트

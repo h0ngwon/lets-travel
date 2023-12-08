@@ -1,12 +1,19 @@
+<<<<<<< HEAD
 import React from 'react';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+=======
+>>>>>>> cb2d79382054648c3946c81095837c67cc1a4dbc
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import Swal from 'sweetalert2';
 import { auth } from '../config/firebaseConfig';
+import Navbar from './ui/Navbar';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -298,6 +305,8 @@ const Home = () => {
         // 로그인 성공 시, '로그인 성공!' alert
         if (formValues.length === 2) {
             await login(formValues);
+            console.log('폼밸류', formValues);
+            localStorage.setItem('userEmail', formValues[0]);
             // .then(() => {
             //     Swal.fire({
             //         position: 'center',

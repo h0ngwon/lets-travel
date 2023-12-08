@@ -23,6 +23,7 @@ function Navbar() {
 
     const logOut = async () => {
         await signOut(auth);
+        localStorage.removeItem('userEmail');
         Swal.fire({
             position: 'center',
             width: 400,

@@ -23,6 +23,10 @@ function SurveyResult() {
     const youtubePopupHandler = (title) => {
         withReactContent(Swal).fire({
             html: <Youtube cityTitle={title} />,
+<<<<<<< HEAD
+=======
+            width: 1280,
+>>>>>>> cb2d79382054648c3946c81095837c67cc1a4dbc
         });
     };
 
