@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { deleteData, fetchData, updateData } from 'apis/comments';
+import { deleteData, fetchData, updateData, addData } from 'apis/comments';
 import { addDoc, collection } from 'firebase/firestore';
 import { db } from 'firebaseConfig';
 import { nanoid } from 'nanoid';
@@ -26,11 +26,10 @@ function Comments() {
     ];
 
     const userEmail = localStorage.getItem('userEmail');
-    console.log(userEmail);
 
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
     const queryClient = useQueryClient();
-    queryClient.invalidateQueries({ queryKey: ['comments'] });
+    // queryClient.invalidateQueries({ queryKey: ['comments'] });
 
     const { data, isLoading, isSuccess, isError, error } = useQuery({
         queryKey: ['comments'],
@@ -41,9 +40,18 @@ function Comments() {
     const deleteMutate = useMutation({
         mutationKey: ['comments'],
         mutationFn: deleteData,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['comments'] });
+        },
     });
     const updateMutate = useMutation({
         mutationFn: updateData,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['comments'] });
+        },
+    });
+    const addMutate = useMutation({
+        mutationFn: addData,
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['comments'] });
         },
@@ -57,9 +65,9 @@ function Comments() {
         setContents(e.target.value.trimStart());
     };
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        const docRef = collection(db, 'comments');
+        // const docRef = collection(db, 'comments');
         const newComment = {
             contents,
             country: selectedCountry,
@@ -67,7 +75,7 @@ function Comments() {
             key: nanoid(),
             userEmail: userEmail,
         };
-        await addDoc(docRef, newComment);
+        addMutate.mutate(newComment);
         setContents('');
     };
 
@@ -80,9 +88,6 @@ function Comments() {
             confirmButtonText: '수정 확인',
             cancelButtonText: '취소',
         }).then((result) => {
-            console.log(result);
-            console.log(id);
-            console.log(result.value);
             const editText = result.value;
             if (result.isConfirmed) {
                 updateMutate.mutate({ id, editText });
