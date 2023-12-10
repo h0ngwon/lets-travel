@@ -1,12 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { deleteData, fetchData } from 'apis/comments';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from 'firebaseConfig';
+import { deleteData, fetchData, updateData, addData } from 'apis/comments';
 import { nanoid } from 'nanoid';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import CountryBtn from './ui/CountryBtn';
+import Swal from 'sweetalert2';
 
 function Comments() {
     const [selectedCountry, setSelectedCountry] = useState('일본'); //select의 country 목록
@@ -25,11 +24,9 @@ function Comments() {
     ];
 
     const userEmail = localStorage.getItem('userEmail');
-    console.log(userEmail);
 
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
     const queryClient = useQueryClient();
-    queryClient.invalidateQueries({ queryKey: ['comments'] });
 
     const { data, isLoading, isSuccess, isError, error } = useQuery({
         queryKey: ['comments'],
@@ -40,6 +37,21 @@ function Comments() {
     const deleteMutate = useMutation({
         mutationKey: ['comments'],
         mutationFn: deleteData,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['comments'] });
+        },
+    });
+    const updateMutate = useMutation({
+        mutationFn: updateData,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['comments'] });
+        },
+    });
+    const addMutate = useMutation({
+        mutationFn: addData,
+        onSuccess: () => {
+            queryClient.invalidateQueries({ queryKey: ['comments'] });
+        },
     });
 
     const handleCountryChange = (e) => {
@@ -50,22 +62,35 @@ function Comments() {
         setContents(e.target.value.trimStart());
     };
 
-    const onSubmit = async (e) => {
+    const onSubmit = (e) => {
         e.preventDefault();
-        const docRef = collection(db, 'comments');
         const newComment = {
             contents,
             country: selectedCountry,
             createdAt: new Date().toLocaleString(),
             key: nanoid(),
-            userEmail: userEmail, //auth 완성 후, 처리해야함
+            userEmail: userEmail,
         };
-        await addDoc(docRef, newComment);
+        addMutate.mutate(newComment);
         setContents('');
     };
 
-    //처음 컴포넌트가 렌더링 되면 서버에서 데이터를 받아와 state에 저장
-    useEffect(() => {}, []);
+    const editBtnHndlr = (id, currentText) => {
+        Swal.fire({
+            title: '댓글을 수정하세요',
+            input: 'text',
+            inputValue: currentText,
+            showCancelButton: true,
+            confirmButtonText: '수정 확인',
+            confirmButtonColor: '#00a08d',
+            cancelButtonText: '취소',
+        }).then((result) => {
+            const editText = result.value;
+            if (result.isConfirmed) {
+                updateMutate.mutate({ id, editText });
+            }
+        });
+    };
 
     return (
         <StCommentPageDiv>
@@ -112,6 +137,16 @@ function Comments() {
                                         >
                                             ✕
                                         </StCommentDelBtn>
+                                        <StCommentEditBtn
+                                            onClick={() =>
+                                                editBtnHndlr(
+                                                    comment.id,
+                                                    comment.contents,
+                                                )
+                                            }
+                                        >
+                                            Edit
+                                        </StCommentEditBtn>
                                     </StCommentDatenBtn>
                                 </StCommentEmailnDate>
                             </StComment>
@@ -186,6 +221,13 @@ const StCommentDatenBtn = styled.div`
     justify-content: space-between;
 `;
 const StCommentDelBtn = styled.button`
+    border-style: none;
+    color: darkgray;
+    background-color: none;
+    margin-left: 20px;
+    cursor: pointer;
+`;
+const StCommentEditBtn = styled.button`
     border-style: none;
     color: darkgray;
     background-color: none;
