@@ -128,36 +128,40 @@ function Comments() {
                         return (
                             <StComment key={comment.key}>
                                 <StCommentEmailnDate>
-                                    <p>{comment.userEmail}</p>
-                                    <StCommentP>{comment.contents}</StCommentP>
-                                    <StCommentDatenBtn>
-                                        <p>
-                                            {new Intl.DateTimeFormat('ko-KR', {
-                                                dateStyle: 'full',
-                                                timeStyle: 'short',
-                                            }).format(comment.createdAt)}
-                                        </p>
-                                        <StCommentEditBtn
-                                            $shouldDisplay={isAuthor}
-                                            onClick={() =>
-                                                editBtnHndlr(
-                                                    comment.id,
-                                                    comment.contents,
-                                                )
-                                            }
-                                        >
-                                            Edit
-                                        </StCommentEditBtn>
-                                        <StCommentDelBtn
-                                            $shouldDisplay={isAuthor}
-                                            onClick={() => {
-                                                deleteMutate.mutate(comment.id);
-                                            }}
-                                        >
-                                            ✕
-                                        </StCommentDelBtn>
-                                    </StCommentDatenBtn>
+                                    <StCommentLeftSec>
+                                        <p>{comment.userEmail}</p>
+                                        <StCommentEditnDel>
+                                            <StCommentEditBtn
+                                                $shouldDisplay={isAuthor}
+                                                onClick={() =>
+                                                    editBtnHndlr(
+                                                        comment.id,
+                                                        comment.contents,
+                                                    )
+                                                }
+                                            >
+                                                수정
+                                            </StCommentEditBtn>
+                                            <StCommentDelBtn
+                                                $shouldDisplay={isAuthor}
+                                                onClick={() => {
+                                                    deleteMutate.mutate(
+                                                        comment.id,
+                                                    );
+                                                }}
+                                            >
+                                                삭제
+                                            </StCommentDelBtn>
+                                        </StCommentEditnDel>
+                                    </StCommentLeftSec>
+                                    <p>
+                                        {new Intl.DateTimeFormat('ko-KR', {
+                                            dateStyle: 'full',
+                                            timeStyle: 'short',
+                                        }).format(comment.createdAt)}
+                                    </p>
                                 </StCommentEmailnDate>
+                                <StCommentP>{comment.contents}</StCommentP>
                             </StComment>
                         );
                     })}
@@ -208,12 +212,14 @@ const StSubmitBtn = styled.button`
         color: white;
     }
 `;
+
 const StComment = styled.div`
     width: 80%;
     margin: 0 auto 20px auto;
     background-color: #efefef;
     padding: 15px;
     padding-left: 30px;
+    padding-right: 30px;
     border-radius: 20px;
 `;
 const StCommentEmailnDate = styled.div`
@@ -222,24 +228,25 @@ const StCommentEmailnDate = styled.div`
     align-items: center;
     justify-content: space-between;
     color: darkgray;
-    gap: 15px;
+    margin-bottom: 20px;
+    padding-top: 8px;
 `;
-const StCommentDatenBtn = styled.div`
+const StCommentLeftSec = styled.div`
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+`;
+const StCommentEditnDel = styled.div`
+    display: flex;
 `;
 const StCommentDelBtn = styled.button`
     border-style: none;
-    color: darkgray;
+    color: #8186ff;
     background-color: none;
-    margin-left: 20px;
     cursor: pointer;
     display: ${(props) => (props.$shouldDisplay ? 'flex' : 'none')};
 `;
 const StCommentEditBtn = styled.button`
     border-style: none;
-    color: darkgray;
+    color: #8186ff;
     background-color: none;
     margin-left: 20px;
     cursor: pointer;
@@ -247,6 +254,8 @@ const StCommentEditBtn = styled.button`
 `;
 const StCommentP = styled.p`
     color: black;
+    text-align: left;
+    line-height: 25px;
     font-family: SCDream3;
 `;
 
