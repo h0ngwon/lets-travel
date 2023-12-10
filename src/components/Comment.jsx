@@ -67,7 +67,7 @@ function Comments() {
         const newComment = {
             contents,
             country: selectedCountry,
-            createdAt: new Date().toLocaleString(),
+            createdAt: Date.now(),
             key: nanoid(),
             userEmail: userEmail,
         };
@@ -129,14 +129,12 @@ function Comments() {
                                     <p>{comment.userEmail}</p>
                                     <StCommentP>{comment.contents}</StCommentP>
                                     <StCommentDatenBtn>
-                                        <p>{comment.createdAt}</p>
-                                        <StCommentDelBtn
-                                            onClick={() => {
-                                                deleteMutate.mutate(comment.id);
-                                            }}
-                                        >
-                                            ✕
-                                        </StCommentDelBtn>
+                                        <p>
+                                            {new Intl.DateTimeFormat('ko-KR', {
+                                                dateStyle: 'full',
+                                                timeStyle: 'short',
+                                            }).format(comment.createdAt)}
+                                        </p>
                                         <StCommentEditBtn
                                             onClick={() =>
                                                 editBtnHndlr(
@@ -147,6 +145,13 @@ function Comments() {
                                         >
                                             Edit
                                         </StCommentEditBtn>
+                                        <StCommentDelBtn
+                                            onClick={() => {
+                                                deleteMutate.mutate(comment.id);
+                                            }}
+                                        >
+                                            ✕
+                                        </StCommentDelBtn>
                                     </StCommentDatenBtn>
                                 </StCommentEmailnDate>
                             </StComment>
