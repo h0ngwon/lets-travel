@@ -6,7 +6,7 @@ import { styled } from 'styled-components';
 import SurveyButton from './ui/SurveyButton';
 import SurveyCircle from './ui/SurveyCircle';
 
-function SurveyQnA() {
+const SurveyQnA = () => {
     const { isPending, isError, data } = useQuery({
         queryKey: ['countryLists'],
         queryFn: getCountryLists,
@@ -14,7 +14,6 @@ function SurveyQnA() {
     const [currentPage, setCurrentPage] = useState(0);
     const [answers, setAnswers] = useState(new Array(4).fill(null));
     const [isNextButtonDisabled, setIsNextButtonDisabled] = useState(true);
-    console.log('엔서', answers);
     const totalPage = data?.length || 0;
     const navigate = useNavigate();
 
@@ -64,7 +63,6 @@ function SurveyQnA() {
         const maxIndex = Object.values(counterMap).indexOf(maxValue);
         const maxType = typeValues[maxIndex];
         // 가장 많이 나온 타입 중 첫번째값이 나옴!
-        console.log('맥스타입', maxType);
         return maxType;
     };
 
@@ -143,7 +141,7 @@ function SurveyQnA() {
             )}
         </Container>
     );
-}
+};
 const Container = styled.div`
     width: 100vw;
     height: 85vh;

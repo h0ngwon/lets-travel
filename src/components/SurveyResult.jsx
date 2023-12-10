@@ -7,7 +7,7 @@ import withReactContent from 'sweetalert2-react-content';
 import MapComponent from './MapComponent';
 import Youtube from './Youtube';
 
-function SurveyResult() {
+const SurveyResult = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { isPending, isError, data } = useQuery({
@@ -19,8 +19,8 @@ function SurveyResult() {
         withReactContent(Swal).fire({
             html: <Youtube cityTitle={title} />,
             width: 1280,
-            confirmButtonText:'나가기',
-            confirmButtonColor:'#71d5c9'
+            confirmButtonText: '나가기',
+            confirmButtonColor: '#71d5c9',
         });
     };
 
@@ -102,7 +102,7 @@ function SurveyResult() {
             })}
         </div>
     );
-}
+};
 
 const Container = styled.div`
     height: 60vh;

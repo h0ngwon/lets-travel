@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
+import Avigea from './fonts/Avigea.otf';
 import SCDream3 from './fonts/SCDream3.otf';
 import SCDream5 from './fonts/SCDream5.otf';
-import Avigea from './fonts/Avigea.otf';
 export const GlobalStyle = createGlobalStyle`
 
 *{

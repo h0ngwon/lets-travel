@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import airplane from 'assets/airplane.png';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../config/firebaseConfig';
-import { onAuthStateChanged } from 'firebase/auth';
 import Swal from 'sweetalert2';
-import airplane from 'assets/airplane.png'
+import { auth } from '../../config/firebaseConfig';
 
 function Navbar() {
     const navigate = useNavigate();
@@ -39,7 +38,9 @@ function Navbar() {
     };
     return (
         <NavContainer>
-            <MainLogo onClick={() => navigate('/')}>Let's Travel <MainLogoImage src={airplane}/></MainLogo>
+            <MainLogo onClick={() => navigate('/')}>
+                Let's Travel <MainLogoImage src={airplane} />
+            </MainLogo>
             {auth.currentUser && (
                 <LogoutBtn onClick={() => logOut()}>로그아웃</LogoutBtn>
             )}
@@ -72,7 +73,7 @@ const MainLogoImage = styled.img`
     width: 60px;
     height: 60px;
     margin-left: 5px;
-`
+`;
 
 const LogoutBtn = styled.button`
     margin-right: 80px;

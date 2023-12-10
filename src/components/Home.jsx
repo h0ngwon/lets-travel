@@ -1,14 +1,13 @@
-import React from 'react';
-import styled from 'styled-components';
-import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
 import {
-    createUserWithEmailAndPassword,
-    signInWithEmailAndPassword,
     GoogleAuthProvider,
+    createUserWithEmailAndPassword,
     getAuth,
+    signInWithEmailAndPassword,
     signInWithPopup,
 } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import Swal from 'sweetalert2';
 import { auth } from '../config/firebaseConfig';
 
 const Home = () => {
@@ -103,9 +102,7 @@ const Home = () => {
                     timer: 1500,
                 });
             });
-            console.log('현재 로그인한 user : ', auth.currentUser);
         } catch (error) {
-            console.log('error.code : ', error.code);
             switch (error.code) {
                 case 'auth/user-not-found" || "auth/wrong-password':
                     return Swal.fire({
@@ -247,15 +244,13 @@ const Home = () => {
                         })
                         .catch((error) => {
                             const errorMessage = error.message;
-                            
+
                             return Swal.fire({
                                 icon: 'error',
                                 title: '에러 발생',
                                 text: `${errorMessage}`,
                                 confirmButtonColor: '',
-                            })
-                            
-                            
+                            });
                         });
                 }
             });
@@ -345,7 +340,6 @@ const Home = () => {
         // 로그인 성공 시, '로그인 성공!' alert
         if (formValues.length === 2) {
             await login(formValues);
-            console.log('폼밸류', formValues);
             localStorage.setItem('userEmail', formValues[0]);
         }
         // 회원가입 성공 시, '회원가입 성공!' alert -> 로그인 Modal로 이동
@@ -428,7 +422,6 @@ const Home = () => {
                         <StBtn
                             onClick={() => {
                                 if (auth.currentUser) {
-                                    console.log(auth.currentUser);
                                     navigate('/survey');
                                 } else {
                                     // '여행하러가기' 버튼 클릭 시, 로그인 여부 확인 Modal 실행

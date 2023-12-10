@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import {
     GoogleMap,
-    useJsApiLoader,
     Marker,
     PolylineF,
+    useJsApiLoader,
 } from '@react-google-maps/api';
+import React, { useEffect, useState } from 'react';
 
 function MapComponent(props) {
     //props로 목적지의 위도 경도를 받아야 합니다.
@@ -58,7 +58,6 @@ function MapComponent(props) {
         setMap(null);
     }, []);
 
-    //동작 시험용 코드 : 입력받은 목적지로 잘 바뀌는가?
     useEffect(() => {
         setTimeout(() => {
             setDestLatLng(props.destination || { lat: 48.8, lng: 2.35 });

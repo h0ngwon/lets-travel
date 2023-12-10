@@ -1,11 +1,11 @@
 import SurveyQnA from 'components/SurveyQnA';
 
-function SurveyPage() {
+const SurveyPage = () => {
     return (
         <div>
             <SurveyQnA />
         </div>
     );
-}
+};
 
 export default SurveyPage;
