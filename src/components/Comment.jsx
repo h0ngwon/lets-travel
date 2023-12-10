@@ -82,6 +82,7 @@ function Comments() {
             inputValue: currentText,
             showCancelButton: true,
             confirmButtonText: '수정 확인',
+            confirmButtonColor: '#00a08d',
             cancelButtonText: '취소',
         }).then((result) => {
             const editText = result.value;
