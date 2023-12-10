@@ -37,7 +37,7 @@ const Home = () => {
                             icon: 'error',
                             title: '이미 가입된 이메일입니다.',
                             text: '이메일 주소를 확인해주세요.',
-                            confirmButtonColor: '#71d5c9',
+                            confirmButtonColor: '',
                         }).then(() => {
                             signupHandler();
                         });
@@ -146,9 +146,9 @@ const Home = () => {
     // '여행하러가기' 버튼 클릭 시, 실행
     const askLoginButtonHandler = () => {
         Swal.fire({
-            imageUrl: 'https://cdn-0.emojis.wiki/emoji-pics/apple/airplane-apple.png',
-            imageWidth: 300,
-            imageHeight: 200,
+            imageUrl: '/imgs/airplane.png',
+            imageWidth: 256,
+            imageHeight: 256,
             title: '로그인 후 이용이 가능합니다.',
             text: '로그인 하시겠습니까?',
             color: '#71d5c9',
@@ -171,9 +171,9 @@ const Home = () => {
     // 'Login' 버튼 클릭 시, 실행
     const loginSignupButtonHandler = () => {
         Swal.fire({
-            imageUrl: '/imgs/airplain_icon.ico',
-            imageWidth: 300,
-            imageHeight: 200,
+            imageUrl: '/imgs/airplane.png',
+            imageWidth: 256,
+            imageHeight: 256,
             title: "Let's Travel !",
             color: '#71d5c9',
             showDenyButton: true,
