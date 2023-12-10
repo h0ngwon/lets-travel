@@ -4,15 +4,12 @@ import { styled } from 'styled-components';
 function Footer() {
     return (
         <FooterContainer>
-            <h4>여행하자</h4>
-            <p>copyright</p>
+            <h4>© 2023. 여행하자. All rights reserved.</h4>
         </FooterContainer>
     );
 }
 
 const FooterContainer = styled.div`
-    /* bottom: 0;
-    position: absolute; */
     width: 100vw;
     background-color: #71d5c9;
     color: white;
@@ -20,7 +17,6 @@ const FooterContainer = styled.div`
     display: flex;
     gap: 50px;
     justify-content: center;
-    border-top: 1px solid white;
 `;
 
 export default Footer;

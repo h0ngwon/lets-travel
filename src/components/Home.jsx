@@ -7,7 +7,6 @@ import {
     signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
-import Navbar from './ui/Navbar';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -377,70 +376,80 @@ const Home = () => {
         <>
             <StPage>
                 <StContainer>
-                    <StH1>Let's Travel</StH1>
-                    <StH2>여행하자</StH2>
-                    <StBtn
-                        onClick={() => {
-                            if (auth.currentUser) {
-                                console.log(auth.currentUser);
-                                navigate('/survey');
-                            } else {
-                                // '여행하러가기' 버튼 클릭 시, 로그인 여부 확인 Modal 실행
-                                askLoginButtonHandler();
-                            }
-                        }}
-                    >
-                        여행하러가기
-                    </StBtn>
+                    <StWrap>
+                        <StH>여행하자!</StH>
+                        <StBtn
+                            onClick={() => {
+                                if (auth.currentUser) {
+                                    console.log(auth.currentUser);
+                                    navigate('/survey');
+                                } else {
+                                    // '여행하러가기' 버튼 클릭 시, 로그인 여부 확인 Modal 실행
+                                    askLoginButtonHandler();
+                                }
+                            }}
+                        >
+                            ✈️
+                        </StBtn>
+                    </StWrap>
+                    <StH2>#Let'sTravel #여행지추천 #해외여행 #브이로그</StH2>
                 </StContainer>
             </StPage>
         </>
     );
 };
-
 export default Home;
 
 const StPage = styled.div`
     width: 100vw;
-    height: 100vh;
-    background-color: #71d5c9;
+    height: 85vh;
+    background-color: #f5f5f5;
 `;
 
 const StContainer = styled.div`
-    height: 100vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 `;
-
-const StH1 = styled.h1`
-    font-size: 80px;
-    font-family: Avigea;
-    color: white;
-    margin-bottom: 50px;
+const StWrap = styled.div`
+    display: flex;
+    gap: 20px;
+`;
+const StH2 = styled.h2`
+    font-size: 15px;
+    color: #71d5c9;
+    font-family: SCDream5;
+    margin: 15px 60px 0 0;
+    word-spacing: 10px;
 `;
 
-const StH2 = styled.h2`
-    font-size: 30px;
-    color: white;
-    margin-bottom: 70px;
-    font-family: SCDream3;
+const StH = styled.h1`
+    font-size: 20px;
+    font-family: SCDream5;
+    width: 550px;
+    height: 60px;
+    padding: 20px 0 0 20px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    border: 1.2px solid #71d5c9;
+    border-radius: 10px;
+    color: #8f8f8f;
 `;
 
 const StBtn = styled.button`
-    width: 300px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     border: none;
     border-radius: 50px;
-    color: #6e6e6e;
-    background-color: white;
-    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    background-color: #71d5c9;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
     font-family: SCDream3;
     font-size: 18px;
     cursor: pointer;
     &:hover {
-        transform: scale(1.05);
-        transition: 0.3s;
+        transform: scale(1.1);
+        transition: 0.2s;
     }
 `;

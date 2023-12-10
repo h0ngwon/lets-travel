@@ -10,15 +10,10 @@ import Youtube from './Youtube';
 function SurveyResult() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const {
-        isPending: countryTypeDataPending,
-        isError: countryTypeDataError,
-        data: countryTypeData,
-    } = useQuery({
+    const { isPending, isError, data } = useQuery({
         queryKey: ['countryTypeData'],
         queryFn: getCountryTypeData,
     });
-    console.log('데이터', countryTypeData);
 
     const youtubePopupHandler = (title) => {
         withReactContent(Swal).fire({
@@ -27,7 +22,7 @@ function SurveyResult() {
         });
     };
 
-    if (countryTypeDataPending) {
+    if (isPending) {
         return (
             <div
                 style={{
@@ -41,7 +36,7 @@ function SurveyResult() {
         );
     }
 
-    if (countryTypeDataError) {
+    if (isError) {
         return (
             <div
                 style={{
@@ -54,10 +49,9 @@ function SurveyResult() {
             </div>
         );
     }
-    console.log('나라', id);
     return (
         <div>
-            {countryTypeData?.map((result) => {
+            {data?.map((result) => {
                 if (id?.includes(result.type)) {
                     return (
                         <div key={result.type}>

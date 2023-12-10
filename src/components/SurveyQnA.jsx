@@ -6,9 +6,6 @@ import { styled } from 'styled-components';
 import SurveyButton from './ui/SurveyButton';
 import SurveyCircle from './ui/SurveyCircle';
 
-// TODO: 선택하지 않고 다음버튼을 클릭하면 넘어갈 수 없도록
-// TODO: 한번 선택 후 다른항목으로 변경시에 바뀐 항목의 타입으로 카운트
-
 function SurveyQnA() {
     const { isPending, isError, data } = useQuery({
         queryKey: ['countryLists'],
@@ -45,9 +42,8 @@ function SurveyQnA() {
 
     const progressPercentage = ((currentPage + 1) / totalPage) * 100;
 
-    // 결과보기 클릭 핸들러
+    // 선택지 클릭버튼
     const answerCountHandler = (typeStr, index) => {
-        // 타입들을 배열에서 콤마로 구분해줌
         setAnswers((prev) => {
             const newAnswers = [...prev];
             newAnswers[currentPage] = typeStr;
@@ -56,7 +52,7 @@ function SurveyQnA() {
         setIsNextButtonDisabled(false);
     };
 
-    // 많이 선택된 타입 찾아주기
+    // 많이 선택된 타입 찾아서 결과보기
     const mostSelecTypeCount = () => {
         const arrays = answers.map((a) => a.split(',')).flat();
         const counterMap = {};

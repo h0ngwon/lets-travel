@@ -60,7 +60,7 @@ const MainLogo = styled.h1`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding-left: 80px;
+    padding: 10px 0 0 80px;
     color: #71d5c9;
     font-size: 35px;
     font-family: Avigea;
