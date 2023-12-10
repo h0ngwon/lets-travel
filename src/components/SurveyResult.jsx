@@ -19,6 +19,8 @@ function SurveyResult() {
         withReactContent(Swal).fire({
             html: <Youtube cityTitle={title} />,
             width: 1280,
+            confirmButtonText:'나가기',
+            confirmButtonColor:'#71d5c9'
         });
     };
 

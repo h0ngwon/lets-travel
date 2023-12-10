@@ -34,14 +34,6 @@ function Comments() {
         staleTime: 1000,
     });
 
-    let selectCountry = data?.filter((value) => {
-        return value.country === activeCountry;
-    });
-
-    if (activeCountry === '') {
-        selectCountry = data;
-    }
-
     const deleteMutate = useMutation({
         mutationKey: ['comments'],
         mutationFn: deleteData,
@@ -102,31 +94,37 @@ function Comments() {
 
     return (
         <StCommentPageDiv>
-            <StCommentInputForm onSubmit={onSubmit}>
-                <StSelectCountry
-                    onChange={handleCountryChange}
-                    value={selectedCountry}
-                >
-                    {countries.map((country, index) => (
-                        <option key={index} value={country}>
-                            {country}
-                        </option>
-                    ))}
-                </StSelectCountry>
-                <StInput
-                    type='text'
-                    placeholder='댓글을 입력하세요'
-                    onChange={onChangeHandler}
-                    value={contents}
-                    required
-                />
-                <StSubmitBtn>등록</StSubmitBtn>
-            </StCommentInputForm>
             <CountryBtn countries={countries} />
             <StCommentSection>
-                {selectCountry?.length !== 0 ? (
-                    selectCountry?.map((comment) => {
+                <StCommentInputForm onSubmit={onSubmit}>
+                    <StSelectCountry
+                        onChange={handleCountryChange}
+                        value={selectedCountry}
+                    >
+                        {countries.map((country, index) => (
+                            <option key={index} value={country}>
+                                {country}
+                            </option>
+                        ))}
+                    </StSelectCountry>
+                    <StInput
+                        type='text'
+                        placeholder='댓글을 입력하세요'
+                        onChange={onChangeHandler}
+                        value={contents}
+                        required
+                    />
+                    <StSubmitBtn>등록</StSubmitBtn>
+                </StCommentInputForm>
+                <br />
+                <br />
+                {data
+                    ?.filter((value) => {
+                        return value.country === activeCountry;
+                    })
+                    .map((comment) => {
                         const isAuthor = comment.userEmail === userEmail;
+
                         return (
                             <StComment key={comment.key}>
                                 <StCommentEmailnDate>
@@ -142,7 +140,7 @@ function Comments() {
                                                     )
                                                 }
                                             >
-                                                수정 |
+                                                수정
                                             </StCommentEditBtn>
                                             <StCommentDelBtn
                                                 $shouldDisplay={isAuthor}
@@ -166,10 +164,7 @@ function Comments() {
                                 <StCommentP>{comment.contents}</StCommentP>
                             </StComment>
                         );
-                    })
-                ) : (
-                    <h2>등록된 댓글이 없습니다</h2>
-                )}
+                    })}
             </StCommentSection>
         </StCommentPageDiv>
     );
@@ -185,7 +180,7 @@ const StCommentPageDiv = styled.div`
 `;
 const StCommentSection = styled.div`
     border: 1px solid #71d5c9;
-    margin-top: 50px;
+    margin-top: 100px;
     margin-bottom: 50px;
     padding: 50px;
 `;
@@ -193,16 +188,12 @@ const StCommentInputForm = styled.form`
     display: flex;
     justify-content: center;
     gap: 20px;
-    margin-bottom: 40px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid #71d5c9;
 `;
 const StSelectCountry = styled.select`
     padding: 12px 40px;
     border-radius: 8px;
     border-style: none;
-    background-color: #71d5c9;
-    color: white;
+    background-color: #efefef;
     cursor: pointer;
 `;
 const StInput = styled.input`
@@ -216,11 +207,9 @@ const StSubmitBtn = styled.button`
     border-radius: 8px;
     padding: 12px 40px;
     cursor: pointer;
-    background-color: #71d5c9;
-    color: white;
     &:hover {
-        background-color: #efefef;
-        color: black;
+        background-color: #71d5c9;
+        color: white;
     }
 `;
 
@@ -261,7 +250,6 @@ const StCommentEditBtn = styled.button`
     background-color: none;
     margin-left: 20px;
     cursor: pointer;
-    word-spacing: 10px;
     display: ${(props) => (props.$shouldDisplay ? 'flex' : 'none')};
 `;
 const StCommentP = styled.p`

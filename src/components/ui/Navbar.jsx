@@ -5,6 +5,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebaseConfig';
 import { onAuthStateChanged } from 'firebase/auth';
 import Swal from 'sweetalert2';
+import airplane from 'assets/airplane.png'
 
 function Navbar() {
     const navigate = useNavigate();
@@ -15,7 +16,7 @@ function Navbar() {
     // 로그인 정보 저장
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            if (auth.currentUser) {
+            if (auth.currentUser || user) {
                 setRender(!render);
             }
         });
@@ -38,7 +39,7 @@ function Navbar() {
     };
     return (
         <NavContainer>
-            <MainLogo onClick={() => navigate('/')}>Let's Travel</MainLogo>
+            <MainLogo onClick={() => navigate('/')}>Let's Travel <MainLogoImage src={airplane}/></MainLogo>
             {auth.currentUser && (
                 <LogoutBtn onClick={() => logOut()}>로그아웃</LogoutBtn>
             )}
@@ -55,7 +56,7 @@ const NavContainer = styled.div`
     align-items: center;
 `;
 const MainLogo = styled.h1`
-    width: 300px;
+    width: 360px;
     height: 60px;
     display: flex;
     justify-content: flex-start;
@@ -66,6 +67,12 @@ const MainLogo = styled.h1`
     font-family: Avigea;
     cursor: pointer;
 `;
+
+const MainLogoImage = styled.img`
+    width: 60px;
+    height: 60px;
+    margin-left: 5px;
+`
 
 const LogoutBtn = styled.button`
     margin-right: 80px;
