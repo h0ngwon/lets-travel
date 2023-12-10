@@ -5,15 +5,20 @@ import styled from 'styled-components';
 
 function CountryBtn({ countries }) {
     const dispatch = useDispatch();
+    const [activeIndex, setActiveIndex] = useState(null);
+
+    const handleButtonClick = (index) => {
+        dispatch(setCountry(countries[index]));
+        setActiveIndex(index);
+    };
 
     return (
         <StCountryBtnDiv>
-            {countries.map((el) => (
+            {countries.map((el, index) => (
                 <StCountryBtn
                     key={el}
-                    onClick={(e) => {
-                        dispatch(setCountry(e.target.textContent));
-                    }}
+                    onClick={() => handleButtonClick(index)}
+                    className={activeIndex === index ? 'active' : ''}
                 >
                     {el}
                 </StCountryBtn>
@@ -36,7 +41,6 @@ const StCountryBtn = styled.button`
 
     &:hover,
     &:focus,
-    &:active,
     &.active {
         background-color: #71d5c9;
         color: white;
