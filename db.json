@@ -1,0 +1,278 @@
+{
+    "countryList": [
+        {
+            "q": ["Q. 본인의 여행 스타일을 선택해주세요"],
+            "a": [
+                {
+                    "text": "휴양",
+                    "type": "B"
+                },
+                {
+                    "text": "쇼핑",
+                    "type": "E,F"
+                },
+                {
+                    "text": "관광",
+                    "type": "C,D"
+                },
+                {
+                    "text": "맛집",
+                    "type": "A,G"
+                },
+                {
+                    "text": "액티비티",
+                    "type": "H"
+                }
+            ]
+        },
+        {
+            "q": ["Q. 함께 여행하고 싶은 사람을 선택해주세요"],
+            "a": [
+                {
+                    "text": "혼자",
+                    "type": "A,D"
+                },
+                {
+                    "text": "가족",
+                    "type": "G,H"
+                },
+                {
+                    "text": "친구",
+                    "type": "E,F"
+                },
+                {
+                    "text": "연인",
+                    "type": "B,C"
+                }
+            ]
+        },
+        {
+            "q": ["Q. 선호하는 여행기간을 선택해주세요"],
+            "a": [
+                {
+                    "text": "최대 3일",
+                    "type": "A,H"
+                },
+                {
+                    "text": "최대 1주일",
+                    "type": "B"
+                },
+                {
+                    "text": "최대 15일",
+                    "type": "C,E,F"
+                },
+                {
+                    "text": "30일 이상",
+                    "type": "D,G"
+                }
+            ]
+        },
+        {
+            "q": ["Q. 여행을 떠나고 싶은 계절을 선택해주세요"],
+            "a": [
+                {
+                    "text": "봄",
+                    "type": "A,F"
+                },
+                {
+                    "text": "여름",
+                    "type": "B,G"
+                },
+                {
+                    "text": "가을",
+                    "type": "C,D"
+                },
+                {
+                    "text": "겨울",
+                    "type": "E,H"
+                }
+            ]
+        }
+    ],
+    "countryTypeData": [
+        {
+            "type": "A",
+            "country": "일본",
+            "description": "당신의 추천여행지는 일본입니다",
+            "coords": { "lat": 35.68, "lng": 139.69 },
+            "cities": [
+                {
+                    "id": "japan1",
+                    "title": "도쿄",
+                    "img": "https://a.cdn-hotels.com/gdcs/production8/d946/e2c1433c-c92c-4148-82c0-65bde779c5e7.jpg"
+                },
+                {
+                    "id": "japan2",
+                    "title": "오사카",
+                    "img": "https://media.triple.guide/triple-cms/c_limit,f_auto,h_1024,w_1024/3c6cf0e8-8689-4101-ac09-ab4d0c838d89.jpeg"
+                },
+                {
+                    "id": "japan3",
+                    "title": "홋카이도",
+                    "img": "https://photowhite.net/data/editor/2302/b58275749efbac8d874fd596efeb47ab_1675688613_7578.png"
+                }
+            ]
+        },
+        {
+            "type": "B",
+            "country": "베트남",
+            "description": "당신의 추천여행지는 베트남입니다",
+            "coords": { "lat": 21, "lng": 105.86 },
+            "cities": [
+                {
+                    "id": "vietnam1",
+                    "title": "하노이",
+                    "img": "https://talk.hyundai-steel.com/wp-content/uploads/2018/04/%EA%B8%80%EB%A1%9C%EB%B2%8C%EC%9D%B8%EC%82%AC%EC%9D%B4%ED%8A%B8%EC%8D%B8%EB%84%A4%EC%9D%BC.jpg"
+                },
+                {
+                    "id": "vietnam2",
+                    "title": "다낭",
+                    "img": "https://pds.joongang.co.kr/news/component/htmlphoto_mmdata/202009/28/5388e4c7-f24c-4bf9-a6de-d587edb285e9.jpg"
+                },
+                {
+                    "id": "vietnam3",
+                    "title": "나트랑",
+                    "img": "https://mediaim.expedia.com/destination/1/7ff2fee1826e163ace0218d35604f007.jpg"
+                }
+            ]
+        },
+        {
+            "type": "C",
+            "country": "미국",
+            "description": "당신의 추천여행지는 미국입니다",
+            "coords": { "lat": 40.66, "lng": -73.93 },
+            "cities": [
+                {
+                    "id": "usa1",
+                    "title": "LA",
+                    "img": "https://a.cdn-hotels.com/gdcs/production156/d691/3d64b612-6715-43f7-b613-66b37a230b55.jpg"
+                },
+                {
+                    "id": "usa2",
+                    "title": "뉴욕",
+                    "img": "https://res.klook.com/images/fl_lossy.progressive,q_65/c_fill,w_3000,h_2000,f_auto/w_80,x_15,y_15,g_south_west,l_Klook_water_br_trans_yhcmh3/activities/pautg4ejks0hfkxsjcqa/%EB%AF%B8%EA%B5%AD%EB%89%B4%EC%9A%95%EC%9E%90%EC%9C%A0%EC%9D%98%EC%97%AC%EC%8B%A0%EC%83%81%EC%9D%B5%EC%8A%A4%ED%94%84%EB%A0%88%EC%8A%A4%ED%81%AC%EB%A3%A8%EC%A6%88%ED%88%AC%EC%96%B4-%ED%81%B4%EB%A3%A9Klook%ED%95%9C%EA%B5%AD.jpg"
+                },
+                {
+                    "id": "usa3",
+                    "title": "샌프란시스코",
+                    "img": "https://img.freepik.com/premium-photo/famous-lombard-street-in-san-francisco-at-sunrise-in-usa_255553-1209.jpg"
+                }
+            ]
+        },
+        {
+            "type": "D",
+            "country": "캐나다",
+            "description": "당신의 추천여행지는 캐나다입니다",
+            "coords": { "lat": 49.28, "lng": -123.12 },
+            "cities": [
+                {
+                    "id": "canada1",
+                    "title": "밴쿠버",
+                    "img": "https://www.natgeotraveler.co.kr/uploads/boards/2023/03/3a83ff40e4c4143a8b72d87301f23158.jpg"
+                },
+                {
+                    "id": "canada2",
+                    "title": "토론토",
+                    "img": "https://assets.cityexperiences.com/wp-content/uploads/2021/06/GettyImages-636577766-scaled.jpg"
+                },
+                {
+                    "id": "canada3",
+                    "title": "퀘벡",
+                    "img": "https://wimg.mk.co.kr/news/cms/202306/19/20230619_01110205000002_L00.jpg"
+                }
+            ]
+        },
+        {
+            "type": "E",
+            "country": "영국",
+            "description": "당신의 추천여행지는 영국입니다",
+            "coords": { "lat": 51.5, "lng": -0.12 },
+            "cities": [
+                {
+                    "id": "england1",
+                    "title": "런던",
+                    "img": "https://d3b39vpyptsv01.cloudfront.net/photo/1/2/e48460e42adc9c4c56e473b6e0be7e38.jpg"
+                },
+                {
+                    "id": "england2",
+                    "title": "맨체스터",
+                    "img": "https://luckycar.com/blog/uploads/20220116/snimok-ekrana-2022-01-16-v-194742_KTPxm8.png"
+                },
+                {
+                    "id": "england3",
+                    "title": "브라이튼",
+                    "img": "https://d1blyo8czty997.cloudfront.net/tour-photos/5151/1200x600/7704562750.jpg"
+                }
+            ]
+        },
+        {
+            "type": "F",
+            "country": "프랑스",
+            "description": "당신의 추천여행지는 프랑스입니다",
+            "coords": { "lat": 48.8, "lng": 2.35 },
+            "cities": [
+                {
+                    "id": "france1",
+                    "title": "파리",
+                    "img": "https://i1.wp.com/www.agoda.com/wp-content/uploads/2019/04/Paris-itinerary-3-day-trip-France-Eiffel-Tower.jpg"
+                },
+                {
+                    "id": "france2",
+                    "title": "니스",
+                    "img": "https://a.cdn-hotels.com/gdcs/production194/d1495/afab3f68-37bb-4704-8c7d-b1fdb0ce9afc.jpg"
+                },
+                {
+                    "id": "france3",
+                    "title": "마르세유",
+                    "img": "https://travelshelper.com/wp-content/uploads/2021/11/Marseille-Travel-Guide-Travel-S-Helper.jpg"
+                }
+            ]
+        },
+        {
+            "type": "G",
+            "country": "호주",
+            "description": "당신의 추천여행지는 호주입니다",
+            "coords": { "lat": -33.8674, "lng": 151.2 },
+            "cities": [
+                {
+                    "id": "austraila1",
+                    "title": "시드니",
+                    "img": "https://image14.hanatour.com/uploads/2020/03/AST02266_19170470.jpg"
+                },
+                {
+                    "id": "austraila2",
+                    "title": "멜버른",
+                    "img": "https://www.hotelscombined.co.kr/rimg/dimg/2e/4d/e27e04f5-city-13998-166a6398190.jpg?width=1366&height=768&xhint=1904&yhint=2075&crop=true"
+                },
+                {
+                    "id": "austraila3",
+                    "title": "브리즈번",
+                    "img": "https://www.hotelscombined.co.kr/rimg/dimg/9f/f0/06891f67-city-27249-153d11ccd2a.jpg?width=1366&height=768&xhint=4390&yhint=2632&crop=true"
+                }
+            ]
+        },
+        {
+            "type": "H",
+            "country": "이집트",
+            "description": "당신의 추천여행지는 이집트입니다",
+            "coords": { "lat": 30.04, "lng": 31.24 },
+            "cities": [
+                {
+                    "id": "egypt1",
+                    "title": "카이로",
+                    "img": "https://static.hanatour.com/product/2021/12/22/0230xwpqbp/default.jpg"
+                },
+                {
+                    "id": "egypt2",
+                    "title": "룩소르",
+                    "img": "https://tourimage.interpark.com//Spot/155/12834/202201/6377896255640279560.JPG"
+                },
+                {
+                    "id": "egypt3",
+                    "title": "다합",
+                    "img": "https://fv-wp-contents.s3.ap-northeast-2.amazonaws.com/mememedia/2023/10/12152555/%EC%9D%B4%EC%A7%91%ED%8A%B8-%EB%8B%A4%ED%95%A9-%EC%97%AC%ED%96%89-%EB%8B%A4%EC%9D%B4%EB%B9%99-%EB%B8%94%EB%A3%A8%ED%99%80-%ED%95%B4%EC%99%B81.jpg"
+                }
+            ]
+        }
+    ]
+}
