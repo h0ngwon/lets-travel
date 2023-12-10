@@ -34,7 +34,7 @@ const Youtube = ({ cityTitle }) => {
                                 type='text/html'
                                 width='1280'
                                 height='720'
-                                src={`http://www.youtube.com/embed/${v.snippet.resourceId.videoId}?enablejsapi=1&origin=http://example.com`}
+                                src={`https://www.youtube.com/embed/${v.snippet.resourceId.videoId}?enablejsapi=1&origin=http://example.com`}
                             ></iframe>
                         </div>
                     );
