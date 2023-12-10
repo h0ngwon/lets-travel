@@ -123,6 +123,8 @@ function Comments() {
                         return value.country === activeCountry;
                     })
                     .map((comment) => {
+                        const isAuthor = comment.userEmail === userEmail;
+
                         return (
                             <StComment key={comment.key}>
                                 <StCommentEmailnDate>
@@ -136,6 +138,7 @@ function Comments() {
                                             }).format(comment.createdAt)}
                                         </p>
                                         <StCommentEditBtn
+                                            $shouldDisplay={isAuthor}
                                             onClick={() =>
                                                 editBtnHndlr(
                                                     comment.id,
@@ -146,6 +149,7 @@ function Comments() {
                                             Edit
                                         </StCommentEditBtn>
                                         <StCommentDelBtn
+                                            $shouldDisplay={isAuthor}
                                             onClick={() => {
                                                 deleteMutate.mutate(comment.id);
                                             }}
@@ -231,6 +235,7 @@ const StCommentDelBtn = styled.button`
     background-color: none;
     margin-left: 20px;
     cursor: pointer;
+    display: ${(props) => (props.$shouldDisplay ? 'flex' : 'none')};
 `;
 const StCommentEditBtn = styled.button`
     border-style: none;
@@ -238,6 +243,7 @@ const StCommentEditBtn = styled.button`
     background-color: none;
     margin-left: 20px;
     cursor: pointer;
+    display: ${(props) => (props.$shouldDisplay ? 'flex' : 'none')};
 `;
 const StCommentP = styled.p`
     color: black;

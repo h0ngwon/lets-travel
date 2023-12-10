@@ -72,7 +72,7 @@ function MapComponent(props) {
             onLoad={onLoad}
             onUnmount={onUnmount}
             options={OPTIONS}
-            zoom={3}
+            zoom={2}
         >
             <Marker position={departure}></Marker>
             <Marker position={destLatLng}></Marker>
