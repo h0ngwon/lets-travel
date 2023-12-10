@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import Swal from 'sweetalert2';
 import CountryBtn from './ui/CountryBtn';
+import Loading from './ui/Loading';
 
 function Comments() {
     const [selectedCountry, setSelectedCountry] = useState('일본'); //select의 country 목록
@@ -61,6 +62,10 @@ function Comments() {
             queryClient.invalidateQueries({ queryKey: ['comments'] });
         },
     });
+
+    if (isLoading) {
+        return <Loading />;
+    }
 
     const handleCountryChange = (e) => {
         setSelectedCountry(e.target.value);

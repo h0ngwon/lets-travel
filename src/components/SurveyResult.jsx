@@ -6,11 +6,12 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import MapComponent from './MapComponent';
 import Youtube from './Youtube';
+import Loading from './ui/Loading';
 
 const SurveyResult = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { isPending, isError, data } = useQuery({
+    const { isLoading, isError, data } = useQuery({
         queryKey: ['countryTypeData'],
         queryFn: getCountryTypeData,
     });
@@ -24,18 +25,8 @@ const SurveyResult = () => {
         });
     };
 
-    if (isPending) {
-        return (
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                }}
-            >
-                <h2>🙇🏻‍♀️잠시만 기다려 주세요</h2>
-            </div>
-        );
+    if (isLoading) {
+        return <Loading />;
     }
 
     if (isError) {

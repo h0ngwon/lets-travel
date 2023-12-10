@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 import SurveyButton from './ui/SurveyButton';
 import SurveyCircle from './ui/SurveyCircle';
+import Loading from './ui/Loading';
 
 const SurveyQnA = () => {
-    const { isPending, isError, data } = useQuery({
+    const { isLoading, isError, data } = useQuery({
         queryKey: ['countryLists'],
         queryFn: getCountryLists,
     });
@@ -17,8 +18,8 @@ const SurveyQnA = () => {
     const totalPage = data?.length || 0;
     const navigate = useNavigate();
 
-    if (isPending) {
-        return <h2>🙇🏻‍♀️잠시만 기다려 주세요</h2>;
+    if (isLoading) {
+        return <Loading />;
     }
 
     if (isError) {
