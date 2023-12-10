@@ -10,15 +10,10 @@ import Youtube from './Youtube';
 function SurveyResult() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const {
-        isPending: countryTypeDataPending,
-        isError: countryTypeDataError,
-        data: countryTypeData,
-    } = useQuery({
+    const { isPending, isError, data } = useQuery({
         queryKey: ['countryTypeData'],
         queryFn: getCountryTypeData,
     });
-    console.log('데이터', countryTypeData);
 
     const youtubePopupHandler = (title) => {
         withReactContent(Swal).fire({
@@ -27,7 +22,7 @@ function SurveyResult() {
         });
     };
 
-    if (countryTypeDataPending) {
+    if (isPending) {
         return (
             <div
                 style={{
@@ -41,7 +36,7 @@ function SurveyResult() {
         );
     }
 
-    if (countryTypeDataError) {
+    if (isError) {
         return (
             <div
                 style={{
@@ -54,10 +49,9 @@ function SurveyResult() {
             </div>
         );
     }
-    console.log('나라', id);
     return (
         <div>
-            {countryTypeData?.map((result) => {
+            {data?.map((result) => {
                 if (id?.includes(result.type)) {
                     return (
                         <div key={result.type}>
@@ -72,13 +66,14 @@ function SurveyResult() {
                                     <CommentsButton
                                         onClick={() => navigate('/comment')}
                                     >
-                                        댓글 남기러 가기
+                                        여행지 공유하러 가기 🛫
                                     </CommentsButton>
                                 </ResultTextWrap>
                                 <MapWrap>
                                     <MapComponent destination={result.coords} />
                                 </MapWrap>
-                            </Container>{' '}
+                            </Container>
+                            <Text>🎬 이미지 클릭시 영상시청이 가능합니다</Text>
                             <CityWrap>
                                 {result.cities?.map((city) => {
                                     return (
@@ -96,6 +91,7 @@ function SurveyResult() {
                                     );
                                 })}
                             </CityWrap>
+                            <Youtube />
                         </div>
                     );
                 } else {
@@ -107,12 +103,11 @@ function SurveyResult() {
 }
 
 const Container = styled.div`
-    height: 300px;
-    width: 80%;
+    height: 60vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px auto;
     gap: 200px;
 `;
 
@@ -123,18 +118,20 @@ const ResultTextWrap = styled.div`
 
 const Description = styled.p`
     font-size: 20px;
+    font-family: SCDream3;
 `;
 
 const MapWrap = styled.div`
-    width: 620px;
-    height: 300px;
+    width: 650px;
+    height: 400px;
     background-color: gray;
 `;
 
 const CountryName = styled.h1`
-    font-size: 30px;
+    font-size: 40px;
     margin-top: 30px;
     color: #71d5c9;
+    font-family: SCDream5;
 `;
 const CityWrap = styled.div`
     width: 100vw;
@@ -142,25 +139,35 @@ const CityWrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 200px;
-    margin: 30px 0;
+    gap: 150px;
+    margin: 20px 0 70px 0;
+`;
+
+const Text = styled.p`
+    text-align: center;
+    color: #a3a3a3;
+    font-family: SCDream3;
 `;
 
 const CityImg = styled.img`
-    width: 230px;
-    height: 230px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
-    background-color: gray;
+    border-radius: 20px;
+    cursor: pointer;
 `;
 
 const CityName = styled.p`
     font-size: 20px;
     margin-top: 20px;
     text-align: center;
+    color: #585858;
+    font-family: SCDream3;
 `;
 const CommentsButton = styled.button`
-    width: 160px;
+    width: 200px;
     height: 50px;
+    font-size: 15px;
     border-radius: 50px;
     background-color: white;
     margin-top: 50px;

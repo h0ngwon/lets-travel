@@ -1,12 +1,12 @@
+import React from 'react';
+import styled from 'styled-components';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import Swal from 'sweetalert2';
 import { auth } from '../config/firebaseConfig';
-import Navbar from './ui/Navbar';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -104,7 +104,6 @@ const Home = () => {
             console.log('error.code : ', error.code);
             switch (error.code) {
                 case 'auth/user-not-found" || "auth/wrong-password':
-                case 'auth/network-request-failed':
                     return Swal.fire({
                         icon: 'error',
                         title: '네트워크 연결에 실패 하였습니다.',
@@ -149,7 +148,7 @@ const Home = () => {
         Swal.fire({
             imageUrl: '/imgs/airplain_icon.ico',
             imageWidth: 300,
-            imageHeight: 100,
+            imageHeight: 200,
             title: '로그인 후 이용이 가능합니다.',
             text: '로그인 하시겠습니까?',
             color: '#00a08d',
@@ -301,17 +300,6 @@ const Home = () => {
             await login(formValues);
             console.log('폼밸류', formValues);
             localStorage.setItem('userEmail', formValues[0]);
-            // .then(() => {
-            //     Swal.fire({
-            //         position: 'center',
-            //         width: 400,
-            //         padding: '60px',
-            //         icon: 'success',
-            //         title: '로그인 성공!',
-            //         showConfirmButton: false,
-            //         timer: 1500,
-            //     });
-            // });
         }
         // 회원가입 성공 시, '회원가입 성공!' alert -> 로그인 Modal로 이동
         else {
@@ -386,61 +374,82 @@ const Home = () => {
 
     return (
         <>
-            <Navbar />
             <StPage>
                 <StContainer>
-                    <StH1>Let's Travel</StH1>
-                    <StH2>여행하자</StH2>
-                    <StBtn
-                        onClick={() => {
-                            if (auth.currentUser) {
-                                console.log(auth.currentUser);
-                                navigate('/survey');
-                            } else {
-                                // '여행하러가기' 버튼 클릭 시, 로그인 여부 확인 Modal 실행
-                                askLoginButtonHandler();
-                            }
-                        }}
-                    >
-                        여행하러가기
-                    </StBtn>
+                    <StWrap>
+                        <StH>여행하자!</StH>
+                        <StBtn
+                            onClick={() => {
+                                if (auth.currentUser) {
+                                    console.log(auth.currentUser);
+                                    navigate('/survey');
+                                } else {
+                                    // '여행하러가기' 버튼 클릭 시, 로그인 여부 확인 Modal 실행
+                                    askLoginButtonHandler();
+                                }
+                            }}
+                        >
+                            ✈️
+                        </StBtn>
+                    </StWrap>
+                    <StH2>#Let'sTravel #여행지추천 #해외여행 #브이로그</StH2>
                 </StContainer>
             </StPage>
         </>
     );
 };
-
 export default Home;
 
 const StPage = styled.div`
     width: 100vw;
-    height: 100vh;
-    background-color: #71d5c9;
+    height: 85vh;
+    background-color: #f5f5f5;
 `;
 
 const StContainer = styled.div`
-    height: 100vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 `;
-
-const StH1 = styled.h1`
-    font-size: 50px;
-    margin-bottom: 50px;
+const StWrap = styled.div`
+    display: flex;
+    gap: 20px;
+`;
+const StH2 = styled.h2`
+    font-size: 15px;
+    color: #71d5c9;
+    font-family: SCDream5;
+    margin: 15px 60px 0 0;
+    word-spacing: 10px;
 `;
 
-const StH2 = styled.h2`
-    font-size: 30px;
-    margin-bottom: 70px;
+const StH = styled.h1`
+    font-size: 20px;
+    font-family: SCDream5;
+    width: 550px;
+    height: 60px;
+    padding: 20px 0 0 20px;
+    background-color: white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.2);
+    border: 1.2px solid #71d5c9;
+    border-radius: 10px;
+    color: #8f8f8f;
 `;
 
 const StBtn = styled.button`
-    width: 250px;
-    height: 50px;
+    width: 65px;
+    height: 65px;
     border: none;
-    border-radius: 20px;
-    background-color: white;
-    font-size: 20px;
+    border-radius: 50px;
+    background-color: #71d5c9;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
+    font-family: SCDream3;
+    font-size: 18px;
+    cursor: pointer;
+    &:hover {
+        transform: scale(1.1);
+        transition: 0.2s;
+    }
 `;

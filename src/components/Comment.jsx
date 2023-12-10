@@ -30,7 +30,7 @@ function Comments() {
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
     const queryClient = useQueryClient();
     queryClient.invalidateQueries({ queryKey: ['comments'] });
-    
+
     const { data, isLoading, isSuccess, isError, error } = useQuery({
         queryKey: ['comments'],
         queryFn: fetchData,
@@ -124,6 +124,8 @@ function Comments() {
 
 const StCommentPageDiv = styled.div`
     width: 80%;
+    height: 100%;
+    min-height: 100vh;
     padding: 50px;
     text-align: center;
     margin: 0 auto;
@@ -157,7 +159,6 @@ const StSubmitBtn = styled.button`
     border-radius: 8px;
     padding: 12px 40px;
     cursor: pointer;
-
     &:hover {
         background-color: #71d5c9;
         color: white;
@@ -193,6 +194,7 @@ const StCommentDelBtn = styled.button`
 `;
 const StCommentP = styled.p`
     color: black;
+    font-family: SCDream3;
 `;
 
 export default Comments;
