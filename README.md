@@ -1,5 +1,6 @@
 # 여행하자(Let's Travel)
 
+## <b>프로젝트 소개</b>
 여행하자(Let's Travel) 여행지 추천 내배캠 아웃소싱 프로젝트
 
 ## <b>개발 일정</b>
@@ -39,21 +40,21 @@
 ## 메인페이지
 <img src="./src/assets/메인페이지.png">
 
-메인페이지에서 동그란 비행기 클릭시 로그인 할 수 있다.
+메인페이지에서 동그란 비행기 클릭시 로그인 할 수 있다.<br/>
 
 <img src="./src/assets/비행기클릭시.png">
 
-여행하자(Let's Travel)은 로그인 후 이용이 가능하다.
+여행하자(Let's Travel)은 로그인 후 이용이 가능하다.<br/>
 
 <img src="./src/assets/로그인회원가입.png">
-로그인과 회원가입을 선택 할 수 있다.
+로그인과 회원가입을 선택 할 수 있다.<br/>
 
 <img src="./src/assets/로그인.png">
 <img src="./src/assets/회원가입.png">
-로그인과 회원가입 페이지
+로그인과 회원가입 페이지<br/>
 
 <img src="./src/assets/로그아웃.png">
-로그인 시 네비게이션바에 로그아웃이 생긴다.
+로그인 시 네비게이션바에 로그아웃이 생긴다.<br/>
 
 ## 설문조사 페이지
 <img src="./src/assets/설문조사1.png">
