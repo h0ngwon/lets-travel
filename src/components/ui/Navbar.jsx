@@ -38,7 +38,7 @@ function Navbar() {
     };
     return (
         <NavContainer>
-            <MainLogo onClick={() => navigate('/')}>LET'S TRAVEL</MainLogo>
+            <MainLogo onClick={() => navigate('/')}>Let's Travel</MainLogo>
             {auth.currentUser && (
                 <LogoutBtn onClick={() => logOut()}>로그아웃</LogoutBtn>
             )}
@@ -56,22 +56,24 @@ const NavContainer = styled.div`
 `;
 const MainLogo = styled.h1`
     width: 300px;
-    height: 50px;
-    padding: 10px 0px 0px 50px;
+    height: 60px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0 0 80px;
     color: #71d5c9;
     font-size: 35px;
-    font-family: Milton Keynes;
+    font-family: Avigea;
     cursor: pointer;
 `;
 
 const LogoutBtn = styled.button`
-    margin-right: 50px;
-    font-size: 20px;
+    margin-right: 80px;
+    font-size: 17px;
     color: #71d5c9;
-    border: #71d5c9 solid 2px;
-    border-radius: 5px;
     background-color: white;
-    font-family: Milton Keynes;
+    border-style: none;
+    font-family: SCDream6;
     cursor: pointer;
 `;
 

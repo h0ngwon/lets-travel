@@ -158,6 +158,8 @@ function Comments() {
 
 const StCommentPageDiv = styled.div`
     width: 80%;
+    height: 100%;
+    min-height: 100vh;
     padding: 50px;
     text-align: center;
     margin: 0 auto;
@@ -191,7 +193,6 @@ const StSubmitBtn = styled.button`
     border-radius: 8px;
     padding: 12px 40px;
     cursor: pointer;
-
     &:hover {
         background-color: #71d5c9;
         color: white;
@@ -234,6 +235,7 @@ const StCommentEditBtn = styled.button`
 `;
 const StCommentP = styled.p`
     color: black;
+    font-family: SCDream3;
 `;
 
 export default Comments;

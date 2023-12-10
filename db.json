@@ -1,26 +1,26 @@
 {
     "countryList": [
         {
-            "q": ["Q. 여행하고 싶은 대륙을 선택해주세요"],
+            "q": ["Q. 본인의 여행 스타일을 선택해주세요"],
             "a": [
                 {
-                    "text": "아시아",
-                    "type": "A,B"
+                    "text": "휴양",
+                    "type": "B"
                 },
                 {
-                    "text": "유럽",
+                    "text": "쇼핑",
                     "type": "E,F"
                 },
                 {
-                    "text": "아메리카",
+                    "text": "관광",
                     "type": "C,D"
                 },
                 {
-                    "text": "오세아니아",
-                    "type": "G"
+                    "text": "맛집",
+                    "type": "A,G"
                 },
                 {
-                    "text": "아프리카",
+                    "text": "액티비티",
                     "type": "H"
                 }
             ]
@@ -34,7 +34,7 @@
                 },
                 {
                     "text": "가족",
-                    "type": "B,H"
+                    "type": "G,H"
                 },
                 {
                     "text": "친구",
@@ -50,53 +50,41 @@
             "q": ["Q. 선호하는 여행기간을 선택해주세요"],
             "a": [
                 {
-                    "text": "3일",
-                    "type": "A,B,H"
+                    "text": "최대 3일",
+                    "type": "A,H"
                 },
                 {
-                    "text": "15일",
-                    "type": "E,F"
+                    "text": "최대 1주일",
+                    "type": "B"
                 },
                 {
-                    "text": "30일",
-                    "type": "C,D,G"
+                    "text": "최대 15일",
+                    "type": "C,E,F"
+                },
+                {
+                    "text": "30일 이상",
+                    "type": "D,G"
                 }
             ]
         },
         {
-            "q": ["Q. 원하는 키워드를 선택해주세요(최대3개)"],
+            "q": ["Q. 여행을 떠나고 싶은 계절을 선택해주세요"],
             "a": [
                 {
-                    "text": "관광",
-                    "type": "C,E,F"
-                },
-                {
-                    "text": "쇼핑",
-                    "type": "A,E,F"
-                },
-                {
-                    "text": "액티비티",
-                    "type": "B,H"
-                },
-                {
-                    "text": "사진",
-                    "type": "C,E,F"
-                },
-                {
-                    "text": "힐링",
-                    "type": "B,G"
-                },
-                {
-                    "text": "맛집",
+                    "text": "봄",
                     "type": "A,F"
                 },
                 {
-                    "text": "이색체험",
-                    "type": "D,G,H"
+                    "text": "여름",
+                    "type": "B,G"
                 },
                 {
-                    "text": "가성비",
-                    "type": "B,H"
+                    "text": "가을",
+                    "type": "C,D"
+                },
+                {
+                    "text": "겨울",
+                    "type": "E,H"
                 }
             ]
         }
@@ -120,7 +108,7 @@
                 },
                 {
                     "id": "japan3",
-                    "title": "훗카이도",
+                    "title": "홋카이도",
                     "img": "https://photowhite.net/data/editor/2302/b58275749efbac8d874fd596efeb47ab_1675688613_7578.png"
                 }
             ]
@@ -156,7 +144,7 @@
             "cities": [
                 {
                     "id": "usa1",
-                    "title": "로스앤젤레스",
+                    "title": "LA",
                     "img": "https://a.cdn-hotels.com/gdcs/production156/d691/3d64b612-6715-43f7-b613-66b37a230b55.jpg"
                 },
                 {
@@ -281,8 +269,8 @@
                 },
                 {
                     "id": "egypt3",
-                    "title": "후르가다",
-                    "img": "https://blog.kakaocdn.net/dn/ccMLv3/btqMdh9Wiu4/NjI2UYF4WKnJ1tW5MD1G81/img.png"
+                    "title": "다합",
+                    "img": "https://fv-wp-contents.s3.ap-northeast-2.amazonaws.com/mememedia/2023/10/12152555/%EC%9D%B4%EC%A7%91%ED%8A%B8-%EB%8B%A4%ED%95%A9-%EC%97%AC%ED%96%89-%EB%8B%A4%EC%9D%B4%EB%B9%99-%EB%B8%94%EB%A3%A8%ED%99%80-%ED%95%B4%EC%99%B81.jpg"
                 }
             ]
         }
