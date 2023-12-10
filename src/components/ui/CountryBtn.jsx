@@ -38,7 +38,6 @@ const StCountryBtn = styled.button`
     border-radius: 10px;
     padding: 15px;
     cursor: pointer;
-
     &:hover,
     &:focus,
     &.active {
