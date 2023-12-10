@@ -19,6 +19,8 @@ const SurveyResult = () => {
         withReactContent(Swal).fire({
             html: <Youtube cityTitle={title} />,
             width: 1280,
+            confirmButtonText: '나가기',
+            confirmButtonColor: '#71d5c9',
         });
     };
 
@@ -100,7 +102,7 @@ const SurveyResult = () => {
             })}
         </div>
     );
-}
+};
 
 const Container = styled.div`
     height: 60vh;

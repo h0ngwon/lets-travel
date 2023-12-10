@@ -18,8 +18,7 @@ const Youtube = ({ cityTitle }) => {
                 },
             });
             setVideoList(res.data.items);
-        } catch (error) {
-        }
+        } catch (error) {}
     };
 
     return (

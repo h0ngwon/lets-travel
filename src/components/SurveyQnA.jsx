@@ -144,7 +144,7 @@ const SurveyQnA = () => {
 };
 const Container = styled.div`
     width: 100vw;
-    height: 80vh;
+    height: 85vh;
 `;
 const ProgressBarWrap = styled.div`
     width: 60%;
