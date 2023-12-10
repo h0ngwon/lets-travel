@@ -8,7 +8,7 @@ import {
     addDoc,
     orderBy,
 } from 'firebase/firestore';
-import { db } from 'firebaseConfig';
+import { db } from 'config/firebaseConfig';
 
 export const fetchData = async () => {
     const initialComments = [];
