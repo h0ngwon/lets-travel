@@ -17,10 +17,8 @@ const Youtube = ({ cityTitle }) => {
                     maxResults: 48,
                 },
             });
-            console.log(res.data.items);
             setVideoList(res.data.items);
         } catch (error) {
-            console.log(error);
         }
     };
 

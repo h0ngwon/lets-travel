@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../config/firebaseConfig';
-import { onAuthStateChanged } from 'firebase/auth';
 import Swal from 'sweetalert2';
+import { auth } from '../../config/firebaseConfig';
 
 function Navbar() {
     const navigate = useNavigate();

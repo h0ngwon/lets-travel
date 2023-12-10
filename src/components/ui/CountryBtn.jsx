@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { setCountry } from '../../redux/modules/countrySlice';
 import { useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { setCountry } from '../../redux/modules/countrySlice';
 
 function CountryBtn({ countries }) {
     const dispatch = useDispatch();

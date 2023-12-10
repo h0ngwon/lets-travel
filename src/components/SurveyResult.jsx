@@ -7,7 +7,7 @@ import withReactContent from 'sweetalert2-react-content';
 import MapComponent from './MapComponent';
 import Youtube from './Youtube';
 
-function SurveyResult() {
+const SurveyResult = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const { isPending, isError, data } = useQuery({

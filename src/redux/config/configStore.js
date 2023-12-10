@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
-import isLogined from '../modules/isLogined';
 import countrySlice from '../modules/countrySlice';
+import isLogined from '../modules/isLogined';
 
 const store = configureStore({
     reducer: {
