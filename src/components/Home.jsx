@@ -5,10 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
+    GoogleAuthProvider,
+    getAuth,
+    signInWithPopup,
 } from 'firebase/auth';
 import { auth } from '../config/firebaseConfig';
 
 const Home = () => {
+    const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate();
 
     // 회원가입 : 파이어베이스에 email, password 저장
@@ -194,8 +198,8 @@ const Home = () => {
 
     // '로그인' 버튼 클릭 시, 실행
     const loginHandler = () => {
-        (async () => {
-            const { value: formValues } = await Swal.fire({
+        (() => {
+            Swal.fire({
                 title: '로그인',
                 html:
                     '<label style="margin-right:15px">이메일</label>' +
@@ -205,17 +209,60 @@ const Home = () => {
                 focusConfirm: false,
                 confirmButtonColor: '#71d5c9',
                 confirmButtonText: '로그인하기',
+                denyButtonColor: 'black',
+                denyButtonText: '구글로 로그인하기',
+                showConfirmButton: true,
+                showDenyButton: true,
                 preConfirm: () => {
                     return [
                         document.getElementById('email').value,
                         document.getElementById('password').value,
                     ];
                 },
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    console.log(result);
+                    if (result.value) {
+                        // 입력된 값 (배열) 매개변수로 전달 -> 유효성 검사 실행
+                        validationCheckHandler(result.value);
+                    }
+                }
+
+                if (result.isDenied) {
+                    const auth = getAuth();
+                    signInWithPopup(auth, googleProvider)
+                        .then((result) => {
+                            const user = result.user;
+                            localStorage.setItem('userEmail', user.email);
+
+                            Swal.fire({
+                                position: 'center',
+                                width: 400,
+                                padding: '60px',
+                                icon: 'success',
+                                title: '로그인 성공!',
+                                showConfirmButton: false,
+                                timer: 1500,
+                            });
+                        })
+                        .catch((error) => {
+                            const errorMessage = error.message;
+                            
+                            return Swal.fire({
+                                icon: 'error',
+                                title: '에러 발생',
+                                text: `${errorMessage}`,
+                                confirmButtonColor: '',
+                            })
+                            
+                            
+                        });
+                }
             });
-            if (formValues) {
-                // 입력된 값 (배열) 매개변수로 전달 -> 유효성 검사 실행
-                validationCheckHandler(formValues);
-            }
+            // if (formValues) {
+            //     // 입력된 값 (배열) 매개변수로 전달 -> 유효성 검사 실행
+            //     validationCheckHandler(formValues);
+            // }
         })();
     };
 
@@ -453,3 +500,5 @@ const StBtn = styled.button`
         transition: 0.2s;
     }
 `;
+
+const GoogleLogin = styled.button``;

@@ -16,7 +16,7 @@ function Navbar() {
     // 로그인 정보 저장
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
-            if (auth.currentUser) {
+            if (auth.currentUser || user) {
                 setRender(!render);
             }
         });
