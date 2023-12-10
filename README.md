@@ -50,8 +50,8 @@
 로그인과 회원가입을 선택 할 수 있다.<br/>
 
 <img src="./src/assets/로그인.png">
-<img src="./src/assets/회원가입.png"><br/>
-로그인과 회원가입 페이지<br/>
+<img src="./src/assets/회원가입.png">
+로그인과 회원가입 페이지<br/><br/>
 
 <img src="./src/assets/로그아웃.png">
 로그인 시 네비게이션바에 로그아웃이 생긴다.<br/>
