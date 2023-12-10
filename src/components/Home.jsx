@@ -37,7 +37,7 @@ const Home = () => {
                             icon: 'error',
                             title: '이미 가입된 이메일입니다.',
                             text: '이메일 주소를 확인해주세요.',
-                            confirmButtonColor: '#00a08d',
+                            confirmButtonColor: '#71d5c9',
                         }).then(() => {
                             signupHandler();
                         });
@@ -46,7 +46,7 @@ const Home = () => {
                             icon: 'error',
                             title: '잘못된 비밀번호를 입력하였습니다.',
                             text: '비밀번호는 6글자 이상이어야 합니다.',
-                            confirmButtonColor: '#00a08d',
+                            confirmButtonColor: '#71d5c9',
                         }).then(() => {
                             signupHandler();
                         });
@@ -55,7 +55,7 @@ const Home = () => {
                             icon: 'error',
                             title: '네트워크 연결에 실패 하였습니다.',
                             text: '잠시 후에 다시 시도해 주세요.',
-                            confirmButtonColor: '#00a08d',
+                            confirmButtonColor: '#71d5c9',
                         }).then(() => {
                             signupHandler();
                         });
@@ -64,7 +64,7 @@ const Home = () => {
                             icon: 'error',
                             title: '잘못된 이메일 형식입니다.',
                             text: '유효한 이메일 형식으로 작성해주세요.',
-                            confirmButtonColor: '#00a08d',
+                            confirmButtonColor: '#71d5c9',
                         }).then(() => {
                             signupHandler();
                         });
@@ -73,7 +73,7 @@ const Home = () => {
                             icon: 'error',
                             title: '회원가입에 실패하였습니다.',
                             text: '이메일 주소와 비밀번호를 확인해주세요.',
-                            confirmButtonColor: '#00a08d',
+                            confirmButtonColor: '#71d5c9',
                         }).then(() => {
                             signupHandler();
                         });
@@ -108,7 +108,7 @@ const Home = () => {
                         icon: 'error',
                         title: '네트워크 연결에 실패 하였습니다.',
                         text: '잠시 후에 다시 시도해 주세요.',
-                        confirmButtonColor: '#00a08d',
+                        confirmButtonColor: '#71d5c9',
                     }).then(() => {
                         loginHandler();
                     });
@@ -117,7 +117,7 @@ const Home = () => {
                         icon: 'error',
                         title: '잘못된 이메일 형식입니다.',
                         text: '유효한 이메일 형식으로 작성해주세요.',
-                        confirmButtonColor: '#00a08d',
+                        confirmButtonColor: '#71d5c9',
                     }).then(() => {
                         loginHandler();
                     });
@@ -126,7 +126,7 @@ const Home = () => {
                         icon: 'error',
                         title: '잘못된 정보를 입력하였습니다.',
                         text: '가입한 계정의 정보를 입력해주세요.',
-                        confirmButtonColor: '#00a08d',
+                        confirmButtonColor: '#71d5c9',
                     }).then(() => {
                         loginHandler();
                     });
@@ -135,7 +135,7 @@ const Home = () => {
                         icon: 'error',
                         title: '로그인에 실패하였습니다.',
                         text: '이메일 주소와 비밀번호를 확인해주세요.',
-                        confirmButtonColor: '#00a08d',
+                        confirmButtonColor: '#71d5c9',
                     }).then(() => {
                         loginHandler();
                     });
@@ -146,16 +146,16 @@ const Home = () => {
     // '여행하러가기' 버튼 클릭 시, 실행
     const askLoginButtonHandler = () => {
         Swal.fire({
-            imageUrl: '/imgs/airplain_icon.ico',
+            imageUrl: 'https://cdn-0.emojis.wiki/emoji-pics/apple/airplane-apple.png',
             imageWidth: 300,
             imageHeight: 200,
             title: '로그인 후 이용이 가능합니다.',
             text: '로그인 하시겠습니까?',
-            color: '#00a08d',
+            color: '#71d5c9',
             showCancelButton: true,
-            confirmButtonText: 'Login',
-            cancelButtonText: 'Cancel',
-            confirmButtonColor: '#00a08d',
+            confirmButtonText: '로그인',
+            cancelButtonText: '취소',
+            confirmButtonColor: '#71d5c9',
             cancelButtonColor: '#5f5f5f',
         }).then((result) => {
             if (result.isConfirmed) {
@@ -175,12 +175,12 @@ const Home = () => {
             imageWidth: 300,
             imageHeight: 200,
             title: "Let's Travel !",
-            color: '#00a08d',
+            color: '#71d5c9',
             showDenyButton: true,
             confirmButtonText: '로그인',
-            confirmButtonColor: '#00a08d',
+            confirmButtonColor: '#71d5c9',
             denyButtonText: '회원가입',
-            denyButtonColor: '#00a08d',
+            denyButtonColor: '#71d5c9',
         }).then((result) => {
             if (result.isConfirmed) {
                 // '로그인' 버튼 클릭 시, 로그인 Modal 실행
@@ -198,12 +198,12 @@ const Home = () => {
             const { value: formValues } = await Swal.fire({
                 title: '로그인',
                 html:
-                    '<label>이메일</label>' +
+                    '<label style="margin-right:15px">이메일</label>' +
                     '<input required id="email" type="email" class="swal2-input" placeholder="이메일을 입력해주세요."> <br/>' +
                     '<label>비밀번호</label>' +
                     '<input id="password" type="password" class="swal2-input" placeholder="비밀번호를 입력해주세요.">',
                 focusConfirm: false,
-                confirmButtonColor: '#00a08d',
+                confirmButtonColor: '#71d5c9',
                 confirmButtonText: '로그인하기',
                 preConfirm: () => {
                     return [
@@ -232,7 +232,7 @@ const Home = () => {
                     '<label style="padding:18px">확인</label>' +
                     '<input id="passCheck" type="password" class="swal2-input" placeholder="비밀번호를 재입력하세요.">',
                 focusConfirm: false,
-                confirmButtonColor: '#00a08d',
+                confirmButtonColor: '#71d5c9',
                 confirmButtonText: '가입하기',
                 preConfirm: () => {
                     return [
@@ -276,7 +276,7 @@ const Home = () => {
                             title: '비밀번호를 확인해주세요.',
                             text: '비밀번호가 일치하지 않습니다.',
                             padding: '20px',
-                            confirmButtonColor: '#00a08d',
+                            confirmButtonColor: '#71d5c9',
                             confirmButtonText: '회원가입 하러가기',
                         }).then(() => {
                             signupHandler();
@@ -318,7 +318,7 @@ const Home = () => {
                     icon: 'warning',
                     title: '잘못된 정보를 입력하였습니다.',
                     text: '이메일 주소와 비밀번호를 다시 확인해주세요!',
-                    confirmButtonColor: '#00a08d',
+                    confirmButtonColor: '#71d5c9',
                     confirmButtonText: '로그인 하러가기',
                 }).then(() => {
                     loginHandler();
@@ -331,7 +331,7 @@ const Home = () => {
                         title: '이메일 주소를 입력해주세요.',
                         text: '이메일 주소를 입력하지 않았습니다.',
                         padding: '20px',
-                        confirmButtonColor: '#00a08d',
+                        confirmButtonColor: '#71d5c9',
                         confirmButtonText: '로그인 하러가기',
                     }).then(() => {
                         loginHandler();
@@ -344,7 +344,7 @@ const Home = () => {
                         title: '비밀번호를 입력해주세요.',
                         text: '비밀번호를 입력하지 않았습니다.',
                         padding: '20px',
-                        confirmButtonColor: '#00a08d',
+                        confirmButtonColor: '#71d5c9',
                         confirmButtonText: '로그인 하러가기',
                     }).then(() => {
                         loginHandler();
@@ -363,7 +363,7 @@ const Home = () => {
                     icon: 'warning',
                     title: '잘못된 정보를 입력하였습니다.',
                     text: '입력하신 정보를 다시 확인해주세요!',
-                    confirmButtonColor: '#00a08d',
+                    confirmButtonColor: '#71d5c9',
                     confirmButtonText: '회원가입 하러가기',
                 }).then(() => {
                     signupHandler();
