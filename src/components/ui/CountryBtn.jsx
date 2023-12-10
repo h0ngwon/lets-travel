@@ -33,11 +33,9 @@ const StCountryBtn = styled.button`
     border-radius: 10px;
     padding: 15px;
     cursor: pointer;
-
     &:hover,
     &:focus,
-    &:active,
-    &.active {
+    &:active {
         background-color: #71d5c9;
         color: white;
     }
