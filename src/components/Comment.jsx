@@ -1,7 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { deleteData, fetchData, updateData, addData } from 'apis/comments';
-import { addDoc, collection } from 'firebase/firestore';
-import { db } from 'firebaseConfig';
 import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -29,7 +27,6 @@ function Comments() {
 
     //firebase에서 데이터를 가져와 react 애플리캐이션을 업데이트 함
     const queryClient = useQueryClient();
-    // queryClient.invalidateQueries({ queryKey: ['comments'] });
 
     const { data, isLoading, isSuccess, isError, error } = useQuery({
         queryKey: ['comments'],
@@ -67,7 +64,6 @@ function Comments() {
 
     const onSubmit = (e) => {
         e.preventDefault();
-        // const docRef = collection(db, 'comments');
         const newComment = {
             contents,
             country: selectedCountry,
