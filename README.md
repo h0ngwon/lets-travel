@@ -50,7 +50,7 @@
 로그인과 회원가입을 선택 할 수 있다.<br/>
 
 <img src="./src/assets/로그인.png">
-<img src="./src/assets/회원가입.png">
+<img src="./src/assets/회원가입.png"><br/>
 로그인과 회원가입 페이지<br/>
 
 <img src="./src/assets/로그아웃.png">
