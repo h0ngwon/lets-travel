@@ -124,6 +124,8 @@ function Comments() {
 
 const StCommentPageDiv = styled.div`
     width: 80%;
+    height: 100%;
+    min-height: 100vh;
     padding: 50px;
     text-align: center;
     margin: 0 auto;
