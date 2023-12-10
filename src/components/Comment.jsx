@@ -170,38 +170,38 @@ const StCommentPageDiv = styled.div`
     width: 80%;
     height: 100%;
     min-height: 100vh;
-    padding: 50px;
+    padding: 3.125rem;
     text-align: center;
     margin: 0 auto;
 `;
 const StCommentSection = styled.div`
-    border: 1px solid #71d5c9;
-    margin-top: 100px;
-    margin-bottom: 50px;
-    padding: 50px;
+    border: 0.0625rem solid #71d5c9;
+    margin-top: 6.25rem;
+    margin-bottom: 3.125rem;
+    padding: 3.125rem;
 `;
 const StCommentInputForm = styled.form`
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 1.25rem;
 `;
 const StSelectCountry = styled.select`
-    padding: 12px 40px;
-    border-radius: 8px;
+    padding: 0.75rem 2.5rem;
+    border-radius: 0.5rem;
     border-style: none;
     background-color: #efefef;
     cursor: pointer;
 `;
 const StInput = styled.input`
-    border-radius: 8px;
+    border-radius: 0.5rem;
     border-style: none;
-    border: 1px solid #71d5c9;
-    padding: 12px 180px;
+    border: 0.0625rem solid #71d5c9;
+    padding: 0.75rem 11.25rem;
 `;
 const StSubmitBtn = styled.button`
     border-style: none;
-    border-radius: 8px;
-    padding: 12px 40px;
+    border-radius: 0.5rem;
+    padding: 0.75rem 2.5rem;
     cursor: pointer;
     &:hover {
         background-color: #71d5c9;
@@ -210,11 +210,11 @@ const StSubmitBtn = styled.button`
 `;
 const StComment = styled.div`
     width: 80%;
-    margin: 0 auto 20px auto;
+    margin: 0 auto 1.25rem auto;
     background-color: #efefef;
-    padding: 15px;
-    padding-left: 30px;
-    border-radius: 20px;
+    padding: 0.9375rem;
+    padding-left: 1.875rem;
+    border-radius: 1.25rem;
 `;
 const StCommentEmailnDate = styled.div`
     width: 97%;
@@ -222,7 +222,7 @@ const StCommentEmailnDate = styled.div`
     align-items: center;
     justify-content: space-between;
     color: darkgray;
-    gap: 15px;
+    gap: 0.9375rem;
 `;
 const StCommentDatenBtn = styled.div`
     display: flex;
@@ -233,7 +233,7 @@ const StCommentDelBtn = styled.button`
     border-style: none;
     color: darkgray;
     background-color: none;
-    margin-left: 20px;
+    margin-left: 1.25rem;
     cursor: pointer;
     display: ${(props) => (props.$shouldDisplay ? 'flex' : 'none')};
 `;
@@ -241,7 +241,7 @@ const StCommentEditBtn = styled.button`
     border-style: none;
     color: darkgray;
     background-color: none;
-    margin-left: 20px;
+    margin-left: 1.25rem;
     cursor: pointer;
     display: ${(props) => (props.$shouldDisplay ? 'flex' : 'none')};
 `;
